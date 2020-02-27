@@ -7,6 +7,7 @@
         <module>taskcenter-dal</module>
         <module>taskcenter-biz</module>
         <module>taskcenter-provider</module>
+        <module>taskcenter-api</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

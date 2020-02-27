@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="934e8a86-5dff-44ad-95e9-12e2271b8a4a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/taskcenter-api/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/taskcenter-biz/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/taskcenter-dal/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" afterDir="false" />
@@ -17,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_usercenter" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_usercenter" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +27,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -53,7 +55,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../forbes-comm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.38505748" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
@@ -120,6 +122,7 @@
       <workItem from="1582713079356" duration="91000" />
       <workItem from="1582713197744" duration="4655000" />
       <workItem from="1582761384192" duration="6564000" />
+      <workItem from="1582770163792" duration="271000" />
     </task>
     <servers />
   </component>
@@ -171,14 +174,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="125" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1582713212331">
+    <state x="121" y="0" key="SettingsEditor" timestamp="1582770434766">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1582713212331" />
-    <state x="28" y="48" key="new project wizard" timestamp="1582710824300">
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1582770434766" />
+    <state x="28" y="48" key="new project wizard" timestamp="1582770421555">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="28" y="48" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1582710824300" />
+    <state x="28" y="48" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1582770421555" />
     <state x="297" y="151" width="672" height="677" key="run.anything.popup" timestamp="1582712609363">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
