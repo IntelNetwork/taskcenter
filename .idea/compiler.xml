@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="taskcenter-provider" />
+        <module name="taskcenter-dal" />
+        <module name="taskcenter-biz" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="smartwork_taskcenter" target="1.8" />
+      <module name="taskcenter-biz" target="1.8" />
+      <module name="taskcenter-dal" target="1.8" />
+      <module name="taskcenter-provider" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="smartwork_taskcenter" options="-parameters" />
+      <module name="taskcenter-biz" options="-parameters" />
+      <module name="taskcenter-dal" options="-parameters" />
+      <module name="taskcenter-provider" options="-parameters" />
+    </option>
+  </component>
+</project>

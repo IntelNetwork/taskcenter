@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动:换成你本地的驱动包位置-->
+    <classPathEntry  location="C:/Users/hankh/.m2/repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar"/>
+    <context id="DB2Tables"  targetRuntime="MyBatis3">
+            <property name="javaFileEncoding" value="UTF-8"/>
+            <!-- 自定义的注释生成插件-->
+            <plugin type="com.chrm.mybatis.generator.plugins.CommentPlugin">
+            <!-- 抑制警告 -->
+            <property name="suppressTypeWarnings" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false" />
+            <!-- 是否生成注释代时间戳-->
+            <property name="suppressDate" value="true" />
+        </plugin>
+        <!-- 整合lombok-->
+        <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin" >
+            <property name="hasLombok" value="true"/>
+            <!--设置表对应名称-->
+            <property name="fb_zg_task" value="任务"/>
+        </plugin>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://129.211.88.251:3306/smartworktask" userId="smartworktask" password="KJJ22nd8fkJB3XJh">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="org.smartwork.dal.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="rootClass" value="org.forbes.comm.entity.BaseEntity"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="org.smartwork.dal.mapper.xml"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="org.smartwork.dal.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <table tableName="fb_zg_task" domainObjectName="ZGTask"          enableSelectByPrimaryKey="true"
+        								   								  enableDeleteByPrimaryKey="false"
+        								   								  enableUpdateByPrimaryKey="false"
+        								   								  enableCountByExample="false" 
+        								   								  enableUpdateByExample="false" 
+        								   								  enableDeleteByExample="false" 
+        								   								  enableSelectByExample="false" 
+        								   								  selectByExampleQueryId="false" 
+        								   								  selectByPrimaryKeyQueryId="false">
+        	<property name="useActualColumnNames" value="false"/>
+        </table>
+    </context>
+</generatorConfiguration>
