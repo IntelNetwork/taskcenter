@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/smartwork_taskcenter.iml" filepath="$PROJECT_DIR$/smartwork_taskcenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/taskcenter-api/taskcenter-api.iml" filepath="$PROJECT_DIR$/taskcenter-api/taskcenter-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/taskcenter-biz/taskcenter-biz.iml" filepath="$PROJECT_DIR$/taskcenter-biz/taskcenter-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taskcenter-comm/taskcenter-comm.iml" filepath="$PROJECT_DIR$/taskcenter-comm/taskcenter-comm.iml" />
       <module fileurl="file://$PROJECT_DIR$/taskcenter-dal/taskcenter-dal.iml" filepath="$PROJECT_DIR$/taskcenter-dal/taskcenter-dal.iml" />
       <module fileurl="file://$PROJECT_DIR$/taskcenter-provider/taskcenter-provider.iml" filepath="$PROJECT_DIR$/taskcenter-provider/taskcenter-provider.iml" />
     </modules>
