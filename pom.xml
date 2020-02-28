@@ -28,11 +28,6 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.forbes</groupId>
-            <artifactId>forbes-comm</artifactId>
-            <version>${comm.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
