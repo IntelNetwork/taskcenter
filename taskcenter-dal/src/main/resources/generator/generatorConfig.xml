@@ -20,7 +20,15 @@
         <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin" >
             <property name="hasLombok" value="true"/>
             <!--设置表对应名称-->
-            <property name="fb_zg_task" value="任务"/>
+            <!--<property name="fb_zg_task" value="任务"/>-->
+            <property name="fb_task_order" value="任务订单"/>
+            <property name="fb_zg_big_attach" value="任务竞标附件"/>
+            <property name="fb_zg_t_ind_type" value="行业类型"/>
+            <property name="fb_zg_task_attach" value="任务附件"/>
+            <property name="fb_zg_task_bid" value="任务竞标记录"/>
+            <property name="fb_zg_task_rel_tag" value="任务标签关联表"/>
+            <property name="fb_zg_task_tag" value="任务标签"/>
+            <property name="fb_zg_task_type" value="任务类型"/>
         </plugin>
         <!--整合序列化-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
@@ -64,7 +72,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="org.smartwork.dal.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <table tableName="fb_zg_task" domainObjectName="ZGTask"          enableSelectByPrimaryKey="true"
+        <!--<table tableName="fb_zg_task" domainObjectName="ZGTask"          enableSelectByPrimaryKey="true"
         								   								  enableDeleteByPrimaryKey="false"
         								   								  enableUpdateByPrimaryKey="false"
         								   								  enableCountByExample="false" 
@@ -74,6 +82,95 @@
         								   								  selectByExampleQueryId="false" 
         								   								  selectByPrimaryKeyQueryId="false">
         	<property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <table tableName="fb_task_order" domainObjectName="ZGTaskOrder"          enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="fb_zg_big_attach" domainObjectName="ZGBigAttach"          enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="fb_zg_t_ind_type" domainObjectName="ZGTindType"          enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="fb_zg_task_attach" domainObjectName="ZGTaskAttach"          enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="fb_zg_task_bid" domainObjectName="ZGTaskBid"          enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+        <table tableName="fb_zg_task_rel_tag" domainObjectName="ZGTaskRelTag"          enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="fb_zg_task_tag" domainObjectName="ZGTaskTag"          enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="fb_zg_task_type" domainObjectName="ZGTaskType"          enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
         </table>
     </context>
 </generatorConfiguration>
