@@ -11,7 +11,7 @@ import org.forbes.comm.entity.BaseEntity;
  * Table: fb_zg_task_bid
  */
 @Data
-@ApiModel(description="null")
+@ApiModel(description="任务竞标记录")
 @TableName("fb_zg_task_bid")
 public class ZGTaskBid extends BaseEntity {
     /**

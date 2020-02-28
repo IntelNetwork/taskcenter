@@ -10,7 +10,7 @@ import org.forbes.comm.entity.BaseEntity;
  * Table: fb_zg_task_rel_tag
  */
 @Data
-@ApiModel(description="null")
+@ApiModel(description="任务标签关联表")
 @TableName("fb_zg_task_rel_tag")
 public class ZGTaskRelTag extends BaseEntity {
     /**

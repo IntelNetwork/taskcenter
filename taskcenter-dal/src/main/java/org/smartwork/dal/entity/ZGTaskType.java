@@ -10,7 +10,7 @@ import org.forbes.comm.entity.BaseEntity;
  * Table: fb_zg_task_type
  */
 @Data
-@ApiModel(description="null")
+@ApiModel(description="任务类型")
 @TableName("fb_zg_task_type")
 public class ZGTaskType extends BaseEntity {
     /**

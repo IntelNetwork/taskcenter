@@ -11,7 +11,7 @@ import org.forbes.comm.entity.BaseEntity;
  * Table: fb_task_order
  */
 @Data
-@ApiModel(description="null")
+@ApiModel(description="任务订单")
 @TableName("fb_task_order")
 public class ZGTaskOrder extends BaseEntity {
     /**

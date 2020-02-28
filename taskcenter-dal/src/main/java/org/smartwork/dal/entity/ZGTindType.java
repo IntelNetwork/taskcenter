@@ -10,7 +10,7 @@ import org.forbes.comm.entity.BaseEntity;
  * Table: fb_zg_t_ind_type
  */
 @Data
-@ApiModel(description="null")
+@ApiModel(description="行业类型")
 @TableName("fb_zg_t_ind_type")
 public class ZGTindType extends BaseEntity {
     /**

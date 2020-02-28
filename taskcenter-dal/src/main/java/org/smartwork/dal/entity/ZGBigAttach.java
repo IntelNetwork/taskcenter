@@ -10,7 +10,7 @@ import org.forbes.comm.entity.BaseEntity;
  * Table: fb_zg_big_attach
  */
 @Data
-@ApiModel(description="null")
+@ApiModel(description="任务竞标附件")
 @TableName("fb_zg_big_attach")
 public class ZGBigAttach extends BaseEntity {
     /**
