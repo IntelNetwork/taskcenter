@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="934e8a86-5dff-44ad-95e9-12e2271b8a4a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/taskcenter-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/taskcenter-biz/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/taskcenter-dal/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/taskcenter-provider/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/target/gateway-config-0.0.1-SNAPSHOT-exec.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/target/gateway-config-0.0.1-SNAPSHOT-exec.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/target/gateway-config-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/target/gateway-config-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/java/org/smartwork/SmartworkApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/java/org/smartwork/SmartworkApplication.java" afterDir="false" />
@@ -18,7 +13,9 @@
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_usercenter" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_usercenter" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,8 +48,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="ignore_missing_gitignore" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../forbes-comm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../cfm/forbes-usercenter" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.38505748" />
@@ -122,7 +120,9 @@
       <workItem from="1582713079356" duration="91000" />
       <workItem from="1582713197744" duration="4655000" />
       <workItem from="1582761384192" duration="6564000" />
-      <workItem from="1582770163792" duration="271000" />
+      <workItem from="1582770163792" duration="3755000" />
+      <workItem from="1582802585131" duration="1365000" />
+      <workItem from="1582849833126" duration="3891000" />
     </task>
     <servers />
   </component>
@@ -134,46 +134,50 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1582712413296" />
+    <state x="411" y="208" width="459" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582857160994">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="411" y="208" width="459" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680@0.0.1280.680" timestamp="1582857160994" />
     <state x="371" y="91" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582766507174">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="91" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1582766507174" />
-    <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1582767163949">
+    <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1582855564479">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582767163949" />
-    <state width="1237" height="125" key="GridCell.Tab.0.bottom" timestamp="1582769684677">
+    <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582855564479" />
+    <state width="1237" height="318" key="GridCell.Tab.0.bottom" timestamp="1582857287734">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="125" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
-    <state width="1237" height="125" key="GridCell.Tab.0.center" timestamp="1582769684677">
+    <state width="1237" height="318" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
+    <state width="1237" height="318" key="GridCell.Tab.0.center" timestamp="1582857287734">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="125" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
-    <state width="1237" height="125" key="GridCell.Tab.0.left" timestamp="1582769684677">
+    <state width="1237" height="318" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
+    <state width="1237" height="318" key="GridCell.Tab.0.left" timestamp="1582857287734">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="125" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
-    <state width="1237" height="125" key="GridCell.Tab.0.right" timestamp="1582769684677">
+    <state width="1237" height="318" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
+    <state width="1237" height="318" key="GridCell.Tab.0.right" timestamp="1582857287734">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="125" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
-    <state width="1237" height="125" key="GridCell.Tab.1.bottom" timestamp="1582769684677">
+    <state width="1237" height="318" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
+    <state width="1237" height="318" key="GridCell.Tab.1.bottom" timestamp="1582857287735">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="125" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
-    <state width="1237" height="125" key="GridCell.Tab.1.center" timestamp="1582769684677">
+    <state width="1237" height="318" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582857287735" />
+    <state width="1237" height="318" key="GridCell.Tab.1.center" timestamp="1582857287735">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="125" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
-    <state width="1237" height="125" key="GridCell.Tab.1.left" timestamp="1582769684677">
+    <state width="1237" height="318" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582857287735" />
+    <state width="1237" height="318" key="GridCell.Tab.1.left" timestamp="1582857287734">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="125" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
-    <state width="1237" height="125" key="GridCell.Tab.1.right" timestamp="1582769684677">
+    <state width="1237" height="318" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
+    <state width="1237" height="318" key="GridCell.Tab.1.right" timestamp="1582857287735">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="125" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582769684677" />
+    <state width="1237" height="318" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582857287735" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1582770434766">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

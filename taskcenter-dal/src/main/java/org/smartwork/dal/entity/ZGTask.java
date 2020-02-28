@@ -15,7 +15,6 @@ import org.forbes.comm.entity.BaseEntity;
 @ApiModel(description="任务")
 @TableName("fb_zg_task")
 public class ZGTask extends BaseEntity {
-
     /**
      * 图标
      *
