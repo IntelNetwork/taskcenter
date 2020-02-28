@@ -13,8 +13,8 @@
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ZGTaskMapper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_usercenter" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_usercenter" afterDir="false" />
     </list>
@@ -123,6 +123,7 @@
       <workItem from="1582770163792" duration="3755000" />
       <workItem from="1582802585131" duration="1365000" />
       <workItem from="1582849833126" duration="3891000" />
+      <workItem from="1582858380460" duration="920000" />
     </task>
     <servers />
   </component>
@@ -138,46 +139,46 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="411" y="208" width="459" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680@0.0.1280.680" timestamp="1582857160994" />
-    <state x="371" y="91" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582766507174">
+    <state x="371" y="91" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582858976121">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="371" y="91" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1582766507174" />
+    <state x="371" y="91" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1582858976121" />
     <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1582855564479">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582855564479" />
-    <state width="1237" height="318" key="GridCell.Tab.0.bottom" timestamp="1582857287734">
+    <state width="1237" height="52" key="GridCell.Tab.0.bottom" timestamp="1582859304752">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="318" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
-    <state width="1237" height="318" key="GridCell.Tab.0.center" timestamp="1582857287734">
+    <state width="1237" height="52" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582859304752" />
+    <state width="1237" height="52" key="GridCell.Tab.0.center" timestamp="1582859304751">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="318" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
-    <state width="1237" height="318" key="GridCell.Tab.0.left" timestamp="1582857287734">
+    <state width="1237" height="52" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582859304751" />
+    <state width="1237" height="52" key="GridCell.Tab.0.left" timestamp="1582859304751">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="318" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
-    <state width="1237" height="318" key="GridCell.Tab.0.right" timestamp="1582857287734">
+    <state width="1237" height="52" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582859304751" />
+    <state width="1237" height="52" key="GridCell.Tab.0.right" timestamp="1582859304751">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="318" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
-    <state width="1237" height="318" key="GridCell.Tab.1.bottom" timestamp="1582857287735">
+    <state width="1237" height="52" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582859304751" />
+    <state width="1237" height="52" key="GridCell.Tab.1.bottom" timestamp="1582859304659">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="318" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582857287735" />
-    <state width="1237" height="318" key="GridCell.Tab.1.center" timestamp="1582857287735">
+    <state width="1237" height="52" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582859304659" />
+    <state width="1237" height="52" key="GridCell.Tab.1.center" timestamp="1582859304659">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="318" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582857287735" />
-    <state width="1237" height="318" key="GridCell.Tab.1.left" timestamp="1582857287734">
+    <state width="1237" height="52" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582859304659" />
+    <state width="1237" height="52" key="GridCell.Tab.1.left" timestamp="1582859304659">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="318" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582857287734" />
-    <state width="1237" height="318" key="GridCell.Tab.1.right" timestamp="1582857287735">
+    <state width="1237" height="52" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582859304659" />
+    <state width="1237" height="52" key="GridCell.Tab.1.right" timestamp="1582859304659">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="318" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582857287735" />
+    <state width="1237" height="52" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582859304659" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1582770434766">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

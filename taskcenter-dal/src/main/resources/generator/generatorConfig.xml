@@ -22,6 +22,10 @@
             <!--设置表对应名称-->
             <property name="fb_zg_task" value="任务"/>
         </plugin>
+        <!--整合序列化-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+            <property name="suppressJavaInterface" value="true"/>
+        </plugin>
         <!--整合service-->
          <plugin type="com.chrm.mybatis.generator.plugins.ServicePlugin">
              <property name="targetProject" value="../taskcenter-biz/src/main/java"></property>
