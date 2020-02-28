@@ -34,4 +34,15 @@
   <sql id="Base_Column_List">
     id, create_by, create_time, update_by, update_time, name
   </sql>
+  <resultMap id="BaseResultMap" type="org.smartwork.dal.entity.ZGTaskTag">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_by, create_time, update_by, update_time, name
+  </sql>
 </mapper>
