@@ -73,4 +73,14 @@ public class ZGTaskBid extends BaseEntity {
      */
     @ApiModelProperty(value = "0-否1-已中标",example="false")
     private Boolean hitState;
+
+    /**
+     * 任务id
+     *
+     * Table:     fb_zg_task_bid
+     * Column:    task_id
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "任务id",example="0")
+    private Long taskId;
 }
