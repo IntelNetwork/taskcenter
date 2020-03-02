@@ -6,6 +6,7 @@
     <modules>
         <module>taskcenter-dal</module>
         <module>taskcenter-biz</module>
+        <module>taskcenter-comm</module>
         <module>taskcenter-provider</module>
         <module>taskcenter-api</module>
     </modules>
