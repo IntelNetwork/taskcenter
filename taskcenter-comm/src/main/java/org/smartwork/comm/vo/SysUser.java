@@ -1,4 +1,4 @@
-package src.main.java.org.smartwork.comm.vo;
+package org.smartwork.comm.vo;
 import javax.validation.constraints.NotEmpty;
 import org.forbes.comm.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableName;

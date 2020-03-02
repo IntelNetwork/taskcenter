@@ -1,4 +1,4 @@
-package src.main.java.org.smartwork.comm.model;
+package org.smartwork.comm.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

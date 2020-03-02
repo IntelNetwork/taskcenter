@@ -1,4 +1,4 @@
-package src.main.java.org.smartwork.comm.constant;
+package org.smartwork.comm.constant;
 
 public interface DataColumnConstant {
 
