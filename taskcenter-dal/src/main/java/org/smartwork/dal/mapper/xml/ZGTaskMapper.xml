@@ -18,7 +18,7 @@
     <result column="t_period" jdbcType="BIGINT" property="tPeriod" />
     <result column="member_id" jdbcType="BIGINT" property="memberId" />
     <result column="member_name" jdbcType="VARCHAR" property="memberName" />
-    <result column="task_state" jdbcType="BIGINT" property="taskState" />
+    <result column="task_state" jdbcType="VARCHAR" property="taskState" />
     <result column="industry_id" jdbcType="BIGINT" property="industryId" />
     <result column="t_type_name" jdbcType="VARCHAR" property="tTypeName" />
     <result column="t_type_code" jdbcType="VARCHAR" property="tTypeCode" />

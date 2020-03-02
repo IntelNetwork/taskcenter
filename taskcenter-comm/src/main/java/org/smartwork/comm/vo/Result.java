@@ -24,6 +24,12 @@ public class Result<T> implements Serializable {
 	 */
 	private String message = "操作成功！";
 
+	/****任务返回消息****/
+	public static final String TASK_ADD = "添加任务成功！";
+	public static final String TASK_ADD_ERROR = "添加任务失败！";
+
+	public static final String TASK_RELEASE = "发布任务成功！";
+	public static final String TASK_RELEASE_ERROR = "发布任务失败！";
 
 
 	/**
