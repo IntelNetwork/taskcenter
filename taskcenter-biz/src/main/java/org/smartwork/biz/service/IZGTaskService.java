@@ -3,7 +3,7 @@ package org.smartwork.biz.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.forbes.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTask;
-import src.java.org.smartwork.comm.model.ZGTaskDto;
+import org.smartwork.comm.model.ZGTaskDto;
 
 /***
  * 任务接口层

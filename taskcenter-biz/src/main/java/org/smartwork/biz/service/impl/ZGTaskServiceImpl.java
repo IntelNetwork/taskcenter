@@ -10,8 +10,8 @@ import org.smartwork.dal.mapper.ZGTaskMapper;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import src.java.org.smartwork.comm.model.ZGTaskAttachDto;
-import src.java.org.smartwork.comm.model.ZGTaskDto;
+import org.smartwork.comm.model.ZGTaskAttachDto;
+import org.smartwork.comm.model.ZGTaskDto;
 
 import java.util.List;
 
