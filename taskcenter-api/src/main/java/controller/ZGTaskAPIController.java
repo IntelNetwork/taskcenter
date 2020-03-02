@@ -124,8 +124,8 @@ public class ZGTaskAPIController {
             result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //更改状态 下架
-        task.setTaskState((long) 1);
+        //更改状态 已发布
+        task.setTaskState(TaskStateEnum.RELEASE.getCode());
         //进入业务类继续操作
         taskService.updateById(task);
         result.setResult(task);
@@ -158,8 +158,8 @@ public class ZGTaskAPIController {
             result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //更改状态 已发布
-        task.setTaskState((long) 1);
+        //更改状态 已下架
+        task.setTaskState(TaskStateEnum.LOWER_SHELF.getCode());
         //进入业务类继续操作
         taskService.updateById(task);
         result.setResult(task);

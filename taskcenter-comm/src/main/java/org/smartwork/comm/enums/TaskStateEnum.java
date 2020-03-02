@@ -13,14 +13,15 @@ import java.util.stream.Collectors;
 public enum TaskStateEnum {
 
     UNPUBLISHED("0", "未发布"),
-    RELEASE("1", "发布（竞标中）"),
-    SELECTION_STANDARD("2", "选标中"),
-    TRUST_REWARD("3", "托管赏金"),
-    START_UP("4", "开始工作"),
-    SUBMIT_ACCEPTANCE("5", "提交验收"),
-    CONFIRMATION_ACCEPTANCE("6", "确认验收"),
-    PAYMENT_GRATUITY("7", "支付赏金"),
-    TASK_OVERDUE("8", "任务过期");
+    LOWER_SHELF("1", "已下架"),
+    RELEASE("2", "发布（竞标中）"),
+    SELECTION_STANDARD("3", "选标中"),
+    TRUST_REWARD("4", "托管赏金"),
+    START_UP("5", "开始工作"),
+    SUBMIT_ACCEPTANCE("6", "提交验收"),
+    CONFIRMATION_ACCEPTANCE("7", "确认验收"),
+    PAYMENT_GRATUITY("8", "支付赏金"),
+    TASK_OVERDUE("9", "任务过期");
 
     /***编码
      */

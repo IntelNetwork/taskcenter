@@ -12,7 +12,7 @@
     <result column="offe_start_price" jdbcType="DECIMAL" property="offeStartPrice" />
     <result column="offer_end_price" jdbcType="DECIMAL" property="offerEndPrice" />
     <result column="intr" jdbcType="VARCHAR" property="intr" />
-    <result column="hit_state" jdbcType="BIT" property="hitState" />
+    <result column="hit_state" jdbcType="VARCHAR" property="hitState" />
     <result column="task_id" jdbcType="BIGINT" property="taskId" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -30,7 +30,7 @@
     <result column="offe_start_price" jdbcType="DECIMAL" property="offeStartPrice" />
     <result column="offer_end_price" jdbcType="DECIMAL" property="offerEndPrice" />
     <result column="intr" jdbcType="VARCHAR" property="intr" />
-    <result column="hit_state" jdbcType="BIT" property="hitState" />
+    <result column="hit_state" jdbcType="VARCHAR" property="hitState" />
   </resultMap>
   <sql id="Base_Column_List">
     id, create_by, create_time, update_by, update_time, member_id, membe_name, offe_start_price, 
