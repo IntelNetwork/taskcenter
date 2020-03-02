@@ -1,19 +1,21 @@
-package org.smartwork.dal.entity;
+package src.java.org.smartwork.comm.model;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.forbes.comm.entity.BaseEntity;
 
-/**
- * Table: fb_zg_task_attach
+import java.io.Serializable;
+
+/***
+ * 类概述:任务附件dto
+ * @创建人 niehy(Frunk)
+ * @创建时间 2020/2/29
+ * @修改人 (修改了该文件，请填上修改人的名字)
+ * @修改日期 (请填上修改该文件时的日期)
  */
 @Data
-@ApiModel(description="任务附件")
-@TableName("fb_zg_task_attach")
-public class ZGTaskAttach extends BaseEntity {
-    private static final long serialVersionUID = -8418785453198430574L;
+public class ZGTaskAttachDto implements Serializable{
+
+    private static final long serialVersionUID = 3591264373289084697L;
     /**
      * 任务ID
      *
