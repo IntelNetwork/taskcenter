@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/taskcenter-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/taskcenter-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/taskcenter-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/taskcenter-biz" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/taskcenter-biz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/taskcenter-comm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/taskcenter-dal" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/taskcenter-dal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/taskcenter-provider" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/taskcenter-provider/src/main/java" charset="UTF-8" />
   </component>
 </project>
