@@ -13,6 +13,7 @@ import org.forbes.comm.entity.BaseEntity;
 @ApiModel(description="任务类型")
 @TableName("fb_zg_task_type")
 public class ZGTaskType extends BaseEntity {
+    private static final long serialVersionUID = 5805408493238599695L;
     /**
      * 类型编码
      *
