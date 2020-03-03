@@ -2,6 +2,8 @@ package controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTindTypeService;
@@ -37,6 +39,10 @@ public class IndustryControler {
      **/
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ApiOperation("查询行业类型")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = org.smartwork.comm.vo.Result.INDUSTRY_ERROR),
+            @ApiResponse(code = 200, message = org.smartwork.comm.vo.Result.INDUSTRY)
+    })
     public Result<List<ZGTindType>> list(){
         Result<List<ZGTindType>> result=new Result<List<ZGTindType>>();
         List<ZGTindType> zgTindTypeList=tindTypeService.list();

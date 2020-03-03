@@ -2,6 +2,8 @@ package controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.smartwork.biz.service.IZGTaskTypeService;
 import org.smartwork.dal.entity.ZGTaskType;
@@ -36,6 +38,10 @@ public class TaskTypeController {
    **/
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ApiOperation("查询任务类型")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = org.smartwork.comm.vo.Result.TASK_TYPE_ERROR),
+            @ApiResponse(code = 200, message = org.smartwork.comm.vo.Result.TASK_TYPE)
+    })
     public Result<List<ZGTaskType>> list(){
         Result<List<ZGTaskType>> result=new Result<List<ZGTaskType>>();
         List<ZGTaskType> zgTaskTypeList=taskTypeService.list();
