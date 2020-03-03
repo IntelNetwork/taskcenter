@@ -24,15 +24,17 @@ public class ZGTaskPageDto implements Serializable {
     @ApiModelProperty(value = "任务类型名称",example="")
     private String tTypeName;
 
+
+
     /**
-     * 行业类型名称
+     * 行业名称
      *
-     * Table:     fb_zg_t_ind_type
-     * Column:    name
+     * Table:     fb_zg_task
+     * Column:    industry
      * Nullable:  true
      */
-    @ApiModelProperty(value = "行业类型名称",example="")
-    private String name;
+    @ApiModelProperty(value = "行业名称",example="")
+    private String industry;
 
 
 }
