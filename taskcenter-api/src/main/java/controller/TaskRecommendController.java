@@ -16,13 +16,10 @@ import org.smartwork.comm.enums.BizResultEnum;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTask;
-import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @ClassName TaskRecommendController

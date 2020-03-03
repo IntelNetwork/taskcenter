@@ -73,7 +73,7 @@ public class TaskDetailController {
         //获取当前用id
         qw.eq(DataColumnConstant.MEMBERID,sysUser.getId());
         /*根据用户id，任务id查询该用户竞标状态*/
-        ZGTaskBid zgTaskBid=izgTaskBidService.getOne(new QueryWrapper<ZGTaskBid>().eq(DataColumnConstant.TASKID,id));
+        ZGTaskBid zgTaskBid=izgTaskBidService.getOne(qw);
         if(ConvertUtils.isNotEmpty(zgTaskVo)&&ConvertUtils.isNotEmpty(zgTaskBid)){
             zgTaskVo.setHitState(zgTaskBid.getHitState());
             result.setResult(zgTaskVo);
