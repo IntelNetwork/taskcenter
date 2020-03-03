@@ -43,5 +43,5 @@ public interface IZGTaskService extends IService<ZGTask> {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    void updateProduct(ZGTaskDto zgTaskDto);
+    void updateTask(ZGTaskDto zgTaskDto);
 }

@@ -81,7 +81,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      */
     @Transactional(rollbackFor=Exception.class)
     @Override
-    public void updateProduct(ZGTaskDto zgTaskDto) {
+    public void updateTask(ZGTaskDto zgTaskDto) {
         ZGTask zgTask=new ZGTask();
         BeanCopier.create(ZGTaskDto.class,ZGTask.class ,false).copy(zgTaskDto, zgTask, null);
         baseMapper.updateById(zgTask);

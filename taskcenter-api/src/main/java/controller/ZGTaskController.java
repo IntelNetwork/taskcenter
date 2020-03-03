@@ -140,7 +140,7 @@ public class ZGTaskController {
                     return result;
                 }
             }
-            izgTaskService.updateProduct(zgTaskDto);
+            izgTaskService.updateTask(zgTaskDto);
             result.setResult(zgTaskDto);
         }catch(ForbesException e){
             result.setBizCode(e.getErrorCode());
