@@ -31,6 +31,12 @@ public class Result<T> implements Serializable {
 	public static final String TASK_RELEASE = "发布任务成功！";
 	public static final String TASK_RELEASE_ERROR = "发布任务失败！";
 
+	public static final String TASK_DELETE = "删除任务成功！";
+	public static final String TASK_DELETE_ERROR = "删除任务失败！";
+
+	public static final String TASK_CONFIRM_RESULT = "确认竞标任务成功！";
+	public static final String TASK_CONFIRM_RESULT_ERROR = "确认竞标任务失败！";
+
 
 	/**
 	 * 返回代码
