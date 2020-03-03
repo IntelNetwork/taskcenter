@@ -2,7 +2,6 @@ package org.smartwork.comm.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.smartwork.dal.entity.ZGTaskAttach;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,6 +12,13 @@ import java.util.List;
 public class ZGTaskDto implements Serializable {
 
     private static final long serialVersionUID = 4382670048543648377L;
+
+    /**
+     * id
+     */
+    @ApiModelProperty(value = "id,添加不传值",example = "0")
+    private Long id;
+
     /**
      * 图标
      *

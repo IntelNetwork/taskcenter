@@ -36,4 +36,11 @@
     t_des
   </sql>
 
+  <select id="selectAllTask">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    fb_zg_task
+    WHERE task_state = '2'
+  </select>
 </mapper>
