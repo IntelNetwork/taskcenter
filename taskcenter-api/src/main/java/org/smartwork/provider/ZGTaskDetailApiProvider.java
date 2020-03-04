@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("${smartwork.verision}/taskdetail")
+@RequestMapping("/${smartwork.verision}/taskdetail")
 @Api(tags={"任务详情"})
 @Slf4j
 public class ZGTaskDetailApiProvider {
