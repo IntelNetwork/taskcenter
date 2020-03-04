@@ -28,9 +28,9 @@
     <result column="t_des" jdbcType="LONGVARCHAR" property="tDes" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, create_by, create_time, update_by, update_time, t_icon, name, skills_required, 
-    t_start_price, is_bargain, release_time, t_end_price, t_end_time, t_period, member_id, 
-    member_name, task_state, industry_id, t_type_name, t_type_code, industry
+    id, create_by, create_time, update_by, update_time, icon, name, skills_required,
+    start_price, is_bargain, release_time, end_price, end_time, period, member_id,
+    member_name, task_state, industry_id, type_name, type_code, industry
   </sql>
   <sql id="Blob_Column_List">
     t_des
