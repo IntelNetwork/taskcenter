@@ -34,6 +34,9 @@ public class Result<T> implements Serializable {
 	public static final String TASK_RELEASE = "发布任务成功！";
 	public static final String TASK_RELEASE_ERROR = "发布任务失败！";
 
+	public static final String TASK_START = "开始任务成功！";
+	public static final String TASK_START_ERROR = "开始任务失败！";
+
 	public static final String TASK_UPDATE = "编辑任务成功！";
 	public static final String TASK_UPDATE_ERROR = "编辑任务失败！";
 
