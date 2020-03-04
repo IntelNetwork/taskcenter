@@ -15,7 +15,20 @@
             <groupId>com.smartwork</groupId>
             <artifactId>taskcenter-biz</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.smartwork</groupId>
+            <artifactId>taskcenter-comm</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.smartwork</groupId>
+            <artifactId>taskcenter-dal</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency><dependency>
+            <groupId>com.smartwork</groupId>
+            <artifactId>taskcenter-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
