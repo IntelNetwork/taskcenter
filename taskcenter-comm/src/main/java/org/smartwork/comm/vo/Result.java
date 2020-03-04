@@ -46,16 +46,9 @@ public class Result<T> implements Serializable {
 	public static final String TASK_CONFIRM_RESULT = "确认竞标任务成功！";
 	public static final String TASK_CONFIRM_RESULT_ERROR = "确认竞标任务失败！";
 
-	/****行业类型返回消息****/
-	public static final String INDUSTRY="行业类型查询成功";
-	public static final String INDUSTRY_ERROR="行业类型查询失败";
-
 	/****任务详情返回消息****/
 	public static final String TASK_DETAIL="任务详情查询成功";
 	public static final String TASK_DETAIL_ERROR="任务详情查询失败";
-	/****行业类型返回消息****/
-	public static final String TASK_TYPE="任务类型查询成功";
-	public static final String TASK_TYPE_ERROR="任务类型查询失败";
 
 	/****任务推荐返回消息****/
 	public static final String TASK_RECOMMEND="任务推荐查询成功";

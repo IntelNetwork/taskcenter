@@ -7,20 +7,15 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.DataColumnConstant;
-import org.smartwork.comm.constant.UpdateValid;
-import org.smartwork.comm.enums.BizResultEnum;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.utils.ConvertUtils;
-import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @description: TODO
@@ -34,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags={"选标"})
 @Slf4j
 public class ZGTaskExamineApiProvider {
-
 
     @Autowired
     private IZGTaskBidService izgTaskBidService;
@@ -50,15 +44,15 @@ public class ZGTaskExamineApiProvider {
     @RequestMapping(value = "/check",method = RequestMethod.PUT)
     @ApiOperation("选标")
     @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.EXAMINE_ERROR),
-            @ApiResponse(code = 200, message = Result.EXAMINE)
+            @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
+            @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
-    public Result<ZGTaskBid> check(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBid zgTaskBid){
+    public Result<ZGTaskBid> check(ZGTaskBid zgTaskBid){
         log.debug(JSON.toJSONString("传入参数为："+zgTaskBid));
         Result<ZGTaskBid> result=new Result<ZGTaskBid>();
         if(ConvertUtils.isEmpty(zgTaskBid)){
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         ZGTaskBid zgTaskBid_temp=izgTaskBidService.getById(zgTaskBid.getId());
@@ -67,13 +61,13 @@ public class ZGTaskExamineApiProvider {
         qw.eq(DataColumnConstant.HITSTATE,TaskHitstateEnum.HITSTATE.getCode());
         Integer count=izgTaskBidService.count(qw);
         if(ConvertUtils.isEmpty(zgTaskBid_temp)){
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         if(count>0){
-            result.setBizCode(BizResultEnum.TASK_RECORD_EXISTS.getBizCode());
-            result.setMessage(BizResultEnum.TASK_RECORD_EXISTS.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.TASK_RECORD_EXISTS.getBizCode());
+            result.setMessage(TaskBizResultEnum.TASK_RECORD_EXISTS.getBizMessage());
             return result;
         }
         izgTaskBidService.updateById(zgTaskBid);

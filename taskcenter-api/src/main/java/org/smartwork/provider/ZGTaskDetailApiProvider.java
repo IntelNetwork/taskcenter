@@ -11,7 +11,7 @@ import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.DataColumnConstant;
-import org.smartwork.comm.enums.BizResultEnum;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.comm.vo.SysUser;
 import org.smartwork.comm.vo.ZGTaskVo;
@@ -54,15 +54,15 @@ public class ZGTaskDetailApiProvider {
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     @ApiOperation("查询任务详情")
     @ApiResponses(value = {
-            @ApiResponse(code = 500, message = org.smartwork.comm.vo.Result.TASK_DETAIL_ERROR),
-            @ApiResponse(code = 200, message = org.smartwork.comm.vo.Result.TASK_DETAIL)
+            @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
+            @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
     public Result<ZGTaskVo> detail(@PathVariable long id, SysUser sysUser){
         log.debug("传入的参数为"+ JSON.toJSONString(id)+"SysUser:"+sysUser);
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
         if(ConvertUtils.isEmpty(sysUser)||ConvertUtils.isEmpty(id)){
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         ZGTaskVo zgTaskVo=new ZGTaskVo();
@@ -78,8 +78,8 @@ public class ZGTaskDetailApiProvider {
             zgTaskVo.setHitState(zgTaskBid.getHitState());
             result.setResult(zgTaskVo);
         }else {
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         return  result;

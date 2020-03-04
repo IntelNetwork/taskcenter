@@ -4,7 +4,7 @@ package org.smartwork.comm.enums;
  * BizResultEnum概要说明：业务系统错误代码
  * @author niehy(Frunk)
  */
-public enum BizResultEnum {
+public enum TaskBizResultEnum {
     /***
      * 005-任务管理
      * 功能暂无-表示通用异常
@@ -15,7 +15,8 @@ public enum BizResultEnum {
     ENTITY_EMPTY("005002000", "对象为空", ""),
 
     TASK_CODE_EXISTS("005001001","任务类型编码已存在","%s对应任务类型编码已存在"),
-    TASK_RECORD_EXISTS("005001002","已存在竞标人","%s对应竞标人已存在")
+    TASK_RECORD_EXISTS("005002001","已存在竞标人","%s对应竞标人已存在"),
+    MEMBERS_NOT_EXIST("005002002","该任务下不存在竞标人","%s对应该任务下不存在竞标人")
 
 
     ;
@@ -39,7 +40,7 @@ public enum BizResultEnum {
      * @param bizMessage
      * @param bizFormateMessage
      */
-    BizResultEnum(String bizCode, String bizMessage, String bizFormateMessage) {
+    TaskBizResultEnum(String bizCode, String bizMessage, String bizFormateMessage) {
         this.bizCode = bizCode;
         this.bizMessage = bizMessage;
         this.bizFormateMessage = bizFormateMessage;

@@ -10,13 +10,14 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.model.BasePageDto;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.DataColumnConstant;
-import org.smartwork.comm.enums.BizResultEnum;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.utils.ConvertUtils;
-import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTask;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,15 +51,15 @@ public class ZGTaskRecommendApiProvider {
     @RequestMapping(value = "/list/{industryId}", method = RequestMethod.GET)
     @ApiOperation("查询相关任务推荐")
     @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_RECOMMEND_ERROR),
-            @ApiResponse(code = 200, message = org.smartwork.comm.vo.Result.TASK_RECOMMEND)
+            @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
+            @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
-    public Result<IPage<ZGTask>>  list(BasePageDto basePageDto, long industryId){
+    public Result<IPage<ZGTask>>  list(BasePageDto basePageDto, @PathVariable long industryId){
         log.debug(JSON.toJSONString("传入参数为："+industryId));
         Result<IPage<ZGTask>> result=new  Result<IPage<ZGTask>>();
         if(ConvertUtils.isEmpty(industryId)){
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         IPage<ZGTask> page = new Page<ZGTask>(basePageDto.getPageNo(),basePageDto.getPageSize());

@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.UpdateValid;
-import org.smartwork.comm.enums.BizResultEnum;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.YesNoEnum;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.comm.utils.ConvertUtils;
@@ -58,8 +58,8 @@ public class ZGTaskBidApiProvider {
         Result<ZGTaskBidDto> result = new Result<ZGTaskBidDto>();
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(taskBidDto)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         //更改状态 未中标(已参与,等待审核)
@@ -91,8 +91,8 @@ public class ZGTaskBidApiProvider {
         Result<ZGTaskBid> result = new Result<ZGTaskBid>();
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(taskBid)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         //更改状态 已中标(已参与,等待审核)

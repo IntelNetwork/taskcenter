@@ -12,7 +12,7 @@ import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.SaveValid;
 import org.smartwork.comm.constant.TaskColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
-import org.smartwork.comm.enums.BizResultEnum;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
@@ -63,38 +63,38 @@ public class ZGTaskAPIProvider {
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(task)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         if (ConvertUtils.isEmpty(task.getName())) {
             //任务名称为空
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         if (ConvertUtils.isEmpty(task.getTTypeName())) {
             //任务类型为空
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         if (ConvertUtils.isEmpty(task.getTPeriod())) {
             //任务期限为空
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         if (ConvertUtils.isEmpty(task.getTStartPrice()) || ConvertUtils.isEmpty(task.getTEndPrice())) {
             //薪资为空d
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         if (ConvertUtils.isEmpty(task.getTDes())) {
             //任务描述为空
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         //给定默认状态 待审核
@@ -125,8 +125,8 @@ public class ZGTaskAPIProvider {
         Result<ZGTask> result = new Result<ZGTask>();
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(task)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         //更改状态 已发布
@@ -157,8 +157,8 @@ public class ZGTaskAPIProvider {
         Result<ZGTask> result = new Result<ZGTask>();
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(task)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         //更改状态 已下架
@@ -234,8 +234,8 @@ public class ZGTaskAPIProvider {
         Result<ZGTask> result = new Result<ZGTask>();
         ZGTask task = taskService.getById(id);
         if (ConvertUtils.isEmpty(task)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         taskService.removeTask(id);
@@ -367,8 +367,8 @@ public class ZGTaskAPIProvider {
         try {
             ZGTask oldZgTask = taskService.getById(zgTaskDto.getId());
             if(ConvertUtils.isEmpty(oldZgTask)){
-                result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-                result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+                result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+                result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
                 return result;
             }
             String code = zgTaskDto.getTTypeCode();
@@ -378,8 +378,8 @@ public class ZGTaskAPIProvider {
                 int existsCount = taskService.count(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.TTYPECODE, code));
                 //存在此记录
                 if (existsCount > 0) {
-                    result.setBizCode(BizResultEnum.TASK_CODE_EXISTS.getBizCode());
-                    result.setMessage(String.format(BizResultEnum.TASK_CODE_EXISTS.getBizFormateMessage(), code));
+                    result.setBizCode(TaskBizResultEnum.TASK_CODE_EXISTS.getBizCode());
+                    result.setMessage(String.format(TaskBizResultEnum.TASK_CODE_EXISTS.getBizFormateMessage(), code));
                     return result;
                 }
             }
