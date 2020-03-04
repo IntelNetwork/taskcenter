@@ -246,6 +246,10 @@ public class ZGTaskAPIController {
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @ApiOperation("任务分页查询")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
+            @ApiResponse(code = 200, message = Result.TASK_SELECT)
+    })
     public org.forbes.comm.vo.Result<IPage<ZGTask>> selectUserList(BasePageDto basePageDto, ZGTaskPageDto zgTaskPageDto){
         log.debug("传入的参数为"+JSON.toJSONString(basePageDto));
         org.forbes.comm.vo.Result<IPage<ZGTask>> result = new org.forbes.comm.vo.Result<>();
@@ -259,7 +263,7 @@ public class ZGTaskAPIController {
             }
         }
         IPage<ZGTask> page = new Page<ZGTask>(basePageDto.getPageNo(),basePageDto.getPageSize());
-        IPage<ZGTask> s = izgTaskService.page(page,qw);
+        IPage<ZGTask> s = taskService.page(page,qw);
         result.setResult(s);
         log.info("返回值为:"+JSON.toJSONString(result.getResult()));
         return result;
@@ -276,9 +280,13 @@ public class ZGTaskAPIController {
      */
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     @ApiOperation("获取最新成交动态")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
+            @ApiResponse(code = 200, message = Result.TASK_SELECT)
+    })
     public org.forbes.comm.vo.Result<List<ZGTask>> selectAllTask(){
         org.forbes.comm.vo.Result<List<ZGTask>> result=new org.forbes.comm.vo.Result<>();
-        List<ZGTask> tasks = izgTaskService.selectAllTask();
+        List<ZGTask> tasks = taskService.selectAllTask();
         result.setResult(tasks);
         return result;
     }
@@ -294,9 +302,13 @@ public class ZGTaskAPIController {
      */
     @RequestMapping(value = "/all-count", method = RequestMethod.GET)
     @ApiOperation("任务总数查询")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
+            @ApiResponse(code = 200, message = Result.TASK_SELECT)
+    })
     public org.forbes.comm.vo.Result<Integer> AllCount(){
         org.forbes.comm.vo.Result<Integer> result=new org.forbes.comm.vo.Result<>();
-        Integer tasks=izgTaskService.count();
+        Integer tasks=taskService.count();
         result.setResult(tasks);
         return result;
     }
@@ -312,11 +324,15 @@ public class ZGTaskAPIController {
      */
     @RequestMapping(value = "/update",method = RequestMethod.PUT)
     @ApiOperation("任务编辑")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = Result.TASK_UPDATE_ERROR),
+            @ApiResponse(code = 200, message = Result.TASK_UPDATE)
+    })
     public org.forbes.comm.vo.Result<ZGTaskDto> updateTask(@RequestBody @Validated(value= org.forbes.comm.constant.UpdateValid.class) ZGTaskDto zgTaskDto){
         log.debug("传入的参数为"+JSON.toJSONString(zgTaskDto));
         org.forbes.comm.vo.Result<ZGTaskDto> result=new org.forbes.comm.vo.Result<ZGTaskDto>();
         try {
-            ZGTask oldZgTask = izgTaskService.getById(zgTaskDto.getId());
+            ZGTask oldZgTask = taskService.getById(zgTaskDto.getId());
             if(org.forbes.comm.utils.ConvertUtils.isEmpty(oldZgTask)){
                 result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
                 result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
@@ -326,7 +342,7 @@ public class ZGTaskAPIController {
             //判断当前任务类型编码与输入的是否一致
             if (!code.equalsIgnoreCase(oldZgTask.getTTypeCode())) {
                 //查询是否和其他任务类型编码一致
-                int existsCount = izgTaskService.count(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.TTYPECODE, code));
+                int existsCount = taskService.count(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.TTYPECODE, code));
                 //存在此记录
                 if (existsCount > 0) {
                     result.setBizCode(BizResultEnum.TASK_CODE_EXISTS.getBizCode());
@@ -334,7 +350,7 @@ public class ZGTaskAPIController {
                     return result;
                 }
             }
-            izgTaskService.updateTask(zgTaskDto);
+            taskService.updateTask(zgTaskDto);
             result.setResult(zgTaskDto);
         }catch(ForbesException e){
             result.setBizCode(e.getErrorCode());

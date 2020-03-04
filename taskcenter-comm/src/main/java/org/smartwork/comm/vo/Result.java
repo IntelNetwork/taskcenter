@@ -28,8 +28,14 @@ public class Result<T> implements Serializable {
 	public static final String TASK_ADD = "添加任务成功！";
 	public static final String TASK_ADD_ERROR = "添加任务失败！";
 
+	public static final String TASK_SELECT = "查询任务成功！";
+	public static final String TASK_SELECT_ERROR = "查询任务失败！";
+
 	public static final String TASK_RELEASE = "发布任务成功！";
 	public static final String TASK_RELEASE_ERROR = "发布任务失败！";
+
+	public static final String TASK_UPDATE = "编辑任务成功！";
+	public static final String TASK_UPDATE_ERROR = "编辑任务失败！";
 
 	public static final String TASK_DELETE = "删除任务成功！";
 	public static final String TASK_DELETE_ERROR = "删除任务失败！";
