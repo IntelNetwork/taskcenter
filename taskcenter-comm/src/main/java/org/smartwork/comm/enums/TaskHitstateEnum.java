@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
  */
 public enum TaskHitstateEnum {
     HITSTATE_NO("0", "未中标"),
-    HITSTATE("1", "已中标");
+    HITSTATE("1", "已中标"),
+    CHECK("2","审核中");
 
     /***编码
      */

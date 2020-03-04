@@ -19,10 +19,7 @@ import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName TaskDetailController
@@ -57,7 +54,7 @@ public class ZGTaskDetailApiProvider {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
-    public Result<ZGTaskVo> detail(@PathVariable long id, SysUser sysUser){
+    public Result<ZGTaskVo> detail(@PathVariable long id, @RequestBody SysUser sysUser){
         log.debug("传入的参数为"+ JSON.toJSONString(id)+"SysUser:"+sysUser);
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
         if(ConvertUtils.isEmpty(sysUser)||ConvertUtils.isEmpty(id)){

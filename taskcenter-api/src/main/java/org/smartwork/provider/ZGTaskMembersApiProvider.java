@@ -45,9 +45,9 @@ public class ZGTaskMembersApiProvider {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
-    public Result<List<SysUser>> list(@PathVariable long id){
-        Result<List<SysUser>> result=new Result<List<SysUser>>();
+    public Result<List<ZGTaskBid>> list(@PathVariable long id){
         QueryWrapper<ZGTaskBid> qw=new  QueryWrapper<ZGTaskBid>();
+        Result<List<ZGTaskBid>> result=new Result<List<ZGTaskBid>>();
         qw.eq(DataColumnConstant.TASKID,id);
         /*根据任务id查询任务竞标记录*/
         List<ZGTaskBid> zgTaskBids=izgTaskBidService.list(qw);
@@ -56,6 +56,7 @@ public class ZGTaskMembersApiProvider {
             result.setMessage(TaskBizResultEnum.MEMBERS_NOT_EXIST.getBizMessage());
             return result;
         }
+        result.setResult(zgTaskBids);
         return result;
     }
 }

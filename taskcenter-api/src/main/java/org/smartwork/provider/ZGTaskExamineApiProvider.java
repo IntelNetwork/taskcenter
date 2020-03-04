@@ -10,11 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.DataColumnConstant;
+import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -47,7 +49,7 @@ public class ZGTaskExamineApiProvider {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
-    public Result<ZGTaskBid> check(ZGTaskBid zgTaskBid){
+    public Result<ZGTaskBid> check(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBid zgTaskBid){
         log.debug(JSON.toJSONString("传入参数为："+zgTaskBid));
         Result<ZGTaskBid> result=new Result<ZGTaskBid>();
         if(ConvertUtils.isEmpty(zgTaskBid)){
