@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.BasePageDto;
 import org.forbes.comm.vo.Result;
+import org.smartwork.biz.service.IZGTaskAttachService;
+import org.smartwork.biz.service.IZGTaskRelTagService;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.SaveValid;
 import org.smartwork.comm.constant.TaskColumnConstant;
@@ -18,6 +20,8 @@ import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.dal.entity.ZGTask;
+import org.smartwork.dal.entity.ZGTaskAttach;
+import org.smartwork.dal.entity.ZGTaskRelTag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +46,10 @@ public class ZGTaskAPIProvider {
 
     @Autowired
     IZGTaskService taskService;
-
+    @Autowired
+    IZGTaskAttachService zgTaskAttachService;
+    @Autowired
+    IZGTaskRelTagService zgTaskRelTagService;
 
     /***
      * 方法概述:添加任务
@@ -282,7 +289,7 @@ public class ZGTaskAPIProvider {
 
     /***
      * updateTask方法概述:任务编辑
-     * @param zgTaskDto
+     * @param task
      * @return org.smartwork.comm.model.ZGTaskDto
      * @创建人 Tom
      * @创建时间 2020/3/3 10:02
@@ -291,17 +298,17 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/update",method = RequestMethod.PUT)
     @ApiOperation("任务编辑")
-    public Result<ZGTaskDto> updateTask(@RequestBody @Validated(value= UpdateValid.class) ZGTaskDto zgTaskDto){
-        log.debug("传入的参数为"+JSON.toJSONString(zgTaskDto));
+    public Result<ZGTaskDto> updateTask(@RequestBody @Validated(value= UpdateValid.class) ZGTaskDto task){
+        log.debug("传入的参数为"+JSON.toJSONString(task));
         Result<ZGTaskDto> result=new Result<ZGTaskDto>();
         try {
-            ZGTask oldZgTask = taskService.getById(zgTaskDto.getId());
+            ZGTask oldZgTask = taskService.getById(task.getId());
             if(ConvertUtils.isEmpty(oldZgTask)){
                 result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
                 result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
                 return result;
             }
-            String code = zgTaskDto.getTypeCode();
+            String code = task.getTypeCode();
             //判断当前任务类型编码与输入的是否一致
             if (!code.equalsIgnoreCase(oldZgTask.getTypeCode())) {
                 //查询是否和其他任务类型编码一致
@@ -313,12 +320,46 @@ public class ZGTaskAPIProvider {
                     return result;
                 }
             }
-            taskService.updateTask(zgTaskDto);
-            result.setResult(zgTaskDto);
+            taskService.updateTask(task);
+            result.setResult(task);
         }catch(ForbesException e){
             result.setBizCode(e.getErrorCode());
             result.setMessage(e.getErrorMsg());
         }
         return result;
     }
+
+    /***
+     * getByMemberId方法概述:通过会员id查询任务信息
+     * @param memberId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
+     * @创建人 Tom
+     * @创建时间 2020/3/4 17:18
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/emand-list", method = RequestMethod.GET)
+    @ApiOperation("通过会员id查询任务信息")
+    @ApiImplicitParams(
+            @ApiImplicitParam(name = "memberId",value = "会员id")
+    )
+    public Result<ZGTask> getByMemberId(@RequestParam(value = "memberId",required = true)Long memberId){
+        Result<ZGTask> result=new Result<ZGTask>();
+        //查询任务信息
+        ZGTask zgTask = taskService.getById(memberId);
+        //查询任务附件信息
+        Long taskId = zgTask.getId();
+        List<ZGTaskAttach> zgTaskAttaches = zgTaskAttachService.list(new QueryWrapper<ZGTaskAttach>().eq(TaskColumnConstant.TASKID,taskId));
+        if(ConvertUtils.isNotEmpty(zgTaskAttaches)){
+            zgTask.setZgTaskAttaches(zgTaskAttaches);
+        }
+        //查询任务标签信息
+        List<ZGTaskRelTag> zgTaskRelTags = zgTaskRelTagService.list(new QueryWrapper<ZGTaskRelTag>().eq(TaskColumnConstant.TASKID,taskId));
+        if(ConvertUtils.isNotEmpty(zgTaskRelTags)){
+            zgTask.setZgTaskRelTags(zgTaskRelTags);
+        }
+        result.setResult(zgTask);
+        return result;
+    }
+
 }

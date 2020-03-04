@@ -154,9 +154,22 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
         ZGTask zgTask = new ZGTask();
         BeanCopier.create(ZGTaskDto.class, ZGTask.class, false).copy(zgTaskDto, zgTask, null);
         baseMapper.updateById(zgTask);
-        //删除 zgTaskAttachMapper
-        zgTaskAttachMapper.delete(new QueryWrapper<ZGTaskAttach>().eq(TaskColumnConstant.ID, zgTaskDto.getId()));
+        //删除任务标签和任务附件
+        zgTaskRelTagMapper.delete(new QueryWrapper<ZGTaskRelTag>().eq(TaskColumnConstant.TASKID, zgTaskDto.getId()));
+        zgTaskAttachMapper.delete(new QueryWrapper<ZGTaskAttach>().eq(TaskColumnConstant.TASKID, zgTaskDto.getId()));
         Long zgTaskId = zgTask.getId();
+        //任务标签
+        List<ZGTaskRelTagDto> zgTaskRelTagDtos = zgTaskDto.getZgTaskRelTagDtos();
+        if (ConvertUtils.isNotEmpty(zgTaskRelTagDtos)) {
+            zgTaskRelTagDtos.stream().forEach(zgTaskRelTagDto -> {
+                ZGTaskRelTag zgTaskRelTag = new ZGTaskRelTag();
+                zgTaskRelTag.setTaskId(zgTaskId);
+                zgTaskRelTag.setTaId(zgTaskRelTag.getTaId());
+                zgTaskRelTag.setName(zgTaskRelTag.getName());
+                zgTaskRelTagMapper.insert(zgTaskRelTag);
+            });
+        }
+        //任务附件
         List<ZGTaskAttachDto> zgTaskAttachDtos = zgTaskDto.getZgTaskAttachDtos();
         if (ConvertUtils.isNotEmpty(zgTaskAttachDtos)) {
             zgTaskAttachDtos.stream().forEach(zgTaskAttachDto -> {

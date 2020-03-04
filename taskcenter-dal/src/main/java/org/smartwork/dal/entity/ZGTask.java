@@ -1,12 +1,17 @@
 package org.smartwork.dal.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
+import org.smartwork.comm.model.ZGTaskAttachDto;
+import org.smartwork.comm.model.ZGTaskRelTagDto;
 
 /**
  * Table: fb_zg_task
@@ -185,4 +190,18 @@ public class ZGTask extends BaseEntity {
      */
     @ApiModelProperty(value = "任务描述")
     private String des;
+
+    /**
+     * 任务附件
+     */
+    @ApiModelProperty(value = "任务附件")
+    @TableField(exist = false)
+    List<ZGTaskAttach> zgTaskAttaches;
+
+    /**
+     * 任务标签中间表
+     */
+    @ApiModelProperty(value = "任务标签中间表")
+    @TableField(exist = false)
+    List<ZGTaskRelTag> zgTaskRelTags;
 }
