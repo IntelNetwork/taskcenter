@@ -1,12 +1,14 @@
-package controller;
+package org.smartwork.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.smartwork.biz.service.IZGTaskBidService;
+import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.BizResultEnum;
 import org.smartwork.comm.utils.ConvertUtils;
@@ -28,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/examine")
-@Api(tags={"竞标审核"})
+@Api(tags={"选标"})
 @Slf4j
 public class TaskExamineController {
 
@@ -36,8 +38,16 @@ public class TaskExamineController {
     @Autowired
     private IZGTaskBidService izgTaskBidService;
 
+
+    /**
+     * @description
+     * @author xfx
+     * @date 2020/3/4 9:48
+     * @parameter [zgTaskBid]
+     * @return org.smartwork.comm.vo.Result<org.smartwork.dal.entity.ZGTaskBid>
+     */
     @RequestMapping(value = "/check",method = RequestMethod.PUT)
-    @ApiOperation("竞标审核")
+    @ApiOperation("选标")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = Result.EXAMINE_ERROR),
             @ApiResponse(code = 200, message = Result.EXAMINE)
@@ -51,6 +61,10 @@ public class TaskExamineController {
             return result;
         }
         ZGTaskBid zgTaskBid_temp=izgTaskBidService.getById(zgTaskBid.getId());
+        QueryWrapper<ZGTaskBid> qw=new QueryWrapper<ZGTaskBid>();
+        qw.eq(DataColumnConstant.TASKID,zgTaskBid.getTaskId());
+      //  qw.eq(DataColumnConstant.HITSTATE,)
+        Integer count=izgTaskBidService.count(qw);
         if(ConvertUtils.isEmpty(zgTaskBid_temp)){
             result.setBizCode(org.forbes.comm.enums.BizResultEnum.ENTITY_EMPTY.getBizCode());
             result.setMessage(org.forbes.comm.enums.BizResultEnum.ENTITY_EMPTY.getBizMessage());

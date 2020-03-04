@@ -8,4 +8,5 @@ public interface DataColumnConstant {
 	public static final String TASKID = "task_id";
 	public static final String INDUSTRYID = "industry_id";
 	public static final String MEMBERID = "member_id";
+	public static final String HITSTATE = "hit_state";
 }

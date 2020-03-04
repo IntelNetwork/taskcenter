@@ -1,4 +1,4 @@
-package controller;
+package org.smartwork.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
