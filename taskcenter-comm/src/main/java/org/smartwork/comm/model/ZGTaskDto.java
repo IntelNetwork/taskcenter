@@ -63,14 +63,14 @@ public class ZGTaskDto implements Serializable {
     private BigDecimal tStartPrice;
 
     /**
-     * 可否议价
+     * 可否议价0否1是
      * <p>
      * Table:     fb_zg_task
      * Column:    is_bargain
      * Nullable:  true
      */
-    @ApiModelProperty(value = "可否议价", example = "false")
-    private Boolean isBargain;
+    @ApiModelProperty(value = "可否议价0否1是", example = "false")
+    private String isBargain;
 
     /**
      * 发布时间
@@ -79,7 +79,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    release_time
      * Nullable:  true
      */
-    @ApiModelProperty(value = "发布时间", example = "")
+    @ApiModelProperty(value = "发布时间,添加不传值", example = "")
     private Date releaseTime;
 
     /**
@@ -139,7 +139,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    task_state
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0-未发布1-发布（竞标中）2-选标中3-托管赏金4-开始工作5-提交验收6-确认验收7-支付赏金99-任务过期", example = "0")
+    @ApiModelProperty(value = "0-未发布1-发布（竞标中）2-选标中3-托管赏金4-开始工作5-提交验收6-确认验收7-支付赏金99-任务过期(添加不传值)", example = "0")
     private String taskState;
 
     /**
