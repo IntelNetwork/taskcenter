@@ -1,7 +1,6 @@
 package org.smartwork.dal.mapper.ext;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.forbes.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTask;
 
 import java.util.List;

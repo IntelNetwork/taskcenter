@@ -11,7 +11,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="skills_required" jdbcType="VARCHAR" property="skillsRequired" />
     <result column="t_start_price" jdbcType="DECIMAL" property="tStartPrice" />
-    <result column="is_bargain" jdbcType="BIT" property="isBargain" />
+    <result column="is_bargain" jdbcType="CHAR" property="isBargain" />
     <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
     <result column="t_end_price" jdbcType="DECIMAL" property="tEndPrice" />
     <result column="t_end_time" jdbcType="TIMESTAMP" property="tEndTime" />

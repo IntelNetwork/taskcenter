@@ -21,7 +21,6 @@ public class ZGTaskRelTagDto implements Serializable{
     @ApiModelProperty(value = "标签ID",example="0")
     private Long taId;
 
-
     /**
      * 标签名称
      *

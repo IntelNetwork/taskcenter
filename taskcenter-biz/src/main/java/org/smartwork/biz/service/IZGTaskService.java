@@ -1,7 +1,7 @@
 package org.smartwork.biz.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.smartwork.comm.vo.Result;
+import org.forbes.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.comm.model.ZGTaskDto;
 

@@ -2,10 +2,10 @@ package org.smartwork.biz.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.utils.ConvertUtils;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
-import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGBigAttach;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.mapper.ZGTaskBidMapper;

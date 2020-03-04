@@ -13,6 +13,12 @@ public class ZGTaskTagDto implements Serializable{
     private static final long serialVersionUID = -8684810642532732488L;
 
     /**
+     * id
+     */
+    @ApiModelProperty(value = "id,添加不传值", example = "0")
+    private Long id;
+
+    /**
      * 标签名称
      *
      * Table:     fb_zg_task_tag

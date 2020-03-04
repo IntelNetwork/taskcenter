@@ -8,6 +8,7 @@ import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.BasePageDto;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.SaveValid;
 import org.smartwork.comm.constant.TaskColumnConstant;
@@ -16,7 +17,6 @@ import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
-import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -54,10 +54,6 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ApiOperation("添加任务")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_ADD_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_ADD)
-    })
     public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class)ZGTaskDto task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
@@ -65,36 +61,6 @@ public class ZGTaskAPIProvider {
         if (ConvertUtils.isEmpty(task)) {
             result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        if (ConvertUtils.isEmpty(task.getName())) {
-            //任务名称为空
-            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
-            return result;
-        }
-        if (ConvertUtils.isEmpty(task.getTTypeName())) {
-            //任务类型为空
-            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
-            return result;
-        }
-        if (ConvertUtils.isEmpty(task.getTPeriod())) {
-            //任务期限为空
-            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
-            return result;
-        }
-        if (ConvertUtils.isEmpty(task.getTStartPrice()) || ConvertUtils.isEmpty(task.getTEndPrice())) {
-            //薪资为空d
-            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
-            return result;
-        }
-        if (ConvertUtils.isEmpty(task.getTDes())) {
-            //任务描述为空
-            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         //给定默认状态 待审核
@@ -116,10 +82,6 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/release", method = RequestMethod.PUT)
     @ApiOperation("发布任务")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_RELEASE_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_RELEASE)
-    })
     public Result<ZGTask> updateTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTask> result = new Result<ZGTask>();
@@ -148,10 +110,6 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/lower", method = RequestMethod.PUT)
     @ApiOperation("下架任务")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_RELEASE_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_RELEASE)
-    })
     public Result<ZGTask> lowerTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTask> result = new Result<ZGTask>();
@@ -180,17 +138,13 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/start", method = RequestMethod.PUT)
     @ApiOperation("开始任务")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_START_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_START)
-    })
     public Result<ZGTask> StartTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTask> result = new Result<ZGTask>();
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(task)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         //更改状态 开始工作
@@ -225,10 +179,6 @@ public class ZGTaskAPIProvider {
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "id", value = "任务ID", required = true)
     })
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_DELETE_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_DELETE)
-    })
     public Result<ZGTask> deleteNews(@RequestParam(value = "id", required = true) String id) {
         log.debug("传入参数为:" + JSON.toJSONString(id));
         Result<ZGTask> result = new Result<ZGTask>();
@@ -255,10 +205,6 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/delete-batch", method = RequestMethod.DELETE)
     @ApiOperation("批量删除任务")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_DELETE_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_DELETE)
-    })
     public Result<ZGTask> deleteBatch(@RequestParam("ids") String ids) {
         log.debug("传入参数为:" + JSON.toJSONString(ids));
         Result<ZGTask> result = new Result<ZGTask>();
@@ -279,10 +225,6 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @ApiOperation("任务分页查询")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_SELECT)
-    })
     public Result<IPage<ZGTask>> selectUserList(BasePageDto basePageDto, ZGTaskPageDto zgTaskPageDto){
         log.debug("传入的参数为"+JSON.toJSONString(basePageDto));
         Result<IPage<ZGTask>> result = new Result<>();
@@ -313,10 +255,6 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     @ApiOperation("获取最新成交动态")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_SELECT)
-    })
     public Result<List<ZGTask>> selectAllTask(){
         Result<List<ZGTask>> result=new Result<>();
         List<ZGTask> tasks = taskService.selectAllTask();
@@ -335,10 +273,6 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/all-count", method = RequestMethod.GET)
     @ApiOperation("任务总数查询")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_SELECT)
-    })
     public Result<Integer> AllCount(){
         Result<Integer> result=new Result<>();
         Integer tasks=taskService.count();
@@ -357,10 +291,6 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/update",method = RequestMethod.PUT)
     @ApiOperation("任务编辑")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_UPDATE_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_UPDATE)
-    })
     public Result<ZGTaskDto> updateTask(@RequestBody @Validated(value= UpdateValid.class) ZGTaskDto zgTaskDto){
         log.debug("传入的参数为"+JSON.toJSONString(zgTaskDto));
         Result<ZGTaskDto> result=new Result<ZGTaskDto>();
@@ -371,9 +301,9 @@ public class ZGTaskAPIProvider {
                 result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
                 return result;
             }
-            String code = zgTaskDto.getTTypeCode();
+            String code = zgTaskDto.getTypeCode();
             //判断当前任务类型编码与输入的是否一致
-            if (!code.equalsIgnoreCase(oldZgTask.getTTypeCode())) {
+            if (!code.equalsIgnoreCase(oldZgTask.getTypeCode())) {
                 //查询是否和其他任务类型编码一致
                 int existsCount = taskService.count(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.TTYPECODE, code));
                 //存在此记录

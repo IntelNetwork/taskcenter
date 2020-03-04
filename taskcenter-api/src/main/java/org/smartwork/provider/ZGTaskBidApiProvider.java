@@ -6,13 +6,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.YesNoEnum;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.comm.utils.ConvertUtils;
-import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -49,10 +49,7 @@ public class ZGTaskBidApiProvider {
      */
     @RequestMapping(value = "/bidding", method = RequestMethod.PUT)
     @ApiOperation("立即竞标")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_RELEASE_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_RELEASE)
-    })
+
     public Result<ZGTaskBidDto> updateTaskBid(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBidDto taskBidDto) {
         log.debug("传入参数为:" + JSON.toJSONString(taskBidDto));
         Result<ZGTaskBidDto> result = new Result<ZGTaskBidDto>();
@@ -82,10 +79,6 @@ public class ZGTaskBidApiProvider {
      */
     @RequestMapping(value = "/confirm-result", method = RequestMethod.PUT)
     @ApiOperation("服务方确认竞标结果")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_CONFIRM_RESULT_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_CONFIRM_RESULT)
-    })
     public Result<ZGTaskBid> confirmResult(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBid taskBid) {
         log.debug("传入参数为:" + JSON.toJSONString(taskBid));
         Result<ZGTaskBid> result = new Result<ZGTaskBid>();

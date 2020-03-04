@@ -29,8 +29,8 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_icon
      * Nullable:  true
      */
-    @ApiModelProperty(value = "图标", example = "")
-    private String tIcon;
+    @ApiModelProperty(value = "图标")
+    private String icon;
 
     /**
      * 任务名称
@@ -39,7 +39,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务名称", example = "")
+    @ApiModelProperty(value = "任务名称")
     private String name;
 
     /**
@@ -49,7 +49,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    skills_required
      * Nullable:  true
      */
-    @ApiModelProperty(value = "技能要求", example = "")
+    @ApiModelProperty(value = "技能要求")
     private String skillsRequired;
 
     /**
@@ -60,7 +60,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务起价格", example = "0.00")
-    private BigDecimal tStartPrice;
+    private BigDecimal startPrice;
 
     /**
      * 可否议价0否1是
@@ -79,7 +79,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    release_time
      * Nullable:  true
      */
-    @ApiModelProperty(value = "发布时间,添加不传值", example = "")
+    @ApiModelProperty(value = "发布时间,添加不传值")
     private Date releaseTime;
 
     /**
@@ -90,7 +90,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务止价", example = "0.00")
-    private BigDecimal tEndPrice;
+    private BigDecimal endPrice;
 
     /**
      * 任务结束时间
@@ -100,7 +100,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务结束时间", example = "0")
-    private Date tEndTime;
+    private Date endTime;
 
     /**
      * 任务期限
@@ -110,7 +110,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务期限", example = "0")
-    private Long tPeriod;
+    private Long period;
 
     /**
      * 会员ID
@@ -160,7 +160,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务类型名称", example = "")
-    private String tTypeName;
+    private String typeName;
 
     /**
      * 任务类型编码
@@ -169,8 +169,8 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_type_code
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务类型编码", example = "")
-    private String tTypeCode;
+    @ApiModelProperty(value = "任务类型编码")
+    private String typeCode;
 
     /**
      * 行业名称
@@ -179,7 +179,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    industry
      * Nullable:  true
      */
-    @ApiModelProperty(value = "行业名称", example = "")
+    @ApiModelProperty(value = "行业名称")
     private String industry;
 
     /**
@@ -189,8 +189,8 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_des
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务描述", example = "")
-    private String tDes;
+    @ApiModelProperty(value = "任务描述")
+    private String des;
 
 
     /**
