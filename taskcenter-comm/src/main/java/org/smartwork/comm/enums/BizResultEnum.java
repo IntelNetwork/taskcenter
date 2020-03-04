@@ -20,6 +20,7 @@ public enum BizResultEnum {
      * 001-为空判断
      */
     TASK_CODE_EXISTS("001001001","任务类型编码已存在","%s对应任务类型编码已存在"),
+    TASK_RECORD_EXISTS("001001002","已存在竞标人","%s对应竞标人已存在")
 
 
     ;

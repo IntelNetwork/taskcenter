@@ -30,10 +30,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @modified By:
  */
 @RestController
-@RequestMapping("/examine")
+@RequestMapping("${smartwork.verision}/examine")
 @Api(tags={"选标"})
 @Slf4j
-public class TaskExamineApiProvider {
+public class ZGTaskExamineApiProvider {
 
 
     @Autowired
@@ -71,9 +71,9 @@ public class TaskExamineApiProvider {
             result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        if(count!=1){
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+        if(count>0){
+            result.setBizCode(BizResultEnum.TASK_RECORD_EXISTS.getBizCode());
+            result.setMessage(BizResultEnum.TASK_RECORD_EXISTS.getBizMessage());
             return result;
         }
         izgTaskBidService.updateById(zgTaskBid);

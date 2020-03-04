@@ -23,10 +23,10 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/taskmembers")
+@RequestMapping("${smartwork.verision}/taskmembers")
 @Api(tags={"参与任务竞标人员查询"})
 @Slf4j
-public class TaskMembersApiProvider {
+public class ZGTaskMembersApiProvider {
 
     @Autowired
     private IZGTaskBidService izgTaskBidService;
