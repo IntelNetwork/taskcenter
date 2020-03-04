@@ -97,8 +97,8 @@ public class ZGTaskAPIProvider {
             result.setMessage(BizResultEnum.EMPTY.getBizMessage());
             return result;
         }
-        //给定默认状态 未发布
-        task.setTaskState(TaskStateEnum.UNPUBLISHED.getCode());
+        //给定默认状态 待审核
+        task.setTaskState(TaskStateEnum.CHECK.getCode());
         //进入业务类继续操作
         taskService.addZGTask(task);
         result.setResult(task);
@@ -163,6 +163,38 @@ public class ZGTaskAPIProvider {
         }
         //更改状态 已下架
         task.setTaskState(TaskStateEnum.LOWER_SHELF.getCode());
+        //进入业务类继续操作
+        taskService.updateById(task);
+        result.setResult(task);
+        log.debug("返回内容为:" + JSON.toJSONString(task));
+        return result;
+    }
+
+    /***
+     * 方法概述:开始任务
+     * @param task 任务实体类
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/start", method = RequestMethod.PUT)
+    @ApiOperation("开始任务")
+    @ApiResponses(value = {
+            @ApiResponse(code = 500, message = Result.TASK_START_ERROR),
+            @ApiResponse(code = 200, message = Result.TASK_START)
+    })
+    public Result<ZGTask> StartTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
+        log.debug("传入参数为:" + JSON.toJSONString(task));
+        Result<ZGTask> result = new Result<ZGTask>();
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(task)) {
+            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        //更改状态 开始工作
+        task.setTaskState(TaskStateEnum.START_UP.getCode());
         //进入业务类继续操作
         taskService.updateById(task);
         result.setResult(task);
