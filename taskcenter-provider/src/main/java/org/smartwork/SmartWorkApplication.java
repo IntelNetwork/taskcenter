@@ -7,11 +7,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"org.forbes","org.smartwork"})
 @EnableDiscoveryClient
 @EnableSwagger2
 @EnableFeignClients
-@MapperScan(basePackages = {"org.smartwork.dal.mapper"})
 public class SmartWorkApplication {
     /***启动类
      * main方法慨述:
