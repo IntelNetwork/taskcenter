@@ -10,16 +10,16 @@ import org.forbes.comm.entity.BaseEntity;
  * Table: fb_zg_task_tag
  */
 @Data
-@ApiModel(description="任务标签")
+@ApiModel(description = "任务标签")
 @TableName("fb_zg_task_tag")
 public class ZGTaskTag extends BaseEntity {
     /**
      * 标签名称
-     *
+     * <p>
      * Table:     fb_zg_task_tag
      * Column:    name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "标签名称",example="")
+    @ApiModelProperty(value = "标签名称", example = "")
     private String name;
 }

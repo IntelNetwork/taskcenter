@@ -1,28 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="934e8a86-5dff-44ad-95e9-12e2271b8a4a" name="Default Changelist" comment="">
+    <list default="true" id="934e8a86-5dff-44ad-95e9-12e2271b8a4a" name="Default Changelist" comment="竞标记录类添加字段">
+      <change afterPath="$PROJECT_DIR$/taskcenter-biz/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/taskcenter-dal/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/taskcenter-provider/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/ShiroConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/WebMvcConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/WebMvcConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/filter/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/filter/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/interceptor/ReqInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/interceptor/ReqInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/realm/ExtRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/realm/ExtRealm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/token/JwtToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/src/main/java/org/smartwork/config/token/JwtToken.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/target/gateway-config-0.0.1-SNAPSHOT-exec.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/target/gateway-config-0.0.1-SNAPSHOT-exec.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/target/gateway-config-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-config/target/gateway-config-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/java/org/smartwork/SmartworkApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/java/org/smartwork/SmartworkApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/resources/application-prod.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/resources/log/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/src/main/resources/log/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/classes/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/classes/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/classes/application-prod.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/classes/log/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/classes/log/logback-spring.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/classes/org/smartwork/SmartworkApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/classes/org/smartwork/SmartworkApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/gateway-provider/target/gateway-provider-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGBigAttachMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskAttachMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskBidMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskOrderMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskRelTagMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskTagMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTindTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_messagecenter" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_messagecenter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_server" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-comm/src/java/org/smartwork/comm/vo/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-comm/src/java/org/smartwork/comm/vo/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGBigAttach.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGBigAttach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskAttach.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskAttach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskBid.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskBid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskRelTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskRelTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskType.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTindType.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTindType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGBigAttachMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGBigAttachMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskAttachMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskAttachMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskBidMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskBidMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskOrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskOrderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskRelTagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskRelTagMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskTagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskTagMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskTypeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskTypeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTindTypeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTindTypeMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-dal/src/main/resources/generator/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGBigAttachController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGBigAttachController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskAttachController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskAttachController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskBidController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskBidController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskRelTagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskRelTagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskTagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskTagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTaskTypeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTindTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/provider/ZGTindTypeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/resources/logback-spring.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../smartwork_usercenter" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_usercenter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../smartwork_zipkin_server" beforeDir="false" afterPath="$PROJECT_DIR$/../smartwork_zipkin_server" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +94,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../forbes-comm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.38505748" />
@@ -133,7 +171,10 @@
       <workItem from="1582862781621" duration="247000" />
       <workItem from="1582871580698" duration="679000" />
       <workItem from="1582872286103" duration="27000" />
-      <workItem from="1582873771068" duration="2684000" />
+      <workItem from="1582873771068" duration="3273000" />
+      <workItem from="1582898396084" duration="554000" />
+      <workItem from="1583228176957" duration="925000" />
+      <workItem from="1583286611595" duration="828000" />
     </task>
     <task id="LOCAL-00001" summary="生成service和impl">
       <created>1582872218858</created>
@@ -142,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582872218858</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="竞标记录类添加字段">
+      <created>1582898857252</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582898857252</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +199,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -160,10 +233,16 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="生成service和impl" />
-    <option name="LAST_COMMIT_MESSAGE" value="生成service和impl" />
+    <MESSAGE value="竞标记录类添加字段" />
+    <option name="LAST_COMMIT_MESSAGE" value="竞标记录类添加字段" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582712413296">
@@ -182,58 +261,58 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="91" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1582858976121" />
-    <state x="158" y="0" key="CommitChangelistDialog2" timestamp="1582872217662">
+    <state x="158" y="0" key="CommitChangelistDialog2" timestamp="1582898856382">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="158" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582872217662" />
+    <state x="158" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582898856382" />
     <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1582876075966">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582876075966" />
-    <state width="1237" height="192" key="GridCell.Tab.0.bottom" timestamp="1582878379302">
+    <state width="1237" height="176" key="GridCell.Tab.0.bottom" timestamp="1582898949871">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="192" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582878379302" />
-    <state width="1237" height="192" key="GridCell.Tab.0.center" timestamp="1582878379302">
+    <state width="1237" height="176" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582898949871" />
+    <state width="1237" height="176" key="GridCell.Tab.0.center" timestamp="1582898949871">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="192" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582878379302" />
-    <state width="1237" height="192" key="GridCell.Tab.0.left" timestamp="1582878379302">
+    <state width="1237" height="176" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582898949871" />
+    <state width="1237" height="176" key="GridCell.Tab.0.left" timestamp="1582898949870">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="192" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582878379302" />
-    <state width="1237" height="192" key="GridCell.Tab.0.right" timestamp="1582878379302">
+    <state width="1237" height="176" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582898949870" />
+    <state width="1237" height="176" key="GridCell.Tab.0.right" timestamp="1582898949871">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="192" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582878379302" />
-    <state width="1237" height="192" key="GridCell.Tab.1.bottom" timestamp="1582878379224">
+    <state width="1237" height="176" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582898949871" />
+    <state width="1237" height="115" key="GridCell.Tab.1.bottom" timestamp="1582878826763">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="192" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582878379224" />
-    <state width="1237" height="192" key="GridCell.Tab.1.center" timestamp="1582878379224">
+    <state width="1237" height="115" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582878826763" />
+    <state width="1237" height="115" key="GridCell.Tab.1.center" timestamp="1582878826762">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="192" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582878379224" />
-    <state width="1237" height="192" key="GridCell.Tab.1.left" timestamp="1582878379224">
+    <state width="1237" height="115" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582878826762" />
+    <state width="1237" height="115" key="GridCell.Tab.1.left" timestamp="1582878826762">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="192" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582878379224" />
-    <state width="1237" height="192" key="GridCell.Tab.1.right" timestamp="1582878379224">
+    <state width="1237" height="115" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582878826762" />
+    <state width="1237" height="115" key="GridCell.Tab.1.right" timestamp="1582878826763">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="192" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582878379224" />
+    <state width="1237" height="115" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582878826763" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1582770434766">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1582770434766" />
-    <state x="233" y="77" key="Vcs.Push.Dialog.v2" timestamp="1582872226599">
+    <state x="233" y="77" key="Vcs.Push.Dialog.v2" timestamp="1582898859760">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="77" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1582872226599" />
-    <state x="348" y="143" key="git4idea.merge.GitPullDialog" timestamp="1582871757250">
+    <state x="233" y="77" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1582898859760" />
+    <state x="348" y="143" key="git4idea.merge.GitPullDialog" timestamp="1582898826311">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="348" y="143" key="git4idea.merge.GitPullDialog/0.0.1280.680@0.0.1280.680" timestamp="1582871757250" />
+    <state x="348" y="143" key="git4idea.merge.GitPullDialog/0.0.1280.680@0.0.1280.680" timestamp="1582898826311" />
     <state x="28" y="48" key="new project wizard" timestamp="1582770421555">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

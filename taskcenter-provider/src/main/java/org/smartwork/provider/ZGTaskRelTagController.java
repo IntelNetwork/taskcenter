@@ -7,7 +7,7 @@ import org.smartwork.dal.entity.ZGTaskRelTag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags={"任务标签关联表管理"})
+@Api(tags = {"任务标签关联表管理"})
 @RestController
 @RequestMapping("/zgtaskreltag")
 public class ZGTaskRelTagController extends BaseProvider<IZGTaskRelTagService, ZGTaskRelTag> {

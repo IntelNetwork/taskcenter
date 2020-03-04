@@ -10,46 +10,46 @@ import org.forbes.comm.entity.BaseEntity;
  * Table: fb_zg_big_attach
  */
 @Data
-@ApiModel(description="任务竞标附件")
+@ApiModel(description = "任务竞标附件")
 @TableName("fb_zg_big_attach")
 public class ZGBigAttach extends BaseEntity {
     /**
      * 竞标ID
-     *
+     * <p>
      * Table:     fb_zg_big_attach
      * Column:    bid_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "竞标ID",example="0")
+    @ApiModelProperty(value = "竞标ID", example = "0")
     private Long bidId;
 
     /**
      * 中文名
-     *
+     * <p>
      * Table:     fb_zg_big_attach
      * Column:    cn_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "中文名",example="")
+    @ApiModelProperty(value = "中文名", example = "")
     private String cnName;
 
     /**
      * 后缀名
-     *
+     * <p>
      * Table:     fb_zg_big_attach
      * Column:    suffix
      * Nullable:  true
      */
-    @ApiModelProperty(value = "后缀名",example="")
+    @ApiModelProperty(value = "后缀名", example = "")
     private String suffix;
 
     /**
      * 文件路径
-     *
+     * <p>
      * Table:     fb_zg_big_attach
      * Column:    file_path
      * Nullable:  true
      */
-    @ApiModelProperty(value = "文件路径",example="")
+    @ApiModelProperty(value = "文件路径", example = "")
     private String filePath;
 }

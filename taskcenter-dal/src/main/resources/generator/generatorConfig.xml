@@ -4,20 +4,21 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!-- 数据库驱动:换成你本地的驱动包位置-->
-    <classPathEntry  location="C:/Users/hankh/.m2/repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar"/>
-    <context id="DB2Tables"  targetRuntime="MyBatis3">
-            <property name="javaFileEncoding" value="UTF-8"/>
-            <!-- 自定义的注释生成插件-->
-            <plugin type="com.chrm.mybatis.generator.plugins.CommentPlugin">
+    <classPathEntry
+            location="C:/Users/hankh/.m2/repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar"/>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 自定义的注释生成插件-->
+        <plugin type="com.chrm.mybatis.generator.plugins.CommentPlugin">
             <!-- 抑制警告 -->
-            <property name="suppressTypeWarnings" value="true" />
+            <property name="suppressTypeWarnings" value="true"/>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="false" />
+            <property name="suppressAllComments" value="false"/>
             <!-- 是否生成注释代时间戳-->
-            <property name="suppressDate" value="true" />
+            <property name="suppressDate" value="true"/>
         </plugin>
         <!-- 整合lombok-->
-        <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin" >
+        <plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin">
             <property name="hasLombok" value="true"/>
             <!--设置表对应名称-->
             <property name="fb_zg_task" value="任务"/>
@@ -55,25 +56,29 @@
             <property name="fb_zg_task_type" value="任务类型"/>
         </plugin>
         <!--整合service-->
-         <plugin type="com.chrm.mybatis.generator.plugins.ServicePlugin">
-             <property name="targetProject" value="../taskcenter-biz/src/main/java"></property>
-             <property name="servicePackage" value="org.smartwork.biz.service"></property>
-             <property name="serviceImplPackage" value="org.smartwork.biz.service.impl"></property>
-             <property name="mapperPackage" value="org.smartwork.dal.mapper"/>
-             <property name="servicePreffix" value="I"></property>
-             <property name="serviceSuffix" value="Service"></property>
-             <property name="serviceImplSuffix" value="Impl"></property>
-             <property name="mapperSuffix" value="Mapper"></property>
-             <property name="superServiceInterface" value="com.baomidou.mybatisplus.extension.service.IService"></property>
-             <property name="superServiceImpl" value="com.baomidou.mybatisplus.extension.service.impl.ServiceImpl"></property>
-         </plugin>
+        <plugin type="com.chrm.mybatis.generator.plugins.ServicePlugin">
+            <property name="targetProject" value="../taskcenter-biz/src/main/java"></property>
+            <property name="servicePackage" value="org.smartwork.biz.service"></property>
+            <property name="serviceImplPackage" value="org.smartwork.biz.service.impl"></property>
+            <property name="mapperPackage" value="org.smartwork.dal.mapper"/>
+            <property name="servicePreffix" value="I"></property>
+            <property name="serviceSuffix" value="Service"></property>
+            <property name="serviceImplSuffix" value="Impl"></property>
+            <property name="mapperSuffix" value="Mapper"></property>
+            <property name="superServiceInterface"
+                      value="com.baomidou.mybatisplus.extension.service.IService"></property>
+            <property name="superServiceImpl"
+                      value="com.baomidou.mybatisplus.extension.service.impl.ServiceImpl"></property>
+        </plugin>
         <commentGenerator>
             <property name="suppressDate" value="true"/>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://129.211.88.251:3306/smartworktask" userId="smartworktask" password="KJJ22nd8fkJB3XJh">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://129.211.88.251:3306/smartworktask" userId="smartworktask"
+                        password="KJJ22nd8fkJB3XJh">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -85,25 +90,14 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="org.smartwork.dal.mapper.xml"  targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="org.smartwork.dal.mapper.xml" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="org.smartwork.dal.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <table tableName="fb_zg_task" domainObjectName="ZGTask"          enableSelectByPrimaryKey="true"
-        								   								  enableDeleteByPrimaryKey="false"
-        								   								  enableUpdateByPrimaryKey="false"
-        								   								  enableCountByExample="false" 
-        								   								  enableUpdateByExample="false" 
-        								   								  enableDeleteByExample="false" 
-        								   								  enableSelectByExample="false" 
-        								   								  selectByExampleQueryId="false" 
-        								   								  selectByPrimaryKeyQueryId="false">
-        	<property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="fb_task_order" domainObjectName="ZGTaskOrder"          enableSelectByPrimaryKey="true"
+        <table tableName="fb_zg_task" domainObjectName="ZGTask" enableSelectByPrimaryKey="true"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableCountByExample="false"
@@ -114,7 +108,7 @@
                selectByPrimaryKeyQueryId="false">
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="fb_zg_big_attach" domainObjectName="ZGBigAttach"          enableSelectByPrimaryKey="true"
+        <table tableName="fb_task_order" domainObjectName="ZGTaskOrder" enableSelectByPrimaryKey="true"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableCountByExample="false"
@@ -125,7 +119,7 @@
                selectByPrimaryKeyQueryId="false">
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="fb_zg_t_ind_type" domainObjectName="ZGTindType"          enableSelectByPrimaryKey="true"
+        <table tableName="fb_zg_big_attach" domainObjectName="ZGBigAttach" enableSelectByPrimaryKey="true"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableCountByExample="false"
@@ -136,7 +130,7 @@
                selectByPrimaryKeyQueryId="false">
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="fb_zg_task_attach" domainObjectName="ZGTaskAttach"          enableSelectByPrimaryKey="true"
+        <table tableName="fb_zg_t_ind_type" domainObjectName="ZGTindType" enableSelectByPrimaryKey="true"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableCountByExample="false"
@@ -147,7 +141,18 @@
                selectByPrimaryKeyQueryId="false">
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="fb_zg_task_bid" domainObjectName="ZGTaskBid"          enableSelectByPrimaryKey="true"
+        <table tableName="fb_zg_task_attach" domainObjectName="ZGTaskAttach" enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               selectByPrimaryKeyQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="fb_zg_task_bid" domainObjectName="ZGTaskBid" enableSelectByPrimaryKey="true"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableCountByExample="false"
@@ -159,7 +164,7 @@
             <property name="useActualColumnNames" value="false"/>
         </table>
 
-        <table tableName="fb_zg_task_rel_tag" domainObjectName="ZGTaskRelTag"          enableSelectByPrimaryKey="true"
+        <table tableName="fb_zg_task_rel_tag" domainObjectName="ZGTaskRelTag" enableSelectByPrimaryKey="true"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableCountByExample="false"
@@ -170,7 +175,7 @@
                selectByPrimaryKeyQueryId="false">
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="fb_zg_task_tag" domainObjectName="ZGTaskTag"          enableSelectByPrimaryKey="true"
+        <table tableName="fb_zg_task_tag" domainObjectName="ZGTaskTag" enableSelectByPrimaryKey="true"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableCountByExample="false"
@@ -181,7 +186,7 @@
                selectByPrimaryKeyQueryId="false">
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="fb_zg_task_type" domainObjectName="ZGTaskType"          enableSelectByPrimaryKey="true"
+        <table tableName="fb_zg_task_type" domainObjectName="ZGTaskType" enableSelectByPrimaryKey="true"
                enableDeleteByPrimaryKey="false"
                enableUpdateByPrimaryKey="false"
                enableCountByExample="false"

@@ -7,7 +7,7 @@ import org.smartwork.dal.entity.ZGTaskAttach;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags={"任务附件管理"})
+@Api(tags = {"任务附件管理"})
 @RestController
 @RequestMapping("/zgtaskattach")
 public class ZGTaskAttachController extends BaseProvider<IZGTaskAttachService, ZGTaskAttach> {
