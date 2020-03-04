@@ -189,17 +189,4 @@ public class ZGTask extends BaseEntity {
     @ApiModelProperty(value = "任务描述")
     private String des;
 
-    /**
-     * 任务附件
-     */
-    @ApiModelProperty(value = "任务附件")
-    @TableField(exist = false)
-    List<ZGTaskAttach> zgTaskAttaches;
-
-    /**
-     * 任务标签中间表
-     */
-    @ApiModelProperty(value = "任务标签中间表")
-    @TableField(exist = false)
-    List<ZGTaskRelTag> zgTaskRelTags;
 }
