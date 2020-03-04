@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  * @date 2020/3/4 10:07
  */
 public enum TaskHitstateEnum {
+
     HITSTATE_NO("0", "未中标"),
     HITSTATE("1", "已中标"),
     CHECK("2","审核中");

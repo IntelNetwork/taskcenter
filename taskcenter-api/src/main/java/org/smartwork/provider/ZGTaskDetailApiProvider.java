@@ -67,7 +67,7 @@ public class ZGTaskDetailApiProvider {
         BeanUtils.copyProperties(zgTask, zgTaskVo);
         QueryWrapper<ZGTaskBid> qw=new QueryWrapper<ZGTaskBid>();
         qw.eq(DataColumnConstant.TASKID,id);//任务id
-        //获取当前用id
+        //获取当前用户id
         qw.eq(DataColumnConstant.MEMBERID,sysUser.getId());
         /*根据用户id，任务id查询该用户竞标状态*/
         ZGTaskBid zgTaskBid=izgTaskBidService.getOne(qw);

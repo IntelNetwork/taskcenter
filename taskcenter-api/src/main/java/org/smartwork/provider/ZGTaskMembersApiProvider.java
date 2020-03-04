@@ -45,6 +45,7 @@ public class ZGTaskMembersApiProvider {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
+
     public Result<List<ZGTaskBid>> list(@PathVariable long id){
         QueryWrapper<ZGTaskBid> qw=new  QueryWrapper<ZGTaskBid>();
         Result<List<ZGTaskBid>> result=new Result<List<ZGTaskBid>>();

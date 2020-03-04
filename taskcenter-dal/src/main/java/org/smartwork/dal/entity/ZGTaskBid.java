@@ -82,6 +82,7 @@ public class ZGTaskBid extends BaseEntity {
      * Column:    task_id
      * Nullable:  true
      */
+
     @ApiModelProperty(value = "任务id",example="0")
     private Long taskId;
 }
