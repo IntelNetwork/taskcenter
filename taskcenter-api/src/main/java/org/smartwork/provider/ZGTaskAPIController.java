@@ -238,7 +238,7 @@ public class ZGTaskAPIController {
     /***
      * pageTasks方法概述:任务分页查询
      * @param basePageDto, zgTaskPageDto
-     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.dal.entity.ZGTask>>
+     * @return com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/2 13:41
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -250,15 +250,15 @@ public class ZGTaskAPIController {
             @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
             @ApiResponse(code = 200, message = Result.TASK_SELECT)
     })
-    public org.forbes.comm.vo.Result<IPage<ZGTask>> selectUserList(BasePageDto basePageDto, ZGTaskPageDto zgTaskPageDto){
+    public Result<IPage<ZGTask>> selectUserList(BasePageDto basePageDto, ZGTaskPageDto zgTaskPageDto){
         log.debug("传入的参数为"+JSON.toJSONString(basePageDto));
-        org.forbes.comm.vo.Result<IPage<ZGTask>> result = new org.forbes.comm.vo.Result<>();
+        Result<IPage<ZGTask>> result = new Result<>();
         QueryWrapper<ZGTask> qw = new QueryWrapper<ZGTask>();
-        if(org.forbes.comm.utils.ConvertUtils.isNotEmpty(zgTaskPageDto)){
-            if(org.forbes.comm.utils.ConvertUtils.isNotEmpty(zgTaskPageDto.getTTypeName())){
+        if(ConvertUtils.isNotEmpty(zgTaskPageDto)){
+            if(ConvertUtils.isNotEmpty(zgTaskPageDto.getTTypeName())){
                 qw.eq(TaskColumnConstant.TTYPENAME,zgTaskPageDto.getTTypeName());
             }
-            if(org.forbes.comm.utils.ConvertUtils.isNotEmpty(zgTaskPageDto.getIndustry())){
+            if(ConvertUtils.isNotEmpty(zgTaskPageDto.getIndustry())){
                 qw.eq(TaskColumnConstant.INDUSTRY,zgTaskPageDto.getIndustry());
             }
         }
@@ -272,7 +272,7 @@ public class ZGTaskAPIController {
     /***
      * selectAllTask方法概述:获取最新成交动态
      * @param
-     * @return org.forbes.comm.vo.Result<java.util.List<org.smartwork.dal.entity.ZGTask>>
+     * @return org.smartwork.dal.entity.ZGTask
      * @创建人 Tom
      * @创建时间 2020/3/2 18:20
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -284,8 +284,8 @@ public class ZGTaskAPIController {
             @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
             @ApiResponse(code = 200, message = Result.TASK_SELECT)
     })
-    public org.forbes.comm.vo.Result<List<ZGTask>> selectAllTask(){
-        org.forbes.comm.vo.Result<List<ZGTask>> result=new org.forbes.comm.vo.Result<>();
+    public Result<List<ZGTask>> selectAllTask(){
+        Result<List<ZGTask>> result=new Result<>();
         List<ZGTask> tasks = taskService.selectAllTask();
         result.setResult(tasks);
         return result;
@@ -294,7 +294,7 @@ public class ZGTaskAPIController {
     /***
      * AllCount方法概述:任务总数查询
      * @param
-     * @return org.forbes.comm.vo.Result<java.lang.Integer>
+     * @return java.lang.Integer
      * @创建人 Tom
      * @创建时间 2020/3/3 9:21
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -306,8 +306,8 @@ public class ZGTaskAPIController {
             @ApiResponse(code = 500, message = Result.TASK_SELECT_ERROR),
             @ApiResponse(code = 200, message = Result.TASK_SELECT)
     })
-    public org.forbes.comm.vo.Result<Integer> AllCount(){
-        org.forbes.comm.vo.Result<Integer> result=new org.forbes.comm.vo.Result<>();
+    public Result<Integer> AllCount(){
+        Result<Integer> result=new Result<>();
         Integer tasks=taskService.count();
         result.setResult(tasks);
         return result;
@@ -316,7 +316,7 @@ public class ZGTaskAPIController {
     /***
      * updateTask方法概述:任务编辑
      * @param zgTaskDto
-     * @return org.forbes.comm.vo.Result<org.smartwork.comm.model.ZGTaskDto>
+     * @return org.smartwork.comm.model.ZGTaskDto
      * @创建人 Tom
      * @创建时间 2020/3/3 10:02
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -328,12 +328,12 @@ public class ZGTaskAPIController {
             @ApiResponse(code = 500, message = Result.TASK_UPDATE_ERROR),
             @ApiResponse(code = 200, message = Result.TASK_UPDATE)
     })
-    public org.forbes.comm.vo.Result<ZGTaskDto> updateTask(@RequestBody @Validated(value= org.forbes.comm.constant.UpdateValid.class) ZGTaskDto zgTaskDto){
+    public Result<ZGTaskDto> updateTask(@RequestBody @Validated(value= UpdateValid.class) ZGTaskDto zgTaskDto){
         log.debug("传入的参数为"+JSON.toJSONString(zgTaskDto));
-        org.forbes.comm.vo.Result<ZGTaskDto> result=new org.forbes.comm.vo.Result<ZGTaskDto>();
+        Result<ZGTaskDto> result=new Result<ZGTaskDto>();
         try {
             ZGTask oldZgTask = taskService.getById(zgTaskDto.getId());
-            if(org.forbes.comm.utils.ConvertUtils.isEmpty(oldZgTask)){
+            if(ConvertUtils.isEmpty(oldZgTask)){
                 result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
                 result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
                 return result;
