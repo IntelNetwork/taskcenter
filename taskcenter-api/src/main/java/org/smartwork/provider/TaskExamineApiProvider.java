@@ -1,4 +1,4 @@
-package org.smartwork.controller;
+package org.smartwork.provider;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -11,6 +11,7 @@ import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.BizResultEnum;
+import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTaskBid;
@@ -32,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/examine")
 @Api(tags={"选标"})
 @Slf4j
-public class TaskExamineController {
+public class TaskExamineApiProvider {
 
 
     @Autowired
@@ -63,11 +64,16 @@ public class TaskExamineController {
         ZGTaskBid zgTaskBid_temp=izgTaskBidService.getById(zgTaskBid.getId());
         QueryWrapper<ZGTaskBid> qw=new QueryWrapper<ZGTaskBid>();
         qw.eq(DataColumnConstant.TASKID,zgTaskBid.getTaskId());
-      //  qw.eq(DataColumnConstant.HITSTATE,)
+        qw.eq(DataColumnConstant.HITSTATE,TaskHitstateEnum.HITSTATE.getCode());
         Integer count=izgTaskBidService.count(qw);
         if(ConvertUtils.isEmpty(zgTaskBid_temp)){
-            result.setBizCode(org.forbes.comm.enums.BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(org.forbes.comm.enums.BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        if(count!=1){
+            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         izgTaskBidService.updateById(zgTaskBid);

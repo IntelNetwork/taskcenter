@@ -1,4 +1,4 @@
-package org.smartwork.controller;
+package org.smartwork.provider;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/recommend")
 @Api(tags={"任务推荐"})
 @Slf4j
-public class TaskRecommendController {
+public class TaskRecommendApiProvider {
 
 
     @Autowired

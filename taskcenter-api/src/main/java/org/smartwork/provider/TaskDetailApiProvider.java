@@ -1,4 +1,4 @@
-package org.smartwork.controller;
+package org.smartwork.provider;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/taskdetail")
 @Api(tags={"任务详情"})
 @Slf4j
-public class TaskDetailController {
+public class TaskDetailApiProvider {
 
     @Autowired
     private IZGTaskService izgTaskService;

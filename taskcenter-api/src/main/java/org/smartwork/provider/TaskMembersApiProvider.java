@@ -1,4 +1,4 @@
-package org.smartwork.controller;
+package org.smartwork.provider;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/taskmembers")
 @Api(tags={"参与任务竞标人员查询"})
 @Slf4j
-public class TaskMembersController {
+public class TaskMembersApiProvider {
 
     @Autowired
     private IZGTaskBidService izgTaskBidService;
