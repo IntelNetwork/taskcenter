@@ -29,10 +29,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @修改日期 (请填上修改该文件时的日期)
  */
 @RestController
-@RequestMapping("/api-bid")
+@RequestMapping("/${smartwork.verision}/bid")
 @Api(tags = {"任务竞标记录API控制层"})
 @Slf4j
-public class ZGTaskBidApiController {
+public class ZGTaskBidApiProvider {
 
 
     @Autowired

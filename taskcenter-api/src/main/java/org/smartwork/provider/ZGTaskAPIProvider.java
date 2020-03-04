@@ -33,10 +33,10 @@ import java.util.Map;
  * @修改日期 (请填上修改该文件时的日期)
  */
 @RestController
-@RequestMapping("/api-task")
+@RequestMapping("/${smartwork.verision}/task")
 @Api(tags = {"任务API控制层"})
 @Slf4j
-public class ZGTaskAPIController {
+public class ZGTaskAPIProvider {
 
 
     @Autowired
