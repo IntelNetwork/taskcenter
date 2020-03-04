@@ -10,8 +10,6 @@ import java.util.List;
 
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
-import org.smartwork.comm.model.ZGTaskAttachDto;
-import org.smartwork.comm.model.ZGTaskRelTagDto;
 
 /**
  * Table: fb_zg_task

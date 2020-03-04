@@ -31,11 +31,11 @@
     member_name, task_state, industry_id, type_name, type_code, industry
   </sql>
 
-  <select id="selectAllTask">
+  <select id="selectAllTask" resultType="org.smartwork.dal.entity.ZGTask">
     SELECT
     <include refid="Base_Column_List" />
     FROM
     fb_zg_task
-    WHERE task_state = '2'
+    WHERE task_state = 3
   </select>
 </mapper>

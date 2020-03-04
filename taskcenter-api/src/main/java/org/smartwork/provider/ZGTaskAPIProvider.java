@@ -20,8 +20,6 @@ import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.dal.entity.ZGTask;
-import org.smartwork.dal.entity.ZGTaskAttach;
-import org.smartwork.dal.entity.ZGTaskRelTag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -243,6 +241,9 @@ public class ZGTaskAPIProvider {
             if(ConvertUtils.isNotEmpty(zgTaskPageDto.getIndustry())){
                 qw.eq(TaskColumnConstant.INDUSTRY,zgTaskPageDto.getIndustry());
             }
+            if(ConvertUtils.isNotEmpty(zgTaskPageDto.getTaskState())){
+                qw.eq(TaskColumnConstant.TASKSTATE,zgTaskPageDto.getTaskState());
+            }
         }
         IPage<ZGTask> page = new Page<ZGTask>(basePageDto.getPageNo(),basePageDto.getPageSize());
         IPage<ZGTask> s = taskService.page(page,qw);
@@ -343,21 +344,10 @@ public class ZGTaskAPIProvider {
     @ApiImplicitParams(
             @ApiImplicitParam(name = "memberId",value = "会员id")
     )
-    public Result<ZGTask> getByMemberId(@RequestParam(value = "memberId",required = true)Long memberId){
-        Result<ZGTask> result=new Result<ZGTask>();
+    public Result<List<ZGTask>> getByMemberId(@RequestParam(value = "memberId",required = true)Long memberId){
+        Result<List<ZGTask>> result=new Result<List<ZGTask>>();
         //查询任务信息
-        ZGTask zgTask = taskService.getById(memberId);
-        //查询任务附件信息
-        Long taskId = zgTask.getId();
-        List<ZGTaskAttach> zgTaskAttaches = zgTaskAttachService.list(new QueryWrapper<ZGTaskAttach>().eq(TaskColumnConstant.TASKID,taskId));
-        if(ConvertUtils.isNotEmpty(zgTaskAttaches)){
-            zgTask.setZgTaskAttaches(zgTaskAttaches);
-        }
-        //查询任务标签信息
-        List<ZGTaskRelTag> zgTaskRelTags = zgTaskRelTagService.list(new QueryWrapper<ZGTaskRelTag>().eq(TaskColumnConstant.TASKID,taskId));
-        if(ConvertUtils.isNotEmpty(zgTaskRelTags)){
-            zgTask.setZgTaskRelTags(zgTaskRelTags);
-        }
+        List<ZGTask> zgTask = taskService.list(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.MEMBERID,memberId));
         result.setResult(zgTask);
         return result;
     }
