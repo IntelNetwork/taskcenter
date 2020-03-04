@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableFeignClients
 @MapperScan(basePackages = {"org.smartwork.dal.mapper"})
-public class smartWorkApplication {
+public class SmartWorkApplication {
     /***启动类
      * main方法慨述:
      * @param args void
@@ -22,7 +22,7 @@ public class smartWorkApplication {
      * @修改日期 (请填上修改该文件时的日期)
      */
     public static void main(String[] args) {
-        SpringApplication.run(smartWorkApplication.class, args);
+        SpringApplication.run(SmartWorkApplication.class, args);
     }
 
 
