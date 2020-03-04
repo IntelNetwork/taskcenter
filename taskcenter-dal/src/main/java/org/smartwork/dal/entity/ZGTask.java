@@ -64,7 +64,7 @@ public class ZGTask extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "可否议价",example="false")
-    private Boolean isBargain;
+    private String isBargain;
 
     /**
      * 发布时间
