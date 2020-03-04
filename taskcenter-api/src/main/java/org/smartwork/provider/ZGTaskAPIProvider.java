@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.BasePageDto;
 import org.smartwork.biz.service.IZGTaskService;
+import org.smartwork.comm.constant.SaveValid;
 import org.smartwork.comm.constant.TaskColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.BizResultEnum;
@@ -57,7 +58,7 @@ public class ZGTaskAPIProvider {
             @ApiResponse(code = 500, message = Result.TASK_ADD_ERROR),
             @ApiResponse(code = 200, message = Result.TASK_ADD)
     })
-    public Result<ZGTaskDto> addTask(ZGTaskDto task) {
+    public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class)ZGTaskDto task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
         //传入实体类对象为空

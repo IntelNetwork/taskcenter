@@ -2,17 +2,19 @@ package org.smartwork.biz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.forbes.comm.constant.DataColumnConstant;
 import org.forbes.comm.utils.ConvertUtils;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.TaskAttachColumnConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
+import org.smartwork.comm.model.ZGTaskRelTagDto;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskAttach;
+import org.smartwork.dal.entity.ZGTaskRelTag;
 import org.smartwork.dal.mapper.ZGTaskAttachMapper;
 import org.smartwork.dal.mapper.ZGTaskMapper;
+import org.smartwork.dal.mapper.ZGTaskRelTagMapper;
 import org.smartwork.dal.mapper.ext.ZGTaskExtMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
@@ -27,11 +29,15 @@ import java.util.List;
 
 @Service
 public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> implements IZGTaskService {
-
+    //任务Ext
     @Autowired
     ZGTaskExtMapper zgTaskExtMapper;
+    //任务附件
     @Autowired
     ZGTaskAttachMapper zgTaskAttachMapper;
+    //任务标签
+    @Autowired
+    ZGTaskRelTagMapper zgTaskRelTagMapper;
 
     /***
      * addZGTask方法概述: 添加任务
@@ -50,7 +56,22 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
                 .copy(taskDto, task, null);
         baseMapper.insert(task);
 
-        //任务附件关联
+        //任务标签关联
+        List<ZGTaskRelTagDto> zgTaskRelTagDtos = taskDto.getZgTaskRelTagDtos();
+        if (ConvertUtils.isNotEmpty(zgTaskRelTagDtos)) {
+            Long taskId = task.getId();
+            ZGTaskRelTag attach = new ZGTaskRelTag();
+            zgTaskRelTagDtos.stream().forEach(temp -> {
+                attach.setTaId(temp.getTaId());
+                attach.setTaskId(taskId);
+                attach.setName(temp.getName());
+                //执行添加
+                zgTaskRelTagMapper.insert(attach);
+            });
+        }
+
+
+        //任务关联
         List<ZGTaskAttachDto> zgTaskAttachDtos = taskDto.getZgTaskAttachDtos();
         if (ConvertUtils.isNotEmpty(zgTaskAttachDtos)) {
             Long taskId = task.getId();
@@ -60,8 +81,11 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
                 attach.setCnName(temp.getCnName());
                 attach.setFilePath(temp.getFilePath());
                 attach.setSuffix(temp.getSuffix());
+                //执行添加
+                zgTaskAttachMapper.insert(attach);
             });
         }
+
 
         return null;
     }
