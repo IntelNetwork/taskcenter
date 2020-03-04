@@ -31,7 +31,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("${smartwork.verision}/taskmembers")
+@RequestMapping("/${smartwork.verision}/taskmembers")
 @Api(tags={"参与任务竞标人员查询"})
 @Slf4j
 public class ZGTaskMembersApiProvider {
