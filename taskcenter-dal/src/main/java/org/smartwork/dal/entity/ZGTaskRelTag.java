@@ -6,6 +6,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * Table: fb_zg_task_rel_tag
  */
@@ -22,6 +25,7 @@ public class ZGTaskRelTag extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "标签ID",example="0",required = true)
+    @NotNull(message = "标签ID为空")
     private Long taId;
 
     /**
@@ -32,6 +36,7 @@ public class ZGTaskRelTag extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务ID",example="0",required = true)
+    @NotNull(message = "任务ID为空")
     private Long taskId;
 
     /**
@@ -42,5 +47,6 @@ public class ZGTaskRelTag extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "标签名称",example="",required = true)
+    @NotEmpty(message = "标签名称为空")
     private String name;
 }

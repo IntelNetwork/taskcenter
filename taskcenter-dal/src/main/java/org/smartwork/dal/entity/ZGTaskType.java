@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * Table: fb_zg_task_type
  */
@@ -22,6 +24,7 @@ public class ZGTaskType extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "类型编码",example="",required = true)
+    @NotEmpty(message = "类型编码为空")
     private String code;
 
     /**
@@ -32,6 +35,7 @@ public class ZGTaskType extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "名称",example="",required = true)
+    @NotEmpty(message = "名称为空")
     private String name;
 
     /**

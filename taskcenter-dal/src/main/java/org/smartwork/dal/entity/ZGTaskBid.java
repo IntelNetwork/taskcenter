@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * Table: fb_zg_task_bid
  */
@@ -23,6 +26,7 @@ public class ZGTaskBid extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "会员ID",example="0",required = true)
+    @NotNull(message = "会员ID为空")
     private Long memberId;
 
     /**
@@ -33,6 +37,7 @@ public class ZGTaskBid extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "会员名称",example="",required = true)
+    @NotEmpty(message = "会员名称为空")
     private String membeName;
 
     /**
@@ -43,6 +48,7 @@ public class ZGTaskBid extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "低价",example="0.00",required = true)
+    @NotNull(message = "低价为空")
     private BigDecimal offeStartPrice;
 
     /**
@@ -53,6 +59,7 @@ public class ZGTaskBid extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "止价",example="0.00",required = true)
+    @NotNull(message = "止价为空")
     private BigDecimal offerEndPrice;
 
     /**
@@ -84,5 +91,6 @@ public class ZGTaskBid extends BaseEntity {
      */
 
     @ApiModelProperty(value = "任务id",example="0",required = true)
+    @NotNull(message = "任务id为空")
     private Long taskId;
 }
