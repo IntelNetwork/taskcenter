@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * Table: fb_task_order
  */
@@ -23,6 +26,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "订单编号",example="",required = true)
+    @NotEmpty(message = "订单编号为空")
     private String sn;
 
     /**
@@ -33,6 +37,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务会员编号",example="0",required = true)
+    @NotEmpty(message = "任务会员编号为空")
     private Long taskMemberId;
 
     /**
@@ -43,6 +48,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务会员名称",example="",required = true)
+    @NotEmpty(message = "任务会员名称为空")
     private String taskMemberName;
 
     /**
@@ -53,6 +59,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务名称",example="",required = true)
+    @NotEmpty(message = "任务名称为空")
     private String taskName;
 
     /**
@@ -93,6 +100,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "会员ID",example="0",required = true)
+    @NotNull(message = "会员id为空")
     private Long memberId;
 
     /**
@@ -103,6 +111,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "会员名称",example="",required = true)
+    @NotEmpty(message = "会员名称为空")
     private String memberName;
 
     /**
