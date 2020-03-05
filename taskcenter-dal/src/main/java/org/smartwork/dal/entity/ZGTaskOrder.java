@@ -37,7 +37,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务会员编号",example="0",required = true)
-    @NotEmpty(message = "任务会员编号为空")
+    @NotNull(message = "任务会员编号为空")
     private Long taskMemberId;
 
     /**
