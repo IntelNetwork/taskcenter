@@ -22,17 +22,17 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    sn
      * Nullable:  true
      */
-    @ApiModelProperty(value = "订单编号",example="")
+    @ApiModelProperty(value = "订单编号",example="",required = true)
     private String sn;
 
     /**
-     * 任务会员ID
+     * 任务会员编号
      *
      * Table:     fb_task_order
      * Column:    task_member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务会员ID",example="0",required = true)
+    @ApiModelProperty(value = "任务会员编号",example="0",required = true)
     private Long taskMemberId;
 
     /**
@@ -112,8 +112,8 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    order_status
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0-资金托管1-开始工作2-开始验收3-确认验收99-异常状态(添加不传值)",example="0")
-    private Long orderStatus;
+    @ApiModelProperty(value = "0-资金托管1-开始工作2-开始验收3-确认验收99-异常状态",example="0")
+    private String orderStatus;
 
     /**
      * 0-未支付1--已支付3-支付异常
@@ -122,6 +122,6 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    pay_status
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0-未支付1--已支付3-支付异常(添加不传值)",example="0")
-    private Long payStatus;
+    @ApiModelProperty(value = "0-未支付1--已支付3-支付异常",example="0")
+    private String payStatus;
 }

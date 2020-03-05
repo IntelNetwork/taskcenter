@@ -391,6 +391,13 @@ public class ZGTaskAPIProvider {
         log.debug("传入的参数为"+JSON.toJSONString(task));
         Result<ZGTaskDto> result=new Result<ZGTaskDto>();
         try {
+            String taskState = task.getTaskState();
+            //判断任务是否待审核
+            if(taskState.equals("1")){
+                result.setBizCode(TaskBizResultEnum.TASK_STATE_CHECK.getBizCode());
+                result.setMessage(String.format(TaskBizResultEnum.TASK_STATE_CHECK.getBizFormateMessage(), taskState));
+                return result;
+            }
             ZGTask oldZgTask = taskService.getById(task.getId());
             if(ConvertUtils.isEmpty(oldZgTask)){
                 result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
