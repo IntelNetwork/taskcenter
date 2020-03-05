@@ -16,9 +16,9 @@ public enum TaskBizResultEnum {
 
     TASK_CODE_EXISTS("005001001","任务类型编码已存在","%s对应任务类型编码已存在"),
     TASK_RECORD_EXISTS("005002001","已存在竞标人","%s对应竞标人已存在"),
-    MEMBERS_NOT_EXIST("005002002","该任务下不存在竞标人","%s对应该任务下不存在竞标人")
-
-
+    MEMBERS_NOT_EXIST("005002002","该任务下不存在竞标人","%s对应该任务下不存在竞标人"),
+    ORDER_STATUS_NO_EXISTS("005003001","该订单状态不存在","%s对应该订单状态不存在"),
+    PAY_STATUS_NO_EXISTS("005003001","该支付状态不存在","%s对应该支付状态不存在"),
     ;
 
     /**

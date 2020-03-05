@@ -22,17 +22,17 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    sn
      * Nullable:  true
      */
-    @ApiModelProperty(value = "订单编号",example="")
+    @ApiModelProperty(value = "订单编号",example="",required = true)
     private String sn;
 
     /**
-     * 订单编号
+     * 任务会员编号
      *
      * Table:     fb_task_order
      * Column:    task_member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "订单编号",example="0")
+    @ApiModelProperty(value = "任务会员编号",example="0",required = true)
     private Long taskMemberId;
 
     /**
@@ -42,7 +42,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    task_member_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务会员名称",example="")
+    @ApiModelProperty(value = "任务会员名称",example="",required = true)
     private String taskMemberName;
 
     /**
@@ -52,7 +52,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    task_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务名称",example="")
+    @ApiModelProperty(value = "任务名称",example="",required = true)
     private String taskName;
 
     /**
@@ -92,7 +92,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员ID",example="0")
+    @ApiModelProperty(value = "会员ID",example="0",required = true)
     private Long memberId;
 
     /**
@@ -102,7 +102,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    member_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员名称",example="")
+    @ApiModelProperty(value = "会员名称",example="",required = true)
     private String memberName;
 
     /**
@@ -113,7 +113,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "0-资金托管1-开始工作2-开始验收3-确认验收99-异常状态",example="0")
-    private Long orderStatus;
+    private String orderStatus;
 
     /**
      * 0-未支付1--已支付3-支付异常
@@ -123,5 +123,5 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "0-未支付1--已支付3-支付异常",example="0")
-    private Long payStatus;
+    private String payStatus;
 }
