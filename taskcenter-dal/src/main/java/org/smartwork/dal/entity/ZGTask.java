@@ -1,12 +1,10 @@
 package org.smartwork.dal.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
