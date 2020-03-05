@@ -21,7 +21,7 @@ public class ZGTaskType extends BaseEntity {
      * Column:    code
      * Nullable:  true
      */
-    @ApiModelProperty(value = "类型编码",example="")
+    @ApiModelProperty(value = "类型编码",example="",required = true)
     private String code;
 
     /**
@@ -31,7 +31,7 @@ public class ZGTaskType extends BaseEntity {
      * Column:    name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "名称",example="")
+    @ApiModelProperty(value = "名称",example="",required = true)
     private String name;
 
     /**

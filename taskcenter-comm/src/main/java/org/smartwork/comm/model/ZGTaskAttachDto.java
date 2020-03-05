@@ -1,5 +1,6 @@
 package org.smartwork.comm.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @修改日期 (请填上修改该文件时的日期)
  */
 @Data
+@ApiModel(description="任务附件dto")
 public class ZGTaskAttachDto implements Serializable{
 
     private static final long serialVersionUID = 3591264373289084697L;
@@ -23,7 +25,7 @@ public class ZGTaskAttachDto implements Serializable{
      * Column:    task_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务ID",example="0")
+    @ApiModelProperty(value = "任务ID",example="0",required = true)
     private Long taskId;
 
     /**
@@ -33,7 +35,7 @@ public class ZGTaskAttachDto implements Serializable{
      * Column:    cn_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "中文名",example="")
+    @ApiModelProperty(value = "中文名",example="",required = true)
     private String cnName;
 
     /**

@@ -21,6 +21,6 @@ public class ZGTindType extends BaseEntity {
      * Column:    name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "行业类型名称",example="")
+    @ApiModelProperty(value = "行业类型名称",example="",required = true)
     private String name;
 }

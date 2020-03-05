@@ -21,7 +21,7 @@ public class ZGTaskRelTag extends BaseEntity {
      * Column:    ta_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "标签ID",example="0")
+    @ApiModelProperty(value = "标签ID",example="0",required = true)
     private Long taId;
 
     /**
@@ -31,7 +31,7 @@ public class ZGTaskRelTag extends BaseEntity {
      * Column:    task_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务ID",example="0")
+    @ApiModelProperty(value = "任务ID",example="0",required = true)
     private Long taskId;
 
     /**
@@ -41,6 +41,6 @@ public class ZGTaskRelTag extends BaseEntity {
      * Column:    name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "标签名称",example="")
+    @ApiModelProperty(value = "标签名称",example="",required = true)
     private String name;
 }

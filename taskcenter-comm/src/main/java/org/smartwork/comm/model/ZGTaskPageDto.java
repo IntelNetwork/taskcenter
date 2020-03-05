@@ -1,5 +1,6 @@
 package org.smartwork.comm.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @date 2020/3/2 12:17
  */
 @Data
+@ApiModel(description="任务分页参数dto")
 public class ZGTaskPageDto implements Serializable {
 
     private static final long serialVersionUID = -7171433698560607582L;

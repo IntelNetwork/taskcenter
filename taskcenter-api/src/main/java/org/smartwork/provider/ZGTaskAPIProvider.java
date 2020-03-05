@@ -137,6 +137,35 @@ public class ZGTaskAPIProvider {
         return result;
     }
 
+
+    /***
+     * 方法概述:任务选标中
+     * @param task 任务实体类
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/select-stand", method = RequestMethod.PUT)
+    @ApiOperation("任务选标中")
+    public Result<ZGTask> selectStand(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
+        log.debug("传入参数为:" + JSON.toJSONString(task));
+        Result<ZGTask> result = new Result<ZGTask>();
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(task)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        //更改状态 选标中
+        task.setTaskState(TaskStateEnum.SELECTION_STANDARD.getCode());
+        //进入业务类继续操作
+        taskService.updateById(task);
+        result.setResult(task);
+        log.debug("返回内容为:" + JSON.toJSONString(task));
+        return result;
+    }
+
     /***
      * 方法概述:开始任务
      * @param task 任务实体类
@@ -158,7 +187,62 @@ public class ZGTaskAPIProvider {
         }
         //更改状态 开始工作
         task.setTaskState(TaskStateEnum.START_UP.getCode());
-        //进入业务类继续操作
+        taskService.updateById(task);
+        result.setResult(task);
+        log.debug("返回内容为:" + JSON.toJSONString(task));
+        return result;
+    }
+
+
+     /***
+     * 方法概述:提交验收任务
+     * @param task 任务实体类
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/submit-accept", method = RequestMethod.PUT)
+    @ApiOperation("提交验收任务")
+    public Result<ZGTask> submitTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
+        log.debug("传入参数为:" + JSON.toJSONString(task));
+        Result<ZGTask> result = new Result<ZGTask>();
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(task)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        //更改状态 提交验收
+        task.setTaskState(TaskStateEnum.SUBMIT_ACCEPTANCE.getCode());
+        taskService.updateById(task);
+        result.setResult(task);
+        log.debug("返回内容为:" + JSON.toJSONString(task));
+        return result;
+    }
+
+
+  /***
+     * 方法概述:确认验收任务
+     * @param task
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/confirm-accept", method = RequestMethod.PUT)
+    @ApiOperation("确认验收任务")
+    public Result<ZGTask> confirmTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
+        log.debug("传入参数为:" + JSON.toJSONString(task));
+        Result<ZGTask> result = new Result<ZGTask>();
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(task)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        //更改状态 确认验收
+        task.setTaskState(TaskStateEnum.CONFIRMATION_ACCEPTANCE.getCode());
         taskService.updateById(task);
         result.setResult(task);
         log.debug("返回内容为:" + JSON.toJSONString(task));

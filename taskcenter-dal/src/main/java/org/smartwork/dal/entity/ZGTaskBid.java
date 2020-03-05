@@ -22,7 +22,7 @@ public class ZGTaskBid extends BaseEntity {
      * Column:    member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员ID",example="0")
+    @ApiModelProperty(value = "会员ID",example="0",required = true)
     private Long memberId;
 
     /**
@@ -32,7 +32,7 @@ public class ZGTaskBid extends BaseEntity {
      * Column:    membe_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员名称",example="")
+    @ApiModelProperty(value = "会员名称",example="",required = true)
     private String membeName;
 
     /**
@@ -42,7 +42,7 @@ public class ZGTaskBid extends BaseEntity {
      * Column:    offe_start_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "低价",example="0.00")
+    @ApiModelProperty(value = "低价",example="0.00",required = true)
     private BigDecimal offeStartPrice;
 
     /**
@@ -52,7 +52,7 @@ public class ZGTaskBid extends BaseEntity {
      * Column:    offer_end_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "止价",example="0.00")
+    @ApiModelProperty(value = "止价",example="0.00",required = true)
     private BigDecimal offerEndPrice;
 
     /**
@@ -66,13 +66,13 @@ public class ZGTaskBid extends BaseEntity {
     private String intr;
 
     /**
-     * 0-否1-已中标
+     * 0-否1-已中标2审核中
      *
      * Table:     fb_zg_task_bid
      * Column:    hit_state
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0-否1-已中标2审核中",example="false")
+    @ApiModelProperty(value = "0-否1-已中标2审核中(添加不传值)",example="false")
     private String hitState;
 
     /**
@@ -83,6 +83,6 @@ public class ZGTaskBid extends BaseEntity {
      * Nullable:  true
      */
 
-    @ApiModelProperty(value = "任务id",example="0")
+    @ApiModelProperty(value = "任务id",example="0",required = true)
     private Long taskId;
 }

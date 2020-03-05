@@ -21,6 +21,6 @@ public class ZGTaskTag extends BaseEntity {
      * Column:    name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "标签名称",example="")
+    @ApiModelProperty(value = "标签名称",example="",required = true)
     private String name;
 }

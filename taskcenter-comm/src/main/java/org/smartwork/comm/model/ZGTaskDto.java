@@ -1,5 +1,6 @@
 package org.smartwork.comm.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * 任务Dto
  */
 @Data
+@ApiModel(description="任务dto")
 public class ZGTaskDto implements Serializable {
 
     private static final long serialVersionUID = 4382670048543648377L;
@@ -39,7 +41,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务名称")
+    @ApiModelProperty(value = "任务名称",required = true)
     private String name;
 
     /**
@@ -49,7 +51,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    skills_required
      * Nullable:  true
      */
-    @ApiModelProperty(value = "技能要求")
+    @ApiModelProperty(value = "技能要求",required = true)
     private String skillsRequired;
 
     /**
@@ -59,7 +61,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_start_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务起价格", example = "0.00")
+    @ApiModelProperty(value = "任务起价格", example = "0.00",required = true)
     private BigDecimal startPrice;
 
     /**
@@ -69,7 +71,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    is_bargain
      * Nullable:  true
      */
-    @ApiModelProperty(value = "可否议价0否1是", example = "false")
+    @ApiModelProperty(value = "可否议价0否1是", example = "false",required = true)
     private String isBargain;
 
     /**
@@ -89,7 +91,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_end_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务止价", example = "0.00")
+    @ApiModelProperty(value = "任务止价", example = "0.00",required = true)
     private BigDecimal endPrice;
 
     /**
@@ -109,7 +111,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_period
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务期限", example = "0")
+    @ApiModelProperty(value = "任务期限,单位(月)", example = "0",required = true)
     private Long period;
 
     /**
@@ -119,7 +121,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员ID", example = "0")
+    @ApiModelProperty(value = "会员ID", example = "0",required = true)
     private Long memberId;
 
     /**
@@ -129,7 +131,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    member_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员名称", example = "0")
+    @ApiModelProperty(value = "会员名称", example = "0",required = true)
     private String memberName;
 
     /**
@@ -149,7 +151,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    industry_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "行业ID", example = "0")
+    @ApiModelProperty(value = "行业ID", example = "0",required = true)
     private Long industryId;
 
     /**
@@ -159,7 +161,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_type_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务类型名称", example = "")
+    @ApiModelProperty(value = "任务类型名称", example = "",required = true)
     private String typeName;
 
     /**
@@ -169,7 +171,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_type_code
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务类型编码")
+    @ApiModelProperty(value = "任务类型编码",required = true)
     private String typeCode;
 
     /**
@@ -179,7 +181,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    industry
      * Nullable:  true
      */
-    @ApiModelProperty(value = "行业名称")
+    @ApiModelProperty(value = "行业名称",required = true)
     private String industry;
 
     /**
@@ -189,23 +191,26 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_des
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务描述")
+    @ApiModelProperty(value = "任务描述",required = true)
     private String des;
 
 
     /**
      * 任务附件
      */
+    @ApiModelProperty(value = "任务附件(集合)")
     List<ZGTaskAttachDto> zgTaskAttachDtos;
 
     /**
      * 任务标签中间表
      */
+    @ApiModelProperty(value = "任务标签中间表(集合)")
     List<ZGTaskRelTagDto> zgTaskRelTagDtos;
 
 
     /**
      * 制定服务方中间表
      */
+    @ApiModelProperty(value = "制定服务方中间表(集合)")
     ZGTaskBidDto zgTaskBidDto;
 }

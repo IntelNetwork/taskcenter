@@ -21,7 +21,7 @@ public class ZGTaskAttach extends BaseEntity {
      * Column:    task_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务ID",example="0")
+    @ApiModelProperty(value = "任务ID",example="0",required = true)
     private Long taskId;
 
     /**
@@ -31,7 +31,7 @@ public class ZGTaskAttach extends BaseEntity {
      * Column:    cn_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "中文名",example="")
+    @ApiModelProperty(value = "中文名",example="",required = true)
     private String cnName;
 
     /**
