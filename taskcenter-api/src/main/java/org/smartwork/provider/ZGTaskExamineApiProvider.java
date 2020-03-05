@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/${smartwork.verision}/examine")
-@Api(tags={"选标"})
+@Api(tags={"选标API"})
 @Slf4j
 public class ZGTaskExamineApiProvider {
 

@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/${smartwork.verision}/recommend")
-@Api(tags={"任务推荐"})
+@Api(tags={"任务推荐api"})
 @Slf4j
 public class ZGTaskRecommendApiProvider {
 

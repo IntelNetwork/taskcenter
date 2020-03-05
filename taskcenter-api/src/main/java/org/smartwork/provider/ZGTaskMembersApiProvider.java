@@ -32,7 +32,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/${smartwork.verision}/taskmembers")
-@Api(tags={"参与任务竞标人员查询"})
+@Api(tags={"参与任务竞标人员查询API"})
 @Slf4j
 public class ZGTaskMembersApiProvider {
 
