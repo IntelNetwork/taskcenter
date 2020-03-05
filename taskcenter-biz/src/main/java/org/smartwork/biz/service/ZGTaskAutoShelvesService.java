@@ -20,5 +20,5 @@ public interface ZGTaskAutoShelvesService extends IService<ZGTask> {
      * @parameter
      * @return
      */
-    Result<ZGTask> shelves(ZGTask zgTask);
+    boolean shelves(ZGTask zgTask);
 }

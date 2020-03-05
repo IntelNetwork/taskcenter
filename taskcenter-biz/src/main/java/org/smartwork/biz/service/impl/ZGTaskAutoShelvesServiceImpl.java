@@ -1,8 +1,8 @@
 package org.smartwork.biz.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import lombok.extern.slf4j.Slf4j;
-import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.ZGTaskAutoShelvesService;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.mapper.ZGTaskMapper;
@@ -34,7 +34,8 @@ public class ZGTaskAutoShelvesServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTa
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Result<ZGTask> shelves(ZGTask zgTask) {
-        return null;
+    public boolean shelves(ZGTask zgTask) {
+        boolean res= SqlHelper.retBool(baseMapper.updateById(zgTask)) ;
+        return res;
     }
 }

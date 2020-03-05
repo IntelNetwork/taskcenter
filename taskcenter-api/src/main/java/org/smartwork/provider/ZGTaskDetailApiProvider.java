@@ -44,7 +44,7 @@ public class ZGTaskDetailApiProvider {
 
     /**
      * @Author xfx
-     *  @Date 18:45 2020/2/28
+     * @Date 18:45 2020/2/28
      * @Param [id] 任务id
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      **/

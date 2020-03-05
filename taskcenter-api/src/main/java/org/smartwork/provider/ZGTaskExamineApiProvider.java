@@ -68,6 +68,7 @@ public class ZGTaskExamineApiProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
+        //已存在选标人
         if(count>0){
             result.setBizCode(TaskBizResultEnum.TASK_RECORD_EXISTS.getBizCode());
             result.setMessage(TaskBizResultEnum.TASK_RECORD_EXISTS.getBizMessage());
