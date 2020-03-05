@@ -26,7 +26,7 @@
     <result column="des" jdbcType="LONGVARCHAR" property="des" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, create_by, create_time, update_by, update_time, icon, name, skills_required,
+    id, create_by, create_time, update_by, update_time, t_icon, name, skills_required,
     start_price, is_bargain, release_time, end_price, end_time, period, member_id,
     member_name, task_state, industry_id, type_name, type_code, industry, des
   </sql>

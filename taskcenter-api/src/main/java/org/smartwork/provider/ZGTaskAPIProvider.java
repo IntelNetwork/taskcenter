@@ -62,6 +62,10 @@ public class ZGTaskAPIProvider {
     public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class)ZGTaskDto task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
+        //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程
+        /*if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
+        }*/
+
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(task)) {
             result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());

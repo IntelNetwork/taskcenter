@@ -50,7 +50,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Result<ZGTask> addZGTask(ZGTaskDto taskDto) {
+    public void addZGTask(ZGTaskDto taskDto) {
         ZGTask task = new ZGTask();
         BeanCopier.create(ZGTaskDto.class, ZGTask.class, false)
                 .copy(taskDto, task, null);
@@ -70,7 +70,6 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             });
         }
 
-
         //任务关联
         List<ZGTaskAttachDto> zgTaskAttachDtos = taskDto.getZgTaskAttachDtos();
         if (ConvertUtils.isNotEmpty(zgTaskAttachDtos)) {
@@ -85,9 +84,6 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
                 zgTaskAttachMapper.insert(attach);
             });
         }
-
-
-        return null;
     }
 
 

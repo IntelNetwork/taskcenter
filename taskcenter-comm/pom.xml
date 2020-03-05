@@ -11,4 +11,16 @@
 
     <artifactId>taskcenter-comm</artifactId>
 
+    <build>
+        <plugins>
+            <!-- 打包跳过测试 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

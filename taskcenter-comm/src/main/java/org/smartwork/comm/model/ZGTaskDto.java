@@ -202,4 +202,10 @@ public class ZGTaskDto implements Serializable {
      * 任务标签中间表
      */
     List<ZGTaskRelTagDto> zgTaskRelTagDtos;
+
+
+    /**
+     * 制定服务方中间表
+     */
+    ZGTaskBidDto zgTaskBidDto;
 }
