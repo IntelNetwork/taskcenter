@@ -50,6 +50,7 @@ public class ZGTaskDetailApiProvider {
      * @Param [id] 任务id
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      **/
+
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     @ApiOperation("查询任务详情")
     @ApiResponses(value = {
