@@ -48,13 +48,13 @@ public class ZGTaskDetailApiProvider {
      * @Param [id] 任务id
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      **/
-    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ApiOperation("查询任务详情")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
-    public Result<ZGTaskVo> detail(@PathVariable long id, @RequestBody SysUser sysUser){
+    public Result<ZGTaskVo> detail(@RequestParam long id, @RequestBody SysUser sysUser){
         log.debug("传入的参数为"+ JSON.toJSONString(id)+"SysUser:"+sysUser);
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
         if(ConvertUtils.isEmpty(sysUser)||ConvertUtils.isEmpty(id)){
