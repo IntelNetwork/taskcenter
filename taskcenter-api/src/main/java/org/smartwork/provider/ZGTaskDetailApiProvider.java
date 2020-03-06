@@ -12,6 +12,7 @@ import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.enums.TaskBizResultEnum;
+import org.smartwork.comm.model.ZGTaskDetailDto;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.comm.vo.SysUser;
 import org.smartwork.comm.vo.ZGTaskVo;
@@ -51,28 +52,28 @@ public class ZGTaskDetailApiProvider {
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      **/
 
-    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ApiOperation("查询任务详情")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
 
-    public Result<ZGTaskVo> detail(@PathVariable long id,@RequestBody SysUser sysUser){
-        log.debug("传入的参数为"+ JSON.toJSONString(id)+"SysUser:"+sysUser);
+    public Result<ZGTaskVo> detail(@RequestBody ZGTaskDetailDto zgTaskDetailDto){
+        log.debug("传入的参数为"+ JSON.toJSONString(zgTaskDetailDto));
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
-        if(ConvertUtils.isEmpty(sysUser)||ConvertUtils.isEmpty(id)){
+        if(ConvertUtils.isEmpty(zgTaskDetailDto.getUserId())||ConvertUtils.isEmpty(zgTaskDetailDto)){
             result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         ZGTaskVo zgTaskVo=new ZGTaskVo();
-        ZGTask zgTask=izgTaskService.getById(id);
+        ZGTask zgTask=izgTaskService.getById(zgTaskDetailDto.getId());
         BeanUtils.copyProperties(zgTask, zgTaskVo);
         QueryWrapper<ZGTaskBid> qw=new QueryWrapper<ZGTaskBid>();
-        qw.eq(DataColumnConstant.TASKID,id);//任务id
+        qw.eq(DataColumnConstant.TASKID,zgTaskDetailDto.getId());//任务id
         //获取当前用户id
-        qw.eq(DataColumnConstant.MEMBERID,sysUser.getId());
+        qw.eq(DataColumnConstant.MEMBERID,zgTaskDetailDto.getUserId());
         /*根据用户id，任务id查询该用户竞标状态*/
         ZGTaskBid zgTaskBid=izgTaskBidService.getOne(qw);
         if(ConvertUtils.isNotEmpty(zgTaskVo)&&ConvertUtils.isNotEmpty(zgTaskBid)){
