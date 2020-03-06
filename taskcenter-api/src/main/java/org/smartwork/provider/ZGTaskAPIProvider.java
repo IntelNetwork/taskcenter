@@ -29,6 +29,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.smartwork.comm.model.ZGTaskDto;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -108,6 +109,7 @@ public class ZGTaskAPIProvider {
         }
         //更改状态 已发布
         task.setTaskState(TaskStateEnum.RELEASE.getCode());
+        task.setReleaseTime(new Date());
         taskService.updateById(task);
         result.setResult(task);
         log.debug("返回内容为:" + JSON.toJSONString(task));
