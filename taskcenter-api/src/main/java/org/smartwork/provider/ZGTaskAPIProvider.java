@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.BasePageDto;
 import org.forbes.comm.vo.Result;
+import org.forbes.comm.vo.UserVo;
 import org.smartwork.biz.service.IZGTaskAttachService;
+import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.biz.service.IZGTaskRelTagService;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.SaveValid;
@@ -19,7 +21,9 @@ import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
+import org.smartwork.comm.vo.ZGTaskCountVo;
 import org.smartwork.dal.entity.ZGTask;
+import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +52,8 @@ public class ZGTaskAPIProvider {
     IZGTaskAttachService zgTaskAttachService;
     @Autowired
     IZGTaskRelTagService zgTaskRelTagService;
+    @Autowired
+    IZGTaskBidService zgTaskBidService;
 
     /***
      * 方法概述:添加任务
@@ -318,25 +324,16 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     @ApiOperation("任务分页查询")
-    public Result<IPage<ZGTask>> selectUserList(BasePageDto basePageDto, ZGTaskPageDto zgTaskPageDto){
+    public Result<IPage<ZGTaskCountVo>> selectUserList(BasePageDto basePageDto, ZGTaskPageDto zgTaskPageDto){
         log.debug("传入的参数为"+JSON.toJSONString(basePageDto));
-        Result<IPage<ZGTask>> result = new Result<>();
-        QueryWrapper<ZGTask> qw = new QueryWrapper<ZGTask>();
-        if(ConvertUtils.isNotEmpty(zgTaskPageDto)){
-            if(ConvertUtils.isNotEmpty(zgTaskPageDto.getTTypeName())){
-                qw.eq(TaskColumnConstant.TTYPENAME,zgTaskPageDto.getTTypeName());
-            }
-            if(ConvertUtils.isNotEmpty(zgTaskPageDto.getIndustry())){
-                qw.eq(TaskColumnConstant.INDUSTRY,zgTaskPageDto.getIndustry());
-            }
-            if(ConvertUtils.isNotEmpty(zgTaskPageDto.getTaskState())){
-                qw.eq(TaskColumnConstant.TASKSTATE,zgTaskPageDto.getTaskState());
-            }
-        }
-        IPage<ZGTask> page = new Page<ZGTask>(basePageDto.getPageNo(),basePageDto.getPageSize());
-        IPage<ZGTask> s = taskService.page(page,qw);
-        result.setResult(s);
-        log.info("返回值为:"+JSON.toJSONString(result.getResult()));
+        Result<IPage<ZGTaskCountVo>> result=new Result<IPage<ZGTaskCountVo>>();
+        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(),basePageDto.getPageSize());
+        IPage<ZGTaskCountVo> pageUsers =  taskService.pageTasks(page, zgTaskPageDto);
+        pageUsers.getRecords().stream().forEach( task->{
+            int count = zgTaskBidService.count(new QueryWrapper<ZGTaskBid>().eq(TaskColumnConstant.TASKID,task.getId()));
+            task.setCount(count);
+        });
+        result.setResult(pageUsers);
         return result;
     }
 

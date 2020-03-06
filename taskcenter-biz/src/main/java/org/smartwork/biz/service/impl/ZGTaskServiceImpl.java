@@ -1,6 +1,7 @@
 package org.smartwork.biz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.utils.ConvertUtils;
 import org.forbes.comm.vo.Result;
@@ -8,7 +9,10 @@ import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.TaskAttachColumnConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
+import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.model.ZGTaskRelTagDto;
+import org.smartwork.comm.vo.ZGTaskCountVo;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskAttach;
 import org.smartwork.dal.entity.ZGTaskRelTag;
@@ -177,5 +181,19 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
                 zgTaskAttachMapper.insert(zgTaskAttach);
             });
         }
+    }
+
+    /***
+     * pageTasks方法概述:任务分页查询
+     * @param zgTaskPageDto
+     * @return com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.dal.entity.ZGTask>
+     * @创建人 Tom
+     * @创建时间 2020/3/2 13:41
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Override
+    public IPage<ZGTaskCountVo> pageTasks(IPage<ZGTaskCountVo> page, ZGTaskPageDto zgTaskPageDto) {
+        return zgTaskExtMapper.pageTasks(page,zgTaskPageDto);
     }
 }
