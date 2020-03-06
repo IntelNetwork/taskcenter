@@ -57,6 +57,7 @@ public class ZGTaskDetailApiProvider {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
+
     public Result<ZGTaskVo> detail(@PathVariable long id,@RequestBody SysUser sysUser){
         log.debug("传入的参数为"+ JSON.toJSONString(id)+"SysUser:"+sysUser);
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
