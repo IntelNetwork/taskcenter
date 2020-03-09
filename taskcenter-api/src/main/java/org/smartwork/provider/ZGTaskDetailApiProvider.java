@@ -59,21 +59,21 @@ public class ZGTaskDetailApiProvider {
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
 
-    public Result<ZGTaskVo> detail(@RequestBody ZGTaskDetailDto zgTaskDetailDto){
-        log.debug("传入的参数为"+ JSON.toJSONString(zgTaskDetailDto));
+    public Result<ZGTaskVo> detail(@RequestParam (required = true)long id,@RequestParam (required = true) long memberId,@RequestParam(required = true) String memberName){
+        log.debug("传入的参数为 id"+ JSON.toJSONString(id)+"memberId"+JSON.toJSONString(memberId)+"memberName"+JSON.toJSONString(memberName));
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
-        if(ConvertUtils.isEmpty(zgTaskDetailDto.getUserId())||ConvertUtils.isEmpty(zgTaskDetailDto)){
+        if(ConvertUtils.isEmpty(id)||ConvertUtils.isEmpty(memberId)||ConvertUtils.isEmpty(memberName)){
             result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         ZGTaskVo zgTaskVo=new ZGTaskVo();
-        ZGTask zgTask=izgTaskService.getById(zgTaskDetailDto.getId());
+        ZGTask zgTask=izgTaskService.getById(id);
         BeanUtils.copyProperties(zgTask, zgTaskVo);
         QueryWrapper<ZGTaskBid> qw=new QueryWrapper<ZGTaskBid>();
-        qw.eq(DataColumnConstant.TASKID,zgTaskDetailDto.getId());//任务id
+        qw.eq(DataColumnConstant.TASKID,id);//任务id
         //获取当前用户id
-        qw.eq(DataColumnConstant.MEMBERID,zgTaskDetailDto.getUserId());
+        qw.eq(DataColumnConstant.MEMBERID,memberId);
         /*根据用户id，任务id查询该用户竞标状态*/
         ZGTaskBid zgTaskBid=izgTaskBidService.getOne(qw);
         if(ConvertUtils.isNotEmpty(zgTaskVo)&&ConvertUtils.isNotEmpty(zgTaskBid)){
