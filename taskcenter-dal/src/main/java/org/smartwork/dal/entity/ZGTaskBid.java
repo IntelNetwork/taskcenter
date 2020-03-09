@@ -16,6 +16,7 @@ import org.forbes.comm.entity.BaseEntity;
 @ApiModel(description = "任务竞标记录")
 @TableName("fb_zg_task_bid")
 public class ZGTaskBid extends BaseEntity {
+    private static final long serialVersionUID = 6751914535022694502L;
     /**
      * 会员ID
      * <p>
@@ -73,8 +74,13 @@ public class ZGTaskBid extends BaseEntity {
      * Column:    hit_state
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "0-否1-已中标", example = "false")
     private Boolean hitState;
+=======
+    @ApiModelProperty(value = "0-否1-已中标",example="false")
+    private String hitState;
+>>>>>>> c1a4acb33da5ac588c229fecb639c6bd5a72b282
 
     /**
      * 任务id

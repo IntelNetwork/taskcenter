@@ -13,6 +13,7 @@ import org.forbes.comm.entity.BaseEntity;
 @ApiModel(description = "任务标签")
 @TableName("fb_zg_task_tag")
 public class ZGTaskTag extends BaseEntity {
+    private static final long serialVersionUID = -1450874657154153994L;
     /**
      * 标签名称
      * <p>

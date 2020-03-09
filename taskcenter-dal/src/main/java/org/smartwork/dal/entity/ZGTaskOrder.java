@@ -16,6 +16,7 @@ import org.forbes.comm.entity.BaseEntity;
 @ApiModel(description = "任务订单")
 @TableName("fb_task_order")
 public class ZGTaskOrder extends BaseEntity {
+    private static final long serialVersionUID = -4896763461643647603L;
     /**
      * 订单编号
      * <p>

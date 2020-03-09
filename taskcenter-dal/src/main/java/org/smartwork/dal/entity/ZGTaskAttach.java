@@ -13,6 +13,7 @@ import org.forbes.comm.entity.BaseEntity;
 @ApiModel(description = "任务附件")
 @TableName("fb_zg_task_attach")
 public class ZGTaskAttach extends BaseEntity {
+    private static final long serialVersionUID = -8418785453198430574L;
     /**
      * 任务ID
      * <p>

@@ -13,6 +13,7 @@ import org.forbes.comm.entity.BaseEntity;
 @ApiModel(description = "任务竞标附件")
 @TableName("fb_zg_big_attach")
 public class ZGBigAttach extends BaseEntity {
+    private static final long serialVersionUID = 1737942080920080495L;
     /**
      * 竞标ID
      * <p>

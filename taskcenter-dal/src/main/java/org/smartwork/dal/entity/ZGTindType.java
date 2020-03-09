@@ -13,6 +13,7 @@ import org.forbes.comm.entity.BaseEntity;
 @ApiModel(description = "行业类型")
 @TableName("fb_zg_t_ind_type")
 public class ZGTindType extends BaseEntity {
+    private static final long serialVersionUID = -7227676690296482053L;
     /**
      * 行业类型名称
      * <p>
