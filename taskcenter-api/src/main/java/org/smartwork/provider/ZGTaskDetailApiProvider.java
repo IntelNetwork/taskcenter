@@ -12,17 +12,13 @@ import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.enums.TaskBizResultEnum;
-import org.smartwork.comm.model.ZGTaskDetailDto;
 import org.smartwork.comm.utils.ConvertUtils;
-import org.smartwork.comm.vo.SysUser;
 import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 /**
  * @ClassName TaskDetailController
@@ -59,21 +55,21 @@ public class ZGTaskDetailApiProvider {
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
 
-    public Result<ZGTaskVo> detail(@RequestBody ZGTaskDetailDto zgTaskDetailDto){
-        log.debug("传入的参数为"+ JSON.toJSONString(zgTaskDetailDto));
+    public Result<ZGTaskVo> detail(@RequestParam (required = true)long id,@RequestParam (required = true) long memberId,@RequestParam(required = true) String memberName){
+        log.debug("传入的参数为 id"+ JSON.toJSONString(id)+"memberId"+JSON.toJSONString(memberId)+"memberName"+JSON.toJSONString(memberName));
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
-        if(ConvertUtils.isEmpty(zgTaskDetailDto.getUserId())||ConvertUtils.isEmpty(zgTaskDetailDto)){
+        if(ConvertUtils.isEmpty(id)||ConvertUtils.isEmpty(memberId)||ConvertUtils.isEmpty(memberName)){
             result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         ZGTaskVo zgTaskVo=new ZGTaskVo();
-        ZGTask zgTask=izgTaskService.getById(zgTaskDetailDto.getId());
+        ZGTask zgTask=izgTaskService.getById(id);
         BeanUtils.copyProperties(zgTask, zgTaskVo);
         QueryWrapper<ZGTaskBid> qw=new QueryWrapper<ZGTaskBid>();
-        qw.eq(DataColumnConstant.TASKID,zgTaskDetailDto.getId());//任务id
+        qw.eq(DataColumnConstant.TASKID,id);//任务id
         //获取当前用户id
-        qw.eq(DataColumnConstant.MEMBERID,zgTaskDetailDto.getUserId());
+        qw.eq(DataColumnConstant.MEMBERID,memberId);
         /*根据用户id，任务id查询该用户竞标状态*/
         ZGTaskBid zgTaskBid=izgTaskBidService.getOne(qw);
         if(ConvertUtils.isNotEmpty(zgTaskVo)&&ConvertUtils.isNotEmpty(zgTaskBid)){
