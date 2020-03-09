@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/${smartwork.verision}/bid")
-@Api(tags = {"任务竞标记录API控制层"})
+@Api(tags = {"任务竞标,服务方确认竞标结果"})
 @Slf4j
 public class ZGTaskBidApiProvider {
 

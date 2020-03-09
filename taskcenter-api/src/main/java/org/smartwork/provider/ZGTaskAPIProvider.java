@@ -42,7 +42,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/${smartwork.verision}/task")
-@Api(tags = {"任务API控制层"})
+@Api(tags = {"任务大厅,添加任务,任务列表等"})
 @Slf4j
 public class ZGTaskAPIProvider {
 
