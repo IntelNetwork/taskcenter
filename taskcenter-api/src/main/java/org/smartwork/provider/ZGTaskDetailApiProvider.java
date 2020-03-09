@@ -12,17 +12,13 @@ import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.enums.TaskBizResultEnum;
-import org.smartwork.comm.model.ZGTaskDetailDto;
 import org.smartwork.comm.utils.ConvertUtils;
-import org.smartwork.comm.vo.SysUser;
 import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 /**
  * @ClassName TaskDetailController
