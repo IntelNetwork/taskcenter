@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /***
@@ -26,6 +28,7 @@ public class ZGTaskAttachDto implements Serializable{
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务ID",example="0",required = true)
+    @NotNull(message = "任务ID为空")
     private Long taskId;
 
     /**
@@ -36,6 +39,7 @@ public class ZGTaskAttachDto implements Serializable{
      * Nullable:  true
      */
     @ApiModelProperty(value = "中文名",example="",required = true)
+    @NotEmpty(message = "中文名为空")
     private String cnName;
 
     /**
@@ -56,5 +60,6 @@ public class ZGTaskAttachDto implements Serializable{
      * Nullable:  true
      */
     @ApiModelProperty(value = "文件路径",example="")
+    @NotEmpty(message = "文件路径为空")
     private String filePath;
 }

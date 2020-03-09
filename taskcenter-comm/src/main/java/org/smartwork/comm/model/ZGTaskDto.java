@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -42,6 +44,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务名称",required = true)
+    @NotEmpty(message = "任务名称为空")
     private String name;
 
     /**
@@ -52,6 +55,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "技能要求",required = true)
+    @NotEmpty(message = "技能要求为空")
     private String skillsRequired;
 
     /**
@@ -62,6 +66,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务起价格", example = "0.00",required = true)
+    @NotNull(message = "任务起价格为空")
     private BigDecimal startPrice;
 
     /**
@@ -72,6 +77,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "可否议价0否1是", example = "false",required = true)
+    @NotEmpty(message = "可否议价为空")
     private String isBargain;
 
     /**
@@ -82,6 +88,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "发布时间,添加不传值")
+    @NotNull(message = "发布时间为空")
     private Date releaseTime;
 
     /**
@@ -92,6 +99,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务止价", example = "0.00",required = true)
+    @NotNull(message = "任务止价为空")
     private BigDecimal endPrice;
 
     /**
@@ -112,6 +120,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务期限,单位(月)", example = "0",required = true)
+    @NotNull(message = "任务期限为空")
     private Long period;
 
     /**
@@ -122,6 +131,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "会员ID", example = "0",required = true)
+    @NotNull(message = "会员ID为空")
     private Long memberId;
 
     /**
@@ -132,6 +142,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "会员名称", example = "0",required = true)
+    @NotEmpty(message = "会员名称为空")
     private String memberName;
 
     /**
@@ -152,6 +163,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "行业ID", example = "0",required = true)
+    @NotNull(message = "行业ID为空")
     private Long industryId;
 
     /**
@@ -162,6 +174,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务类型名称", example = "",required = true)
+    @NotEmpty(message = "任务类型名称为空")
     private String typeName;
 
     /**
@@ -172,6 +185,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务类型编码",required = true)
+    @NotEmpty(message = "任务类型编码为空")
     private String typeCode;
 
     /**
@@ -182,6 +196,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "行业名称",required = true)
+    @NotEmpty(message = "行业名称为空")
     private String industry;
 
     /**
@@ -192,6 +207,7 @@ public class ZGTaskDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务描述",required = true)
+    @NotEmpty(message = "任务描述为空")
     private String des;
 
 

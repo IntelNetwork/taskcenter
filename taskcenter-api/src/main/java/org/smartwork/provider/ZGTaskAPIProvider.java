@@ -251,6 +251,7 @@ public class ZGTaskAPIProvider {
         }
         //更改状态 确认验收
         task.setTaskState(TaskStateEnum.CONFIRMATION_ACCEPTANCE.getCode());
+        task.setEndTime(new Date());
         taskService.updateById(task);
         result.setResult(task);
         log.debug("返回内容为:" + JSON.toJSONString(task));
