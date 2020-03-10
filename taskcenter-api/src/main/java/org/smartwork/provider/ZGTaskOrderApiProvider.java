@@ -7,6 +7,7 @@ import org.forbes.comm.utils.ConvertUtils;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.comm.constant.SaveValid;
+import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskOrderStateEnum;
 import org.smartwork.comm.enums.TaskPayStateEnum;
@@ -50,7 +51,7 @@ public class ZGTaskOrderApiProvider {
 
     /***
      * updateOrderState方法概述:
-     * @param sn, orderStatus
+     * @param zgTaskOrder
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
      * @创建人 Tom
      * @创建时间 2020/3/5 10:04
@@ -59,10 +60,10 @@ public class ZGTaskOrderApiProvider {
      */
     @RequestMapping(value = "/update-order-state", method = RequestMethod.PUT)
     @ApiOperation("订单状态修改")
-    public Result<ZGTaskOrder> updateOrderState(@RequestParam(value="sn",required=true)String sn){
+    public Result<ZGTaskOrder> updateOrderState(@RequestBody @Validated(value=UpdateValid.class) ZGTaskOrder zgTaskOrder){
         Result<ZGTaskOrder> result=new Result<ZGTaskOrder>();
-        ZGTaskOrder zgTaskOrder = izgTaskOrderService.getById(sn);
-        if(ConvertUtils.isEmpty(zgTaskOrder)){
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(zgTaskOrder)) {
             result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
