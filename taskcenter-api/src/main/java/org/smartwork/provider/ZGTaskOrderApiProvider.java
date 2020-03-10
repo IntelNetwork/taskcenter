@@ -68,7 +68,6 @@ public class ZGTaskOrderApiProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        zgTaskOrder.setOrderStatus(TaskOrderStateEnum.FUND_TRUSTEESHIP.getCode());
         zgTaskOrder.setPayStatus(TaskPayStateEnum.PAID.getCode());
         izgTaskOrderService.updateById(zgTaskOrder);
         return result;
