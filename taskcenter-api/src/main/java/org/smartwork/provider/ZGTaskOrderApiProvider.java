@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.utils.ConvertUtils;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskOrderService;
+import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.SaveValid;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
@@ -15,6 +16,8 @@ import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
 
 /**
  * @author lzw
@@ -42,6 +45,9 @@ public class ZGTaskOrderApiProvider {
     @ApiOperation("任务订单生成")
     public Result<ZGTaskOrder> addProductLabel(@RequestBody @Validated(value=SaveValid.class) ZGTaskOrder zgTaskOrder){
         Result<ZGTaskOrder> result=new Result<ZGTaskOrder>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
+        zgTaskOrder.setSn(dateFormat.format(result.getTimestamp())+dateFormat2.format(result.getTimestamp()));
         zgTaskOrder.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
         zgTaskOrder.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
         izgTaskOrderService.save(zgTaskOrder);

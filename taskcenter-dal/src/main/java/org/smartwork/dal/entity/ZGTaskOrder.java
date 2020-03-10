@@ -25,8 +25,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    sn
      * Nullable:  true
      */
-    @ApiModelProperty(value = "订单编号",example="",required = true)
-    @NotEmpty(message = "订单编号为空")
+    @ApiModelProperty(value = "订单编号",example="")
     private String sn;
 
     /**
