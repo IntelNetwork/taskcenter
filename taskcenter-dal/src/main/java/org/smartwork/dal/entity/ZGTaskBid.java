@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 @TableName("fb_zg_task_bid")
 public class ZGTaskBid extends BaseEntity {
     private static final long serialVersionUID = 6751914535022694502L;
+
     /**
      * 会员ID
      *

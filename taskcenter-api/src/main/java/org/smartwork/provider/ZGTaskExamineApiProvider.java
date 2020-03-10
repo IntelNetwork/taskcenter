@@ -54,8 +54,8 @@ public class ZGTaskExamineApiProvider {
         log.debug(JSON.toJSONString("传入参数为："+zgTaskBid));
         Result<ZGTaskBid> result=new Result<ZGTaskBid>();
         if(ConvertUtils.isEmpty(zgTaskBid)){
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         ZGTaskBid zgTaskBid_temp=izgTaskBidService.getById(zgTaskBid.getId());

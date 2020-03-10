@@ -1,5 +1,6 @@
 package org.smartwork.provider;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,6 +48,7 @@ public class ZGTaskMembersApiProvider {
     })
 
     public Result<List<ZGTaskBid>> list(@PathVariable long id){
+        log.debug("参数为："+ JSON.toJSONString(id));
         QueryWrapper<ZGTaskBid> qw=new  QueryWrapper<ZGTaskBid>();
         Result<List<ZGTaskBid>> result=new Result<List<ZGTaskBid>>();
         qw.eq(DataColumnConstant.TASKID,id);
