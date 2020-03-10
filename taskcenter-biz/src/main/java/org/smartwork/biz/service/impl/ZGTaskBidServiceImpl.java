@@ -60,4 +60,24 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
     }
 
 
+    /***
+     * selectionTaskBid方法概述:需求方选标
+     * @param taskBidDto
+     * @return
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void selectionTaskBid(ZGTaskBidDto taskBidDto) {
+        ZGTaskBid taskBid = new ZGTaskBid();
+        BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
+                .copy(taskBidDto, taskBid, null);
+        baseMapper.updateById(taskBid);
+
+    }
+
+
 }

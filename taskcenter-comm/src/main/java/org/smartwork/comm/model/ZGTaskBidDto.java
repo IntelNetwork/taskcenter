@@ -14,6 +14,17 @@ import java.util.List;
 @ApiModel(description="任务竞标dto")
 public class ZGTaskBidDto implements Serializable{
 
+    private static final long serialVersionUID = 4353077127997753814L;
+    /**
+     * ID
+     *
+     * Table:     fb_zg_task_bid
+     * Column:    id
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "ID,添加不传值",example="0")
+    private Long id;
+
     /**
      * 会员ID
      *

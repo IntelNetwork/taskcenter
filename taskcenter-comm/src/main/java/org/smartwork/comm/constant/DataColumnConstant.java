@@ -4,6 +4,7 @@ public interface DataColumnConstant {
 
 
 	/*******任务竞标记录相关*******/
+	public static final String ID = "id";
 	public static final String USERNAME = "username";
 	public static final String TASKID = "task_id";
 	public static final String INDUSTRYID = "industry_id";

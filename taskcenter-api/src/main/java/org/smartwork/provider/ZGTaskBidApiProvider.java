@@ -1,13 +1,16 @@
 package org.smartwork.provider;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
+import org.forbes.comm.enums.BizResultEnum;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
+import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.YesNoEnum;
@@ -30,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/${smartwork.verision}/bid")
-@Api(tags = {"任务竞标,服务方确认竞标结果"})
+@Api(tags = {"任务竞标记录API控制层"})
 @Slf4j
 public class ZGTaskBidApiProvider {
 
@@ -59,10 +62,48 @@ public class ZGTaskBidApiProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
+        QueryWrapper<ZGTaskBid> query = new QueryWrapper<>();
+        query.eq(DataColumnConstant.TASKID,taskBidDto.getTaskId());
+        query.eq(DataColumnConstant.MEMBERID,taskBidDto.getMemberId());
+        int count = taskBidService.count(query);
+        if(count > 0){
+            result.setBizCode(TaskBizResultEnum.MEMBERS_SAME_EXIST.getBizCode());
+            result.setMessage(TaskBizResultEnum.MEMBERS_SAME_EXIST.getBizMessage());
+            return result;
+        }
         //更改状态 未中标(已参与,等待审核)
         taskBidDto.setHitState(YesNoEnum.NO.getCode());
         //进入业务类继续操作
         taskBidService.Bidding(taskBidDto);
+        result.setResult(taskBidDto);
+        log.debug("返回内容为:" + JSON.toJSONString(taskBidDto));
+        return result;
+    }
+
+    /***
+     * 方法概述:需求方选标
+     * @param taskBidDto 竞标实体类
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/selection-bid", method = RequestMethod.PUT)
+    @ApiOperation("需求方选标")
+
+    public Result<ZGTaskBidDto> selectionTaskBid(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBidDto taskBidDto) {
+        log.debug("传入参数为:" + JSON.toJSONString(taskBidDto));
+        Result<ZGTaskBidDto> result = new Result<ZGTaskBidDto>();
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(taskBidDto)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        //更改状态 已中标
+        taskBidDto.setHitState(YesNoEnum.YES.getCode());
+        //进入业务类继续操作
+        taskBidService.selectionTaskBid(taskBidDto);
         result.setResult(taskBidDto);
         log.debug("返回内容为:" + JSON.toJSONString(taskBidDto));
         return result;

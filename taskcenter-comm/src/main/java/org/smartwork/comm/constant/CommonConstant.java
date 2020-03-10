@@ -33,6 +33,7 @@ public interface CommonConstant {
     public static final String FILE_PATH_CODE = "filePath";
     /***日期年月**/
     public  final String YEAR_MONTH_FORMAT = "yyyyMM";
+    public  final String ORDER_PREFIX = "yyyyMMddHHmmssSSS";
 
 
 }

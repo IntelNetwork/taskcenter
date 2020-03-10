@@ -10,14 +10,14 @@ import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.BasePageDto;
 import org.forbes.comm.vo.Result;
 import org.forbes.comm.vo.UserVo;
-import org.smartwork.biz.service.IZGTaskAttachService;
-import org.smartwork.biz.service.IZGTaskBidService;
-import org.smartwork.biz.service.IZGTaskRelTagService;
-import org.smartwork.biz.service.IZGTaskService;
+import org.smartwork.biz.service.*;
+import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.SaveValid;
 import org.smartwork.comm.constant.TaskColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
+import org.smartwork.comm.enums.TaskOrderStateEnum;
+import org.smartwork.comm.enums.TaskPayStateEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
@@ -29,9 +29,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.smartwork.comm.model.ZGTaskDto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /***
  * 类概述:任务API控制层
@@ -55,7 +57,8 @@ public class ZGTaskAPIProvider {
     IZGTaskRelTagService zgTaskRelTagService;
     @Autowired
     IZGTaskBidService zgTaskBidService;
-
+    @Autowired
+    IZGTaskOrderService izgTaskOrderService;
     /***
      * 方法概述:添加任务
      * @param task 任务实体类
@@ -69,10 +72,17 @@ public class ZGTaskAPIProvider {
     public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class)ZGTaskDto task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
-        //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程
-        /*if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
-        }*/
+        //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程,直接生成订单
+        if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
+            SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
 
+            task.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp())+dateFormat2.format(result.getTimestamp()));
+            task.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
+            task.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
+            izgTaskOrderService.saveOrder(task.getZgTaskOrderDto());
+            return result;
+        }
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(task)) {
             result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
@@ -107,7 +117,7 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //更改状态 已发布
+        //更改状态 已发布,竞标中
         task.setTaskState(TaskStateEnum.RELEASE.getCode());
         task.setReleaseTime(new Date());
         taskService.updateById(task);

@@ -18,6 +18,7 @@ public enum TaskBizResultEnum {
     TASK_STATE_CHECK("005001002","任务正在审核，无法编辑","%s对应任务正在审核，无法编辑"),
     TASK_RECORD_EXISTS("005002001","已存在竞标人","%s对应竞标人已存在"),
     MEMBERS_NOT_EXIST("005002002","该任务下不存在竞标人","%s对应该任务下不存在竞标人"),
+    MEMBERS_SAME_EXIST("005002003","已经竞标过该任务","%s您已经竞标过该任务"),
     ORDER_STATUS_NO_EXISTS("005003001","该订单状态不存在","%s对应该订单状态不存在"),
     PAY_STATUS_NO_EXISTS("005003001","该支付状态不存在","%s对应该支付状态不存在"),
     ;

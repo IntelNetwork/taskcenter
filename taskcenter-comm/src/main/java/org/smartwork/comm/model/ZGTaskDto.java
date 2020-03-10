@@ -227,6 +227,15 @@ public class ZGTaskDto implements Serializable {
     /**
      * 制定服务方中间表
      */
-    @ApiModelProperty(value = "制定服务方中间表(集合)")
+    @ApiModelProperty(value = "指定服务方中间表")
     ZGTaskBidDto zgTaskBidDto;
+
+
+      /**
+     * 任务订单
+     */
+    @ApiModelProperty(value = "任务订单")
+    ZGTaskOrderDto zgTaskOrderDto;
+
+
 }
