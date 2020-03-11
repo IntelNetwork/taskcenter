@@ -76,7 +76,6 @@ public class ZGTaskAPIProvider {
         if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
             SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
             SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
-
             task.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp())+dateFormat2.format(result.getTimestamp()));
             task.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
             task.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
@@ -437,7 +436,7 @@ public class ZGTaskAPIProvider {
     }
 
     /***
-     * getByMemberId方法概述:通过会员id查询任务信息
+     * getByMemberId方法概述:通过会员id查询任务列表
      * @param memberId
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
@@ -446,7 +445,7 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/emand-list", method = RequestMethod.GET)
-    @ApiOperation("通过会员id查询任务信息")
+    @ApiOperation("通过会员id查询任务列表")
     @ApiImplicitParams(
             @ApiImplicitParam(name = "memberId",value = "会员id")
     )
