@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="934e8a86-5dff-44ad-95e9-12e2271b8a4a" name="Default Changelist" comment="Default Changelist">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_smartwork_taskcenter_comm_0_0_1_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_taskcenter_biz_0_0_1_SNAPSHOT.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_forbes_forbes_comm_1_0_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_forbes_forbes_comm_1_0_SNAPSHOT.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskAPIProvider.java" afterPath="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskAPIProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskService.java" afterPath="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskServiceImpl.java" afterPath="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taskcenter-comm/taskcenter-comm.iml" afterPath="$PROJECT_DIR$/taskcenter-comm/taskcenter-comm.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taskcenter-provider/taskcenter-provider.iml" afterPath="$PROJECT_DIR$/taskcenter-provider/taskcenter-provider.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/taskcenter-comm/target/" />
     <ignored path="$PROJECT_DIR$/taskcenter-api/target/" />
@@ -25,6 +19,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/zg_taskcenter$SmartWorkApplication.coverage" NAME="SmartWorkApplication Coverage Results" MODIFIED="1583717007981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -42,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ZGTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java">
+      <file leaf-file-name="IZGTaskService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="85" column="17" lean-forward="false" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+            <state relative-caret-position="149">
+              <caret line="29" column="38" lean-forward="true" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -55,76 +52,85 @@
       <file leaf-file-name="ZGTaskAPIProvider.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskAPIProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="84" column="23" lean-forward="false" selection-start-line="84" selection-start-column="23" selection-end-line="84" selection-end-column="23" />
+            <state relative-caret-position="324">
+              <caret line="93" column="56" lean-forward="false" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="56" />
               <folding>
-                <element signature="e#2378#2389#0" expanded="true" />
-                <element signature="e#3422#3430#0" expanded="true" />
-                <element signature="e#4420#4428#0" expanded="true" />
-                <element signature="e#5412#5420#0" expanded="true" />
-                <element signature="e#6399#6407#0" expanded="true" />
-                <element signature="e#7372#7380#0" expanded="true" />
-                <element signature="e#8347#8355#0" expanded="true" />
-                <element signature="e#9233#9260#0" expanded="true" />
-                <element signature="e#9759#9767#0" expanded="true" />
-                <element signature="e#10631#10639#0" expanded="true" />
-                <element signature="e#11378#11400#0" expanded="true" />
-                <element signature="e#11448#11463#0" expanded="true" />
-                <marker date="1583465774435" expanded="false" signature="13421:13432" ph="&lt;~&gt;" />
-                <marker date="1583465774435" expanded="false" signature="15635:15649" ph="&lt;~&gt;" />
+                <element signature="e#2335#2346#0" expanded="true" />
+                <element signature="e#4527#4535#0" expanded="true" />
+                <element signature="e#6069#6077#0" expanded="true" />
+                <element signature="e#7429#7437#0" expanded="true" />
+                <element signature="e#8543#8551#0" expanded="true" />
+                <element signature="e#9664#9672#0" expanded="true" />
+                <element signature="e#10853#10864#0" expanded="true" />
+                <element signature="e#11659#11686#0" expanded="true" />
+                <element signature="e#12184#12192#0" expanded="true" />
+                <element signature="e#13055#13063#0" expanded="true" />
+                <element signature="e#13808#13830#0" expanded="true" />
+                <element signature="e#13878#13893#0" expanded="true" />
+                <element signature="e#15869#15880#0" expanded="true" />
+                <element signature="e#18551#18565#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IZGTaskService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskService.java">
+      <file leaf-file-name="ZGTaskOrderServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskOrderServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="506">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZGTaskServiceImpl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZGTaskBidDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskBidDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZGTaskServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="63" column="39" lean-forward="true" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/taskcenter-comm/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ZGTaskDetailApiProvider.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskDetailApiProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="344">
+              <caret line="66" column="16" lean-forward="true" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
               <folding>
-                <element signature="e#1969#1979#0" expanded="true" />
-                <marker date="1583465774098" expanded="false" signature="2425:2436" ph="&lt;~&gt;" />
+                <element signature="e#4158#4169#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZGTaskBid.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskBid.java">
+      <file leaf-file-name="ZGTaskRelTagMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ZGTaskRelTagMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="92">
+              <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZGTaskDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="229" column="17" lean-forward="false" selection-start-line="229" selection-start-column="17" selection-end-line="229" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskStateEnum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/TaskStateEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -155,10 +161,16 @@
       <find>114</find>
       <find>org</find>
       <find>发布</find>
+      <find>TASKID</find>
+      <find>if(count &gt; 0)</find>
+      <find>Ext</find>
+      <find>eq</find>
+      <find>zgTaskBidDto</find>
     </findStrings>
     <replaceStrings>
       <replace>org</replace>
       <replace>org.smartwork</replace>
+      <replace />
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -172,37 +184,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/utils/ConvertUtils.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/utils/UUIDGenerator.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/YesNoEnum.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/constant/DataColumnConstant.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/constant/UserContext.java" />
-        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/controller/ZGTaskAPIController.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/BizResultEnum.java" />
-        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/ZGTaskExtMapper.java" />
-        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskExamineApiProvider.java" />
-        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskRecommendApiProvider.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/vo/Result.java" />
-        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskBidApiProvider.java" />
-        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/xml/ZGTaskExtMapper.xml" />
-        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/App.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/App.java" />
-        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskMapper.xml" />
-        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/App.java" />
-        <option value="$PROJECT_DIR$/taskcenter-provider/src/main/resources/application-prod.properties" />
-        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskBidService.java" />
-        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskBidServiceImpl.java" />
-        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskService.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskAttachDto.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGBigAttachDto.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskDto.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskPageDto.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskTagDto.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskRelTagDto.java" />
-        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskBidDto.java" />
-        <option value="$MAVEN_REPOSITORY$/com/github/caspar-chen/swagger-ui-layer/1.1.3/swagger-ui-layer-1.1.3.jar!/META-INF/resources/webjars/js/docs.js" />
         <option value="$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/SmartWorkApplication.java" />
-        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" />
         <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGBigAttach.java" />
         <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskAttach.java" />
         <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskBid.java" />
@@ -210,7 +192,6 @@
         <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskTag.java" />
         <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskType.java" />
         <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTindType.java" />
-        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskOrder.java" />
         <option value="$PROJECT_DIR$/log/info/taskcenter-frunk-log-info-2020-03-04.0.log" />
         <option value="$PROJECT_DIR$/taskcenter-provider/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -220,8 +201,39 @@
         <option value="$PROJECT_DIR$/taskcenter-api/pom.xml" />
         <option value="$PROJECT_DIR$/taskcenter-provider/src/main/resources/log/logback-spring.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskAPIProvider.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGBigAttachDto.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskAttachDto.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskTagDto.java" />
+        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskExamineApiProvider.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/constant/ZGTaskBidConstant.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/constant/DataColumnConstant.java" />
+        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskOrderApiProvider.java" />
         <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskDetailApiProvider.java" />
+        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskOrderService.java" />
+        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskOrderServiceImpl.java" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskOrder.java" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskOrderMapper.xml" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/constant/CommonConstant.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskOrderDto.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/constant/TaskColumnConstant.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskBidDto.java" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/ZGTaskBidExtMapper.java" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ZGBigAttachMapper.java" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGBigAttachMapper.xml" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/xml/ZGTaskBidExtMapper.xml" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/ZGBigAttachExtMapper.java" />
+        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGBigAttachService.java" />
+        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGBigAttachServiceImpl.java" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/xml/ZGBigAttachExtMapper.xml" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/TaskBizResultEnum.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/TaskStateEnum.java" />
+        <option value="$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java" />
+        <option value="$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskDto.java" />
+        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskBidServiceImpl.java" />
+        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskBidService.java" />
+        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskBidApiProvider.java" />
+        <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskService.java" />
+        <option value="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskAPIProvider.java" />
         <option value="$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskServiceImpl.java" />
       </list>
     </option>
@@ -427,6 +439,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -482,7 +495,294 @@
             <path>
               <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
               <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-biz" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
               <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="comm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="comm" type="462c0819:PsiDirectoryNode" />
+              <item name="enums" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-comm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="comm" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="dal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="dal" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="dal" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="dal" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="ext" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="dal" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="ext" type="462c0819:PsiDirectoryNode" />
+              <item name="xml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="smartwork" type="462c0819:PsiDirectoryNode" />
+              <item name="dal" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="xml" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
@@ -506,16 +806,23 @@
               <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
               <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
               <item name="taskcenter-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zg-taskcenter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zg-taskcenter" type="462c0819:PsiDirectoryNode" />
+              <item name="taskcenter-provider" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -530,7 +837,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../zg-usercenter" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cfm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.38505748" />
@@ -546,12 +853,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.smartwork.dal.mapper.ext" />
+      <recent name="org.smartwork.comm.constant" />
       <recent name="org.smartwork" />
       <recent name="org.smartwork.comm.enums" />
       <recent name="org.smartwork.comm.utils" />
-      <recent name="org.smartwork.comm.vo" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace\zg-taskcenter\taskcenter-dal\src\main\java\org\smartwork\dal\mapper\ext\xml" />
       <recent name="E:\workspace\zg-taskcenter\taskcenter-comm\src\main\java\org\smartwork\comm\constant" />
       <recent name="E:\workspace\zg-taskcenter\taskcenter-comm\src\main\java\org\smartwork\comm" />
       <recent name="E:\workspace\taskcenter\taskcenter-comm\src\main" />
@@ -572,7 +881,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskDetailApiProvider.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskAPIProvider.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskOrderApiProvider.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskOrderServiceImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -778,6 +1089,10 @@
       <workItem from="1583392054401" duration="8475000" />
       <workItem from="1583457387850" duration="635000" />
       <workItem from="1583458441834" duration="8843000" />
+      <workItem from="1583490501259" duration="381000" />
+      <workItem from="1583715735027" duration="19179000" />
+      <workItem from="1583810292007" duration="16999000" />
+      <workItem from="1583887760076" duration="21602000" />
     </task>
     <task id="LOCAL-00001" summary="生成service和impl">
       <created>1582872218858</created>
@@ -912,11 +1227,74 @@
       <option name="project" value="LOCAL" />
       <updated>1583459705471</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="dto非空">
+      <created>1583720361917</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1583720361917</updated>
+    </task>
+    <task id="LOCAL-00021" summary="api注释修改">
+      <created>1583724474523</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1583724474523</updated>
+    </task>
+    <task id="LOCAL-00022" summary="添加任务指定人,生成订单接口">
+      <created>1583832420440</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1583832420440</updated>
+    </task>
+    <task id="LOCAL-00023" summary="需求方选标">
+      <created>1583898909600</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1583898909600</updated>
+    </task>
+    <task id="LOCAL-00024" summary="逻辑修改">
+      <created>1583899109919</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1583899109919</updated>
+    </task>
+    <task id="LOCAL-00025" summary="删除选标中方法(方法无用)">
+      <created>1583899330667</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1583899330667</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Default Changelist">
+      <created>1583906319672</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1583906319672</updated>
+    </task>
+    <task id="LOCAL-00027" summary="选标">
+      <created>1583907960893</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1583907960893</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Default Changelist">
+      <created>1583908362522</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1583908362522</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55633000" />
+    <option name="totallyTimeSpent" value="113794000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -931,7 +1309,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23612623" sideWeight="0.5021322" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2238806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -946,15 +1324,14 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run Dashboard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23721436" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run Dashboard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09466812" sideWeight="0.4978678" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16648531" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17845485" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30597016" sideWeight="0.68237936" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25053304" sideWeight="0.68237936" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3033049" sideWeight="0.31762066" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.052230686" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19509594" sideWeight="0.5151515" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -962,6 +1339,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.052230686" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -979,7 +1358,14 @@
               <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
                 <collection />
               </option>
-              <option name="COLUMN_ORDER" />
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
             </State>
           </value>
         </entry>
@@ -1006,12 +1392,19 @@
     <MESSAGE value="Result类" />
     <MESSAGE value="task参数更改" />
     <MESSAGE value="Ext xml更改" />
-    <MESSAGE value="Default Changelist" />
     <MESSAGE value="打包配置" />
     <MESSAGE value="com.smartwork更改为org" />
     <MESSAGE value="非空判断" />
     <MESSAGE value="org更改,pdm更改" />
-    <option name="LAST_COMMIT_MESSAGE" value="org更改,pdm更改" />
+    <MESSAGE value="dto非空" />
+    <MESSAGE value="api注释修改" />
+    <MESSAGE value="添加任务指定人,生成订单接口" />
+    <MESSAGE value="需求方选标" />
+    <MESSAGE value="逻辑修改" />
+    <MESSAGE value="删除选标中方法(方法无用)" />
+    <MESSAGE value="选标" />
+    <MESSAGE value="Default Changelist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582712413296">
@@ -1096,7 +1489,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="3" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
@@ -1105,244 +1498,28 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskBidService.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-extension/3.3.1/mybatis-plus-extension-3.3.1-sources.jar!/com/baomidou/mybatisplus/extension/service/IService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskBidServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskPageDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskAttachDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGBigAttachDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-365">
-          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskBidDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="66" column="19" lean-forward="false" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskRelTagDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="26" column="11" lean-forward="false" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskTagDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskExamineApiProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskRecommendApiProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="34" column="22" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskMembersApiProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="33" column="53" lean-forward="true" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-provider/src/main/resources/application-dev.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="40" lean-forward="false" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/caspar-chen/swagger-ui-layer/1.1.3/swagger-ui-layer-1.1.3.jar!/META-INF/resources/docs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1978">
-          <caret line="86" column="41" lean-forward="true" selection-start-line="86" selection-start-column="41" selection-end-line="86" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/caspar-chen/swagger-ui-layer/1.1.3/swagger-ui-layer-1.1.3.jar!/META-INF/resources/webjars/js/docs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="153" column="37" lean-forward="false" selection-start-line="153" selection-start-column="34" selection-end-line="153" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-provider/src/main/java/org/smartwork/SmartWorkApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        <state relative-caret-position="178">
+          <caret line="212" column="7" lean-forward="true" selection-start-line="212" selection-start-column="7" selection-end-line="212" selection-end-column="7" />
           <folding>
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#854#855#0" expanded="false" />
+            <element signature="e#5884#5885#0" expanded="false" />
+            <element signature="e#5945#5946#0" expanded="false" />
+            <element signature="e#7798#7799#0" expanded="false" />
+            <element signature="e#7850#7851#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log/taskcenter-frunk_log_error.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-539">
-          <caret line="817" column="0" lean-forward="false" selection-start-line="817" selection-start-column="0" selection-end-line="817" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/TaskStateEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/forbes/forbes-comm/1.0-SNAPSHOT/forbes-comm-1.0-20200304.050527-27.jar!/org/forbes/comm/entity/BaseEntity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGBigAttach.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1150">
-          <caret line="57" column="7" lean-forward="false" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="7" />
+        <state relative-caret-position="23">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskAttach.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1196">
-          <caret line="59" column="33" lean-forward="false" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTindType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/constant/SaveValid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskTag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/jakarta/validation/jakarta.validation-api/2.0.2/jakarta.validation-api-2.0.2.jar!/javax/validation/constraints/NotEmpty.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="28" column="48" lean-forward="true" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/jakarta/validation/jakarta.validation-api/2.0.2/jakarta.validation-api-2.0.2.jar!/javax/validation/constraints/NotNull.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskRelTag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.2.3.RELEASE/spring-context-5.2.3.RELEASE.jar!/org/springframework/validation/annotation/Validated.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/annotation/ElementType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/jakarta/validation/jakarta.validation-api/2.0.2/jakarta.validation-api-2.0.2-sources.jar!/javax/validation/constraints/NotEmpty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskOrder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="38" column="67" lean-forward="false" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskBidMapper.xml">
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskAttachMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1350,165 +1527,411 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-provider/src/main/resources/application-prod.properties">
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskTagMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-110">
-          <caret line="23" column="49" lean-forward="false" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/log/info/taskcenter-frunk-log-info-2020-03-04.0.log">
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGTaskRelTagMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="45" lean-forward="true" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-provider/src/main/resources/log/logback-spring.xml">
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/xml/ZGBigAttachMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="157" column="30" lean-forward="true" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
+        <state relative-caret-position="391">
+          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-api/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-biz/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-538">
-          <caret line="91" column="24" lean-forward="false" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-provider/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="28" column="34" lean-forward="false" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTaskBid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.3.1/mybatis-plus-core-3.3.1.jar!/com/baomidou/mybatisplus/core/metadata/IPage.class">
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGBigAttachDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
-          <caret line="15" column="15" lean-forward="true" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar!/ch/qos/logback/classic/Logger.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="85" column="17" lean-forward="false" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+        <state relative-caret-position="202">
+          <caret line="399" column="0" lean-forward="false" selection-start-line="399" selection-start-column="0" selection-end-line="399" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskBidApiProvider.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/forbes/forbes-comm/1.0-SNAPSHOT/forbes-comm-1.0-20200305.084458-36-sources.jar!/org/forbes/config/GlobalException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-736">
-          <caret line="41" column="8" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+        <state relative-caret-position="354">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.2.3.RELEASE/spring-aop-5.2.3.RELEASE.jar!/org/springframework/aop/aspectj/AbstractAspectJAdvice.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="414" column="0" lean-forward="false" selection-start-line="414" selection-start-column="0" selection-end-line="414" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.2.3.RELEASE/spring-aop-5.2.3.RELEASE.jar!/org/springframework/aop/aspectj/AspectJAroundAdvice.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/ThreadLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.2.3.RELEASE/spring-aop-5.2.3.RELEASE.jar!/org/springframework/aop/interceptor/ExposeInvocationInterceptor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.2.3.RELEASE/spring-aop-5.2.3.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ZGBigAttachMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="8" column="68" lean-forward="false" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/ZGTaskBidExtMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/xml/ZGTaskBidExtMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <marker date="1583898927471" expanded="true" signature="1473:1663" ph="SELECT tb.id... fb_zg_task_bid" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskAttachServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.2.3.RELEASE/spring-aop-5.2.3.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="456" column="119" lean-forward="false" selection-start-line="456" selection-start-column="119" selection-end-line="456" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/ZGBigAttachExtMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGBigAttachServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ext/xml/ZGBigAttachExtMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="70" lean-forward="false" selection-start-line="2" selection-start-column="70" selection-end-line="2" selection-end-column="70" />
+          <folding>
+            <marker date="1583898927471" expanded="true" signature="1163:1307" ph="SELECT id, c... fb_zg_big_attach" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGBigAttachService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/utils/ConvertUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="475" column="31" lean-forward="false" selection-start-line="475" selection-start-column="30" selection-end-line="475" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.3.1/mybatis-plus-core-3.3.1.jar!/com/baomidou/mybatisplus/core/mapper/BaseMapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.3.1/mybatis-plus-core-3.3.1.jar!/com/baomidou/mybatisplus/core/conditions/query/QueryWrapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="72" column="90" lean-forward="false" selection-start-line="72" selection-start-column="88" selection-end-line="72" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.3.1/mybatis-plus-core-3.3.1-sources.jar!/com/baomidou/mybatisplus/core/mapper/BaseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="124" column="8" lean-forward="false" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/constant/DataColumnConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/TaskBizResultEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/TaskHitstateEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskBidService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskBidServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="84" column="49" lean-forward="false" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/YesNoEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskDetailApiProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state relative-caret-position="134">
+          <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskExamineApiProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="63" column="49" lean-forward="true" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskRecommendApiProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskMembersApiProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskOrderApiProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskBidApiProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1375">
+          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
           <folding>
-            <element signature="e#1969#1979#0" expanded="true" />
-            <marker date="1583465774098" expanded="false" signature="2425:2436" ph="&lt;~&gt;" />
+            <element signature="e#2290#2304#0" expanded="true" />
+            <element signature="e#3422#3436#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskAPIProvider.java">
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/entity/ZGTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="84" column="23" lean-forward="false" selection-start-line="84" selection-start-column="23" selection-end-line="84" selection-end-column="23" />
-          <folding>
-            <element signature="e#2378#2389#0" expanded="true" />
-            <element signature="e#3422#3430#0" expanded="true" />
-            <element signature="e#4420#4428#0" expanded="true" />
-            <element signature="e#5412#5420#0" expanded="true" />
-            <element signature="e#6399#6407#0" expanded="true" />
-            <element signature="e#7372#7380#0" expanded="true" />
-            <element signature="e#8347#8355#0" expanded="true" />
-            <element signature="e#9233#9260#0" expanded="true" />
-            <element signature="e#9759#9767#0" expanded="true" />
-            <element signature="e#10631#10639#0" expanded="true" />
-            <element signature="e#11378#11400#0" expanded="true" />
-            <element signature="e#11448#11463#0" expanded="true" />
-            <marker date="1583465774435" expanded="false" signature="13421:13432" ph="&lt;~&gt;" />
-            <marker date="1583465774435" expanded="false" signature="15635:15649" ph="&lt;~&gt;" />
-          </folding>
+        <state relative-caret-position="23">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskOrderDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="83" column="30" lean-forward="true" selection-start-line="83" selection-start-column="30" selection-end-line="83" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskOrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="6" column="30" lean-forward="false" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.2.3.RELEASE/spring-core-5.2.3.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/enums/TaskStateEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-dal/src/main/java/org/smartwork/dal/mapper/ZGTaskRelTagMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskOrderServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="229" column="17" lean-forward="false" selection-start-line="229" selection-start-column="17" selection-end-line="229" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-comm/src/main/java/org/smartwork/comm/model/ZGTaskBidDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/IZGTaskService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        <state relative-caret-position="149">
+          <caret line="29" column="38" lean-forward="true" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/provider/ZGTaskAPIProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="93" column="56" lean-forward="false" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="56" />
+          <folding>
+            <element signature="e#2335#2346#0" expanded="true" />
+            <element signature="e#4527#4535#0" expanded="true" />
+            <element signature="e#6069#6077#0" expanded="true" />
+            <element signature="e#7429#7437#0" expanded="true" />
+            <element signature="e#8543#8551#0" expanded="true" />
+            <element signature="e#9664#9672#0" expanded="true" />
+            <element signature="e#10853#10864#0" expanded="true" />
+            <element signature="e#11659#11686#0" expanded="true" />
+            <element signature="e#12184#12192#0" expanded="true" />
+            <element signature="e#13055#13063#0" expanded="true" />
+            <element signature="e#13808#13830#0" expanded="true" />
+            <element signature="e#13878#13893#0" expanded="true" />
+            <element signature="e#15869#15880#0" expanded="true" />
+            <element signature="e#18551#18565#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/taskcenter-biz/src/main/java/org/smartwork/biz/service/impl/ZGTaskServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="63" column="39" lean-forward="true" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taskcenter-comm/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-          <folding />
+        <state relative-caret-position="344">
+          <caret line="66" column="16" lean-forward="true" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+          <folding>
+            <element signature="e#4158#4169#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

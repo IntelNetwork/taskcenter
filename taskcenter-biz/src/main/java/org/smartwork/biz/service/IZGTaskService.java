@@ -30,7 +30,6 @@ public interface IZGTaskService extends IService<ZGTask> {
     void addZGTask(ZGTaskDto taskDto);
 
 
-
     /***
      * trustReward方法概述:托管赏金
      * @param  task
@@ -39,11 +38,7 @@ public interface IZGTaskService extends IService<ZGTask> {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    Result<ZGTask> trustReward(ZGTask task);
-
-
-
-
+    Result<ZGTaskDto> trustReward(ZGTaskDto task);
 
 
     /***
