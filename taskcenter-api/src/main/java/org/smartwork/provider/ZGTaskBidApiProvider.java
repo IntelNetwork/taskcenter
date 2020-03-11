@@ -9,20 +9,27 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.enums.BizResultEnum;
 import org.forbes.comm.vo.Result;
+import org.smartwork.biz.service.IZGBigAttachService;
+import org.smartwork.biz.service.IZGTaskAttachService;
 import org.smartwork.biz.service.IZGTaskBidService;
+import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.DataColumnConstant;
+import org.smartwork.comm.constant.TaskAttachColumnConstant;
+import org.smartwork.comm.constant.TaskColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.YesNoEnum;
+import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.comm.utils.ConvertUtils;
+import org.smartwork.dal.entity.ZGBigAttach;
+import org.smartwork.dal.entity.ZGTaskAttach;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /***
  * 类概述:任务竞标记录API控制层
@@ -40,6 +47,40 @@ public class ZGTaskBidApiProvider {
 
     @Autowired
     IZGTaskBidService taskBidService;
+
+    @Autowired
+    IZGTaskService taskService;
+
+    @Autowired
+    IZGBigAttachService bigAttachService;
+
+    /***
+     * 方法概述:查看竞标详情
+     * @param id
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/bidding-detail", method = RequestMethod.PUT)
+    @ApiOperation("查看竞标详情")
+
+    public Result<ZGTaskBidDto> TaskBidDetail(@RequestParam Long id) {
+        log.debug("传入参数为:" + id);
+        Result<ZGTaskBidDto> result = new Result<ZGTaskBidDto>();
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(id)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        ZGTaskBidDto zgTaskBidDto = taskBidService.taskBidDetail(id);
+        List<ZGBigAttachDto> zgBigAttachDtos = bigAttachService.listBidAttach(zgTaskBidDto.getId());
+        zgTaskBidDto.setZgBigAttachDtos(zgBigAttachDtos);
+        result.setResult(zgTaskBidDto);
+        log.debug("返回内容为:" + JSON.toJSONString(zgTaskBidDto));
+        return result;
+    }
 
 
     /***
@@ -63,10 +104,10 @@ public class ZGTaskBidApiProvider {
             return result;
         }
         QueryWrapper<ZGTaskBid> query = new QueryWrapper<>();
-        query.eq(DataColumnConstant.TASKID,taskBidDto.getTaskId());
-        query.eq(DataColumnConstant.MEMBERID,taskBidDto.getMemberId());
+        query.eq(DataColumnConstant.TASKID, taskBidDto.getTaskId());
+        query.eq(DataColumnConstant.MEMBERID, taskBidDto.getMemberId());
         int count = taskBidService.count(query);
-        if(count > 0){
+        if (count > 0) {
             result.setBizCode(TaskBizResultEnum.MEMBERS_SAME_EXIST.getBizCode());
             result.setMessage(TaskBizResultEnum.MEMBERS_SAME_EXIST.getBizMessage());
             return result;
@@ -100,43 +141,23 @@ public class ZGTaskBidApiProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //更改状态 已中标
+        //如果已经有选标成功的,则不执行,提示已经有已中标人员,不能重复选标
+        QueryWrapper<ZGTaskBid> query = new QueryWrapper<>();
+        query.eq(DataColumnConstant.HITSTATE, YesNoEnum.YES.getCode());
+        query.eq(DataColumnConstant.TASKID, taskBidDto.getTaskId());
+        int count = taskBidService.count(query);
+        if (count > 0) {
+            result.setBizCode(TaskBizResultEnum.MEMBERS_HIT_EXIST.getBizCode());
+            result.setMessage(TaskBizResultEnum.MEMBERS_HIT_EXIST.getBizMessage());
+            return result;
+        }
+        //没有中标人员,让此人中标,更改状态 已中标
         taskBidDto.setHitState(YesNoEnum.YES.getCode());
         //进入业务类继续操作
-        taskBidService.selectionTaskBid(taskBidDto);
+        taskBidService.TaskBiding(taskBidDto);
         result.setResult(taskBidDto);
         log.debug("返回内容为:" + JSON.toJSONString(taskBidDto));
         return result;
     }
-
-
-    /***
-     * 方法概述:服务方确认竞标结果
-     * @param taskBid 竞标实体类
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/confirm-result", method = RequestMethod.PUT)
-    @ApiOperation("服务方确认竞标结果")
-    public Result<ZGTaskBid> confirmResult(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBid taskBid) {
-        log.debug("传入参数为:" + JSON.toJSONString(taskBid));
-        Result<ZGTaskBid> result = new Result<ZGTaskBid>();
-        //传入实体类对象为空
-        if (ConvertUtils.isEmpty(taskBid)) {
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        //更改状态 已中标(已参与,等待审核)
-        taskBid.setHitState(YesNoEnum.YES.getCode());
-        //执行确认竞标操作
-        taskBidService.updateById(taskBid);
-        result.setResult(taskBid);
-        log.debug("返回内容为:" + JSON.toJSONString(taskBid));
-        return result;
-    }
-
 
 }
