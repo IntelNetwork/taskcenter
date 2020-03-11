@@ -16,7 +16,7 @@ public enum TaskHitstateEnum {
 
     HITSTATE_NO("0", "未中标"),
     HITSTATE("1", "已中标"),
-    CHECK("2","审核中");
+    CHECK("2","选标中");
 
     /***编码
      */
