@@ -10,6 +10,7 @@
     <result column="sn" jdbcType="VARCHAR" property="sn" />
     <result column="task_member_id" jdbcType="BIGINT" property="taskMemberId" />
     <result column="task_member_name" jdbcType="VARCHAR" property="taskMemberName" />
+    <result column="task_id" jdbcType="BIGINT" property="taskId" />
     <result column="task_name" jdbcType="VARCHAR" property="taskName" />
     <result column="host_amount" jdbcType="DECIMAL" property="hostAmount" />
     <result column="actual_amount" jdbcType="DECIMAL" property="actualAmount" />
@@ -21,7 +22,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, create_by, create_time, update_by, update_time, sn, task_member_id, task_member_name, 
-    task_name, host_amount, actual_amount, point_amount, member_id, member_name, order_status, 
+    task_id,task_name, host_amount, actual_amount, point_amount, member_id, member_name, order_status,
     pay_status
   </sql>
 </mapper>

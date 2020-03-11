@@ -47,6 +47,17 @@ public class ZGTaskOrderDto implements Serializable{
     private String taskMemberName;
 
     /**
+     * 任务ID
+     *
+     * Table:     fb_zg_task_attach
+     * Column:    task_id
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "任务ID",example="0",required = true)
+    @NotNull(message = "任务ID为空")
+    private Long taskId;
+
+    /**
      * 任务名称
      *
      * Table:     fb_task_order
