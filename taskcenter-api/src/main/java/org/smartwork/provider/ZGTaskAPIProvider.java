@@ -22,6 +22,7 @@ import org.smartwork.comm.vo.ZGTaskCountVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.smartwork.comm.model.ZGTaskDto;
@@ -58,7 +59,7 @@ public class ZGTaskAPIProvider {
 
     /***
      * 方法概述:添加任务
-     * @param task 任务实体类
+     * @param taskDto 任务dto
      * @创建人 niehy(Frunk)
      * @创建时间 2020/2/29
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -66,42 +67,44 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ApiOperation("添加任务")
-    public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class) ZGTaskDto task) {
-        log.debug("传入参数为:" + JSON.toJSONString(task));
+    public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class) ZGTaskDto taskDto) {
+        log.debug("传入参数为:" + JSON.toJSONString(taskDto));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
         //传入实体类对象为空
-        if (ConvertUtils.isEmpty(task)) {
+        if (ConvertUtils.isEmpty(taskDto)) {
             result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         //任务金额小于0判断
-        if (task.getStartPrice().intValue() < 0 || task.getEndPrice().intValue() < 0) {
+        if (taskDto.getStartPrice().intValue() < 0 || taskDto.getEndPrice().intValue() < 0) {
             result.setBizCode(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode());
             result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
             return result;
         }
         //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程,直接生成订单
-        if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
+        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
             SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
             SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
-            task.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp()) + dateFormat2.format(result.getTimestamp()));
-            task.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
-            task.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-            izgTaskOrderService.saveOrder(task.getZgTaskOrderDto());
+            taskDto.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp()) + dateFormat2.format(result.getTimestamp()));
+            taskDto.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
+            taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
+            izgTaskOrderService.saveOrder(taskDto.getZgTaskOrderDto());
         }
-        if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
+        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
             //有指定服务方直接生成订单,修改状态为托管金额接口(需要支付成功后)
-            taskService.trustReward(task);
+            //更改状态 托管赏金
+            taskDto.setTaskState(TaskStateEnum.TRUST_REWARD.getCode());
+            taskService.trustReward(taskDto);
         } else {
             //给定默认状态 待审核
-            task.setTaskState(TaskStateEnum.CHECK.getCode());
+            taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         }
         //给定任务类型编码
-        task.setTypeCode(UUIDGenerator.generateString(8));
+        taskDto.setTypeCode(UUIDGenerator.generateString(8));
         //进入业务类继续操作
-        taskService.addZGTask(task);
-        result.setResult(task);
+        taskService.addZGTask(taskDto);
+        result.setResult(taskDto);
         return result;
     }
 

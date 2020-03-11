@@ -95,18 +95,20 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
 
         //任务竞标记录关联(指定服务方)
         ZGTaskBidDto zgTaskBidDto = taskDto.getZgTaskBidDto();
-        ZGTaskBid taskBid = new ZGTaskBid();
-        BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
-                .copy(zgTaskBidDto, taskBid, null);
-        taskBid.setHitState(TaskHitstateEnum.HITSTATE.getCode());
-        zgTaskBidMapper.insert(taskBid);
+        if (ConvertUtils.isNotEmpty(zgTaskBidDto)) {
+            ZGTaskBid taskBid = new ZGTaskBid();
+            BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
+                    .copy(zgTaskBidDto, taskBid, null);
+            taskBid.setHitState(TaskHitstateEnum.HITSTATE.getCode());
+            zgTaskBidMapper.insert(taskBid);
+        }
 
     }
 
 
     /***
      * trustReward方法概述:托管赏金
-     * @param  taskDto
+     * @param  task
      * @创建人 niehy(Frunk)
      * @创建时间 2020/2/29
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -119,9 +121,8 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
         ZGTask task = new ZGTask();
         BeanCopier.create(ZGTaskDto.class, ZGTask.class, false)
                 .copy(taskDto, task, null);
-        //更改状态 托管赏金
-        task.setTaskState(TaskStateEnum.TRUST_REWARD.getCode());
         baseMapper.updateById(task);
+        result.setResult(taskDto);
         return result;
     }
 
