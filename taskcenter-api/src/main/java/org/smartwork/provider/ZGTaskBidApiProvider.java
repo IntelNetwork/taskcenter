@@ -18,6 +18,7 @@ import org.smartwork.comm.constant.TaskAttachColumnConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
+import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.enums.YesNoEnum;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
@@ -112,8 +113,8 @@ public class ZGTaskBidApiProvider {
             result.setMessage(TaskBizResultEnum.MEMBERS_SAME_EXIST.getBizMessage());
             return result;
         }
-        //更改状态 未中标(已参与,等待审核)
-        taskBidDto.setHitState(YesNoEnum.NO.getCode());
+        //更改状态 审核中
+        taskBidDto.setHitState(TaskHitstateEnum.CHECK.getCode());
         //进入业务类继续操作
         taskBidService.Bidding(taskBidDto);
         result.setResult(taskBidDto);
@@ -152,8 +153,8 @@ public class ZGTaskBidApiProvider {
             return result;
         }
         //没有中标人员,让此人中标,更改状态 已中标
-        taskBidDto.setHitState(YesNoEnum.YES.getCode());
-        //进入业务类继续操作
+        taskBidDto.setHitState(TaskHitstateEnum.HITSTATE.getCode());
+        //进入业务层
         taskBidService.TaskBiding(taskBidDto);
         result.setResult(taskBidDto);
         log.debug("返回内容为:" + JSON.toJSONString(taskBidDto));

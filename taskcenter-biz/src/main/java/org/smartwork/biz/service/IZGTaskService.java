@@ -30,6 +30,22 @@ public interface IZGTaskService extends IService<ZGTask> {
     void addZGTask(ZGTaskDto taskDto);
 
 
+
+    /***
+     * trustReward方法概述:托管赏金
+     * @param  task
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/2/29
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    Result<ZGTask> trustReward(ZGTask task);
+
+
+
+
+
+
     /***
      * removeTask方法概述:删除任务,关联附件
      * @param id

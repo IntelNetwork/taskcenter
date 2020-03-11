@@ -1,9 +1,13 @@
 package org.smartwork.biz.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.utils.ConvertUtils;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
+import org.smartwork.comm.constant.DataColumnConstant;
+import org.smartwork.comm.enums.TaskHitstateEnum;
+import org.smartwork.comm.enums.YesNoEnum;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.dal.entity.ZGBigAttach;
@@ -80,6 +84,17 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
         BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
                 .copy(taskBidDto, taskBid, null);
         baseMapper.updateById(taskBid);
+
+        //其他参与该任务的人将被通知未竞标成功
+        QueryWrapper<ZGTaskBid> query = new QueryWrapper<>();
+        query.eq(DataColumnConstant.TASKID, taskBidDto.getTaskId());
+        query.ne(DataColumnConstant.HITSTATE, TaskHitstateEnum.HITSTATE.getCode());
+        List<ZGTaskBid> zgTaskBids = baseMapper.selectList(query);
+        zgTaskBids.forEach(zgTaskBid->{
+            zgTaskBid.setHitState(TaskHitstateEnum.HITSTATE_NO.getCode());
+            baseMapper.updateById(zgTaskBid);
+        });
+
     }
 
 

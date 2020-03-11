@@ -140,13 +140,13 @@ public class ZGTask extends BaseEntity {
     private String memberName;
 
     /**
-     * 0-未发布1-发布（竞标中）2-选标中3-托管赏金4-开始工作5-提交验收6-确认验收7-支付赏金99-任务过期
+     * 0-未发布1-待审核2-已下架3-发布（竞标中）4-托管赏金5-开始工作 6-提交验收7-确认验收8-支付赏金 9-审核未通过 99-任务过期(添加不传值)
      * <p>
      * Table:     fb_zg_task
      * Column:    task_state
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0-未发布1-发布（竞标中）2-选标中3-托管赏金4-开始工作5-提交验收6-确认验收7-支付赏金99-任务过期(添加不传值)", example = "0")
+    @ApiModelProperty(value = "0-未发布1-待审核2-已下架3-发布（竞标中）4-托管赏金5-开始工作 6-提交验收7-确认验收8-支付赏金 9-审核未通过 99-任务过期(添加不传值)", example = "0")
     private String taskState;
 
     /**

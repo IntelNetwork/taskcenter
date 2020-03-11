@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.utils.ConvertUtils;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.TaskAttachColumnConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
+import org.smartwork.comm.enums.TaskBizResultEnum;
+import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.model.ZGTaskRelTagDto;
 import org.smartwork.comm.vo.ZGTaskCountVo;
@@ -86,6 +89,32 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
                 zgTaskAttachMapper.insert(attach);
             });
         }
+    }
+
+
+    /***
+     * trustReward方法概述:托管赏金
+     * @param  task
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/2/29
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public Result<ZGTask> trustReward(ZGTask task) {
+
+        Result<ZGTask> result = new Result<ZGTask>();
+        //传入实体类对象为空
+        if (org.smartwork.comm.utils.ConvertUtils.isEmpty(task)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        //更改状态 托管赏金
+        task.setTaskState(TaskStateEnum.TRUST_REWARD.getCode());
+        //进入业务类继续操作
+        return result;
     }
 
 

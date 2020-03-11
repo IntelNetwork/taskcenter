@@ -21,6 +21,7 @@ public enum TaskStateEnum {
     SUBMIT_ACCEPTANCE("6", "提交验收"),
     CONFIRMATION_ACCEPTANCE("7", "确认验收"),
     PAYMENT_GRATUITY("8", "支付赏金"),
+    CHECK_NULL("9", "审核未通过"),
     TASK_OVERDUE("99", "任务过期");
 
     /***编码

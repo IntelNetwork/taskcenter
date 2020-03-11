@@ -131,14 +131,33 @@ public class ZGTaskAPIProvider {
         }
         //任务只有在未发布和已下架时可重新发布任务
         if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.UNPUBLISHED.getCode()) && task.getTaskState().equalsIgnoreCase(TaskStateEnum.LOWER_SHELF.getCode())) {
-            //更改状态 已发布,竞标中
-            task.setTaskState(TaskStateEnum.RELEASE.getCode());
+            //更改状态 待审核
+            task.setTaskState(TaskStateEnum.CHECK.getCode());
             //添加发布时间
             task.setReleaseTime(new Date());
             taskService.updateById(task);
         }
         result.setResult(task);
         log.debug("返回内容为:" + JSON.toJSONString(task));
+        return result;
+    }
+
+
+
+    /***
+     * 方法概述:支付之后托管赏金
+     * @param task 任务实体类
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/trust-reward", method = RequestMethod.PUT)
+    @ApiOperation("支付之后托管赏金")
+    public Result<ZGTask> trustReward(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
+
+        Result<ZGTask> result = taskService.trustReward(task);
+
         return result;
     }
 
@@ -260,14 +279,21 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //更改状态 确认验收
-        task.setTaskState(TaskStateEnum.CONFIRMATION_ACCEPTANCE.getCode());
-        task.setEndTime(new Date());
-        taskService.updateById(task);
-        result.setResult(task);
+        //只有提交验收才可以确认验收
+        if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.SUBMIT_ACCEPTANCE.getCode())) {
+            //更改状态 确认验收
+            task.setTaskState(TaskStateEnum.CONFIRMATION_ACCEPTANCE.getCode());
+            task.setEndTime(new Date());
+            taskService.updateById(task);
+            result.setResult(task);
+        }
+
+
         log.debug("返回内容为:" + JSON.toJSONString(task));
         return result;
     }
+
+
 
 
     /***
