@@ -9,18 +9,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.BasePageDto;
 import org.forbes.comm.vo.Result;
-import org.forbes.comm.vo.UserVo;
 import org.smartwork.biz.service.*;
-import org.smartwork.comm.constant.CommonConstant;
-import org.smartwork.comm.constant.SaveValid;
-import org.smartwork.comm.constant.TaskColumnConstant;
-import org.smartwork.comm.constant.UpdateValid;
+import org.smartwork.comm.constant.*;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskOrderStateEnum;
 import org.smartwork.comm.enums.TaskPayStateEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
+import org.smartwork.comm.utils.UUIDGenerator;
 import org.smartwork.comm.vo.ZGTaskCountVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
@@ -59,6 +56,7 @@ public class ZGTaskAPIProvider {
     IZGTaskBidService zgTaskBidService;
     @Autowired
     IZGTaskOrderService izgTaskOrderService;
+
     /***
      * 方法概述:添加任务
      * @param task 任务实体类
@@ -69,14 +67,15 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ApiOperation("添加任务")
-    public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class)ZGTaskDto task) {
+    public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class) ZGTaskDto task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
         //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程,直接生成订单
         if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
             SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
             SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
-            task.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp())+dateFormat2.format(result.getTimestamp()));
+
+            task.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp()) + dateFormat2.format(result.getTimestamp()));
             task.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
             task.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
             izgTaskOrderService.saveOrder(task.getZgTaskOrderDto());
@@ -88,8 +87,16 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
+        //任务金额小于0判断
+        if (task.getStartPrice().intValue() < 0 || task.getEndPrice().intValue() < 0) {
+            result.setBizCode(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode());
+            result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
+            return result;
+        }
         //给定默认状态 待审核
         task.setTaskState(TaskStateEnum.CHECK.getCode());
+        //给定任务类型编码
+        task.setTypeCode(UUIDGenerator.generateString(8));
         //进入业务类继续操作
         taskService.addZGTask(task);
         result.setResult(task);
@@ -116,10 +123,20 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //更改状态 已发布,竞标中
-        task.setTaskState(TaskStateEnum.RELEASE.getCode());
-        task.setReleaseTime(new Date());
-        taskService.updateById(task);
+        //任务已经发布过,请勿重复发布
+        if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.RELEASE.getCode())) {
+            result.setBizCode(TaskBizResultEnum.TASK_RELEASE.getBizCode());
+            result.setMessage(TaskBizResultEnum.TASK_RELEASE.getBizMessage());
+            return result;
+        }
+        //任务只有在未发布和已下架时可重新发布任务
+        if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.UNPUBLISHED.getCode()) && task.getTaskState().equalsIgnoreCase(TaskStateEnum.LOWER_SHELF.getCode())) {
+            //更改状态 已发布,竞标中
+            task.setTaskState(TaskStateEnum.RELEASE.getCode());
+            //添加发布时间
+            task.setReleaseTime(new Date());
+            taskService.updateById(task);
+        }
         result.setResult(task);
         log.debug("返回内容为:" + JSON.toJSONString(task));
         return result;
@@ -145,6 +162,13 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
+        //只有在无人竞标的情况下才可以下架任务
+        int count = zgTaskBidService.count(new QueryWrapper<ZGTaskBid>().eq(DataColumnConstant.TASKID, task.getId()));
+        if (count > 0) {
+            result.setBizCode(TaskBizResultEnum.BIDDING_NUMBER_NOT_.getBizCode());
+            result.setMessage(TaskBizResultEnum.BIDDING_NUMBER_NOT_.getBizMessage());
+            return result;
+        }
         //更改状态 已下架
         task.setTaskState(TaskStateEnum.LOWER_SHELF.getCode());
         //进入业务类继续操作
@@ -154,34 +178,6 @@ public class ZGTaskAPIProvider {
         return result;
     }
 
-
-    /***
-     * 方法概述:任务选标中
-     * @param task 任务实体类
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/select-stand", method = RequestMethod.PUT)
-    @ApiOperation("任务选标中")
-    public Result<ZGTask> selectStand(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
-        log.debug("传入参数为:" + JSON.toJSONString(task));
-        Result<ZGTask> result = new Result<ZGTask>();
-        //传入实体类对象为空
-        if (ConvertUtils.isEmpty(task)) {
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        //更改状态 选标中
-        task.setTaskState(TaskStateEnum.SELECTION_STANDARD.getCode());
-        //进入业务类继续操作
-        taskService.updateById(task);
-        result.setResult(task);
-        log.debug("返回内容为:" + JSON.toJSONString(task));
-        return result;
-    }
 
     /***
      * 方法概述:开始任务
@@ -202,16 +198,19 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //更改状态 开始工作
-        task.setTaskState(TaskStateEnum.START_UP.getCode());
-        taskService.updateById(task);
-        result.setResult(task);
+        //只有托管赏金之后才可以开始工作
+        if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.TRUST_REWARD.getCode())) {
+            //更改状态 开始工作
+            task.setTaskState(TaskStateEnum.START_UP.getCode());
+            taskService.updateById(task);
+            result.setResult(task);
+        }
         log.debug("返回内容为:" + JSON.toJSONString(task));
         return result;
     }
 
 
-     /***
+    /***
      * 方法概述:提交验收任务
      * @param task 任务实体类
      * @创建人 niehy(Frunk)
@@ -230,16 +229,19 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //更改状态 提交验收
-        task.setTaskState(TaskStateEnum.SUBMIT_ACCEPTANCE.getCode());
-        taskService.updateById(task);
-        result.setResult(task);
+        //只有任务开始后才可以提交验收,其他情况不能
+        if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.START_UP.getCode())) {
+            //更改状态 提交验收
+            task.setTaskState(TaskStateEnum.SUBMIT_ACCEPTANCE.getCode());
+            taskService.updateById(task);
+            result.setResult(task);
+        }
         log.debug("返回内容为:" + JSON.toJSONString(task));
         return result;
     }
 
 
-  /***
+    /***
      * 方法概述:确认验收任务
      * @param task
      * @创建人 niehy(Frunk)
@@ -284,7 +286,6 @@ public class ZGTaskAPIProvider {
     }
 
 
-
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ApiOperation("删除任务")
     @ApiImplicitParams(value = {
@@ -303,7 +304,6 @@ public class ZGTaskAPIProvider {
         log.debug("返回值为:" + JSON.toJSONString(result.getResult()));
         return result;
     }
-
 
 
     /***
@@ -334,15 +334,15 @@ public class ZGTaskAPIProvider {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ApiOperation("任务分页查询")
-    public Result<IPage<ZGTaskCountVo>> selectUserList(BasePageDto basePageDto, ZGTaskPageDto zgTaskPageDto){
-        log.debug("传入的参数为"+JSON.toJSONString(basePageDto));
-        Result<IPage<ZGTaskCountVo>> result=new Result<IPage<ZGTaskCountVo>>();
-        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(),basePageDto.getPageSize());
-        IPage<ZGTaskCountVo> pageUsers =  taskService.pageTasks(page, zgTaskPageDto);
-        pageUsers.getRecords().stream().forEach( task->{
-            int count = zgTaskBidService.count(new QueryWrapper<ZGTaskBid>().eq(TaskColumnConstant.TASKID,task.getId()));
+    public Result<IPage<ZGTaskCountVo>> selectUserList(BasePageDto basePageDto, ZGTaskPageDto zgTaskPageDto) {
+        log.debug("传入的参数为" + JSON.toJSONString(basePageDto));
+        Result<IPage<ZGTaskCountVo>> result = new Result<IPage<ZGTaskCountVo>>();
+        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
+        IPage<ZGTaskCountVo> pageUsers = taskService.pageTasks(page, zgTaskPageDto);
+        pageUsers.getRecords().stream().forEach(task -> {
+            int count = zgTaskBidService.count(new QueryWrapper<ZGTaskBid>().eq(TaskColumnConstant.TASKID, task.getId()));
             task.setCount(count);
         });
         result.setResult(pageUsers);
@@ -360,8 +360,8 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     @ApiOperation("获取最新成交动态")
-    public Result<List<ZGTask>> selectAllTask(){
-        Result<List<ZGTask>> result=new Result<>();
+    public Result<List<ZGTask>> selectAllTask() {
+        Result<List<ZGTask>> result = new Result<>();
         List<ZGTask> tasks = taskService.selectAllTask();
         result.setResult(tasks);
         return result;
@@ -378,9 +378,9 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/all-count", method = RequestMethod.GET)
     @ApiOperation("任务总数查询")
-    public Result<Integer> AllCount(){
-        Result<Integer> result=new Result<>();
-        Integer tasks=taskService.count();
+    public Result<Integer> AllCount() {
+        Result<Integer> result = new Result<>();
+        Integer tasks = taskService.count();
         result.setResult(tasks);
         return result;
     }
@@ -395,21 +395,21 @@ public class ZGTaskAPIProvider {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     @ApiOperation("任务编辑")
-    public Result<ZGTaskDto> updateTask(@RequestBody @Validated(value= UpdateValid.class) ZGTaskDto task){
-        log.debug("传入的参数为"+JSON.toJSONString(task));
-        Result<ZGTaskDto> result=new Result<ZGTaskDto>();
+    public Result<ZGTaskDto> updateTask(@RequestBody @Validated(value = UpdateValid.class) ZGTaskDto task) {
+        log.debug("传入的参数为" + JSON.toJSONString(task));
+        Result<ZGTaskDto> result = new Result<ZGTaskDto>();
         try {
             String taskState = task.getTaskState();
             //判断任务是否待审核
-            if(taskState.equals("1")){
+            if (taskState.equals("1")) {
                 result.setBizCode(TaskBizResultEnum.TASK_STATE_CHECK.getBizCode());
                 result.setMessage(String.format(TaskBizResultEnum.TASK_STATE_CHECK.getBizFormateMessage(), taskState));
                 return result;
             }
             ZGTask oldZgTask = taskService.getById(task.getId());
-            if(ConvertUtils.isEmpty(oldZgTask)){
+            if (ConvertUtils.isEmpty(oldZgTask)) {
                 result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
                 result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
                 return result;
@@ -428,7 +428,7 @@ public class ZGTaskAPIProvider {
             }
             taskService.updateTask(task);
             result.setResult(task);
-        }catch(ForbesException e){
+        } catch (ForbesException e) {
             result.setBizCode(e.getErrorCode());
             result.setMessage(e.getErrorMsg());
         }
@@ -436,7 +436,7 @@ public class ZGTaskAPIProvider {
     }
 
     /***
-     * getByMemberId方法概述:通过会员id查询任务列表
+     * getByMemberId方法概述:通过会员id查询任务信息
      * @param memberId
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
@@ -445,14 +445,14 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/emand-list", method = RequestMethod.GET)
-    @ApiOperation("通过会员id查询任务列表")
+    @ApiOperation("通过会员id查询任务信息")
     @ApiImplicitParams(
-            @ApiImplicitParam(name = "memberId",value = "会员id")
+            @ApiImplicitParam(name = "memberId", value = "会员id")
     )
-    public Result<List<ZGTask>> getByMemberId(@RequestParam(value = "memberId",required = true)Long memberId){
-        Result<List<ZGTask>> result=new Result<List<ZGTask>>();
+    public Result<List<ZGTask>> getByMemberId(@RequestParam(value = "memberId", required = true) Long memberId) {
+        Result<List<ZGTask>> result = new Result<List<ZGTask>>();
         //查询任务信息
-        List<ZGTask> zgTask = taskService.list(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.MEMBERID,memberId));
+        List<ZGTask> zgTask = taskService.list(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.MEMBERID, memberId));
         result.setResult(zgTask);
         return result;
     }
