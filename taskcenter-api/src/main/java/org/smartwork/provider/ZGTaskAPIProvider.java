@@ -30,7 +30,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /***
  * 类概述:任务API控制层
@@ -70,17 +69,6 @@ public class ZGTaskAPIProvider {
     public Result<ZGTaskDto> addTask(@RequestBody @Validated(value = SaveValid.class) ZGTaskDto task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
-        //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程,直接生成订单
-        if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
-            SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
-
-            task.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp()) + dateFormat2.format(result.getTimestamp()));
-            task.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
-            task.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-            izgTaskOrderService.saveOrder(task.getZgTaskOrderDto());
-            return result;
-        }
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(task)) {
             result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
@@ -93,8 +81,22 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
             return result;
         }
-        //给定默认状态 待审核
-        task.setTaskState(TaskStateEnum.CHECK.getCode());
+        //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程,直接生成订单
+        if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
+            SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
+            task.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp()) + dateFormat2.format(result.getTimestamp()));
+            task.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
+            task.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
+            izgTaskOrderService.saveOrder(task.getZgTaskOrderDto());
+        }
+        if (ConvertUtils.isNotEmpty(task.getZgTaskBidDto())) {
+            //有指定服务方直接生成订单,修改状态为托管金额接口(需要支付成功后)
+            taskService.trustReward(task);
+        } else {
+            //给定默认状态 待审核
+            task.setTaskState(TaskStateEnum.CHECK.getCode());
+        }
         //给定任务类型编码
         task.setTypeCode(UUIDGenerator.generateString(8));
         //进入业务类继续操作
@@ -139,25 +141,6 @@ public class ZGTaskAPIProvider {
         }
         result.setResult(task);
         log.debug("返回内容为:" + JSON.toJSONString(task));
-        return result;
-    }
-
-
-
-    /***
-     * 方法概述:支付之后托管赏金
-     * @param task 任务实体类
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/trust-reward", method = RequestMethod.PUT)
-    @ApiOperation("支付之后托管赏金")
-    public Result<ZGTask> trustReward(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
-
-        Result<ZGTask> result = taskService.trustReward(task);
-
         return result;
     }
 
@@ -288,12 +271,34 @@ public class ZGTaskAPIProvider {
             result.setResult(task);
         }
 
-
         log.debug("返回内容为:" + JSON.toJSONString(task));
         return result;
     }
 
-
+    /***
+     * 方法概述:托管赏金修改状态
+     * @param taskDto
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/trust-reward", method = RequestMethod.PUT)
+    @ApiOperation("托管赏金修改状态")
+    public Result<ZGTaskDto> trustReward(@RequestBody @Validated(value = UpdateValid.class) ZGTaskDto taskDto) {
+        log.debug("传入参数为:" + JSON.toJSONString(taskDto));
+        Result<ZGTaskDto> result = new Result<ZGTaskDto>();
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(taskDto)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        taskService.trustReward(taskDto);
+        result.setResult(taskDto);
+        log.debug("返回内容为:" + JSON.toJSONString(taskDto));
+        return result;
+    }
 
 
     /***
@@ -426,37 +431,32 @@ public class ZGTaskAPIProvider {
     public Result<ZGTaskDto> updateTask(@RequestBody @Validated(value = UpdateValid.class) ZGTaskDto task) {
         log.debug("传入的参数为" + JSON.toJSONString(task));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
-        try {
-            String taskState = task.getTaskState();
-            //判断任务是否待审核
-            if (taskState.equals("1")) {
-                result.setBizCode(TaskBizResultEnum.TASK_STATE_CHECK.getBizCode());
-                result.setMessage(String.format(TaskBizResultEnum.TASK_STATE_CHECK.getBizFormateMessage(), taskState));
-                return result;
-            }
-            ZGTask oldZgTask = taskService.getById(task.getId());
-            if (ConvertUtils.isEmpty(oldZgTask)) {
-                result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-                result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-                return result;
-            }
-            String code = task.getTypeCode();
-            //判断当前任务类型编码与输入的是否一致
-            if (!code.equalsIgnoreCase(oldZgTask.getTypeCode())) {
-                //查询是否和其他任务类型编码一致
-                int existsCount = taskService.count(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.TTYPECODE, code));
-                //存在此记录
-                if (existsCount > 0) {
-                    result.setBizCode(TaskBizResultEnum.TASK_CODE_EXISTS.getBizCode());
-                    result.setMessage(String.format(TaskBizResultEnum.TASK_CODE_EXISTS.getBizFormateMessage(), code));
-                    return result;
-                }
-            }
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(task)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        //任务金额小于0判断
+        if (task.getStartPrice().intValue() < 0 || task.getEndPrice().intValue() < 0) {
+            result.setBizCode(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode());
+            result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
+            return result;
+        }
+        //如果任务处于待审核，未发布和已下架才能编辑
+        if(task.getTaskState().equals(TaskStateEnum.UNPUBLISHED.getCode()) |
+                task.getTaskState().equals(TaskStateEnum.CHECK.getCode()) |
+                task.getTaskState().equals(TaskStateEnum.LOWER_SHELF.getCode())){
+            //给定默认状态 待审核
+            task.setTaskState(TaskStateEnum.CHECK.getCode());
+            //给定任务类型编码
+            task.setTypeCode(UUIDGenerator.generateString(8));
             taskService.updateTask(task);
             result.setResult(task);
-        } catch (ForbesException e) {
-            result.setBizCode(e.getErrorCode());
-            result.setMessage(e.getErrorMsg());
+        }else {
+            result.setBizCode(TaskBizResultEnum.TASK_STATE_CHECK.getBizCode());
+            result.setMessage(TaskBizResultEnum.TASK_STATE_CHECK.getBizMessage());
+            return result;
         }
         return result;
     }
