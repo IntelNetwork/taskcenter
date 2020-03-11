@@ -3,11 +3,9 @@ package org.smartwork.biz.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.utils.ConvertUtils;
-import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.enums.TaskHitstateEnum;
-import org.smartwork.comm.enums.YesNoEnum;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.dal.entity.ZGBigAttach;
@@ -68,33 +66,24 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
     }
 
 
-    /***
-     * TaskBiding方法概述:服务方确认竞标结果(选标)
-     * @param taskBidDto
-     * @return
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
+   /**
+    * @description 修改其它未竞标人状态
+    * @author xfx
+    * @date 2020/3/11 14:35
+    * @parameter
+    * @return
+    */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void TaskBiding(ZGTaskBidDto taskBidDto) {
-        ZGTaskBid taskBid = new ZGTaskBid();
-        BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
-                .copy(taskBidDto, taskBid, null);
-        baseMapper.updateById(taskBid);
-
-        //其他参与该任务的人将被通知未竞标成功
+    public void TaskBiding(long taskId) {
         QueryWrapper<ZGTaskBid> query = new QueryWrapper<>();
-        query.eq(DataColumnConstant.TASKID, taskBidDto.getTaskId());
+        query.eq(DataColumnConstant.TASKID,taskId);
         query.ne(DataColumnConstant.HITSTATE, TaskHitstateEnum.HITSTATE.getCode());
         List<ZGTaskBid> zgTaskBids = baseMapper.selectList(query);
         zgTaskBids.forEach(zgTaskBid->{
             zgTaskBid.setHitState(TaskHitstateEnum.HITSTATE_NO.getCode());
             baseMapper.updateById(zgTaskBid);
         });
-
     }
 
 

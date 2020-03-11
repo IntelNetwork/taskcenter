@@ -20,16 +20,14 @@ public interface IZGTaskBidService extends IService<ZGTaskBid> {
     void Bidding(ZGTaskBidDto taskBidDto);
 
 
-    /***
-     * TaskBiding方法概述:服务方确认竞标结果(选标)
-     * @param taskBidDto
-     * @return
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    void TaskBiding(ZGTaskBidDto taskBidDto);
+   /**
+    * @description 选标修改其它未中标人状态
+    * @author xfx
+    * @date 2020/3/11 14:37
+    * @parameter
+    * @return 
+    */
+    void TaskBiding(long taskId);
 
 
     /***

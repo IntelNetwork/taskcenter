@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
+import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.DataColumnConstant;
@@ -73,6 +74,13 @@ public class ZGTaskExamineApiProvider {
             return result;
         }
         izgTaskBidService.updateById(zgTaskBid);
+        //修改其它未中标人状态
+        try {
+            izgTaskBidService.TaskBiding(zgTaskBid.getTaskId());
+        }catch (ForbesException e){
+            result.setBizCode(e.getErrorCode());
+            result.setMessage(e.getErrorMsg());
+        }
         result.setResult(zgTaskBid);
         return result;
     }
