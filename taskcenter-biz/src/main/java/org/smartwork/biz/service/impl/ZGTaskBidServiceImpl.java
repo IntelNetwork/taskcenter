@@ -10,6 +10,7 @@ import org.smartwork.dal.entity.ZGBigAttach;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.mapper.ZGBigAttachMapper;
 import org.smartwork.dal.mapper.ZGTaskBidMapper;
+import org.smartwork.dal.mapper.ext.ZGTaskBidExtMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
 
     @Autowired
     ZGBigAttachMapper zgBigAttachMapper;
+
+    @Autowired
+    ZGTaskBidExtMapper taskBidExtMapper;
 
     /***
      * Bidding方法概述:立即竞标关联附件
@@ -44,10 +48,10 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
 
         //任务竞标附件关联
         List<ZGBigAttachDto> zgBigAttachDtos = taskBidDto.getZgBigAttachDtos();
-        if (ConvertUtils.isNotEmpty(zgBigAttachDtos)){
+        if (ConvertUtils.isNotEmpty(zgBigAttachDtos)) {
             Long taskBidId = taskBid.getId();
             ZGBigAttach attach = new ZGBigAttach();
-            zgBigAttachDtos.stream().forEach(temp->{
+            zgBigAttachDtos.stream().forEach(temp -> {
                 attach.setBidId(taskBidId);
                 attach.setCnName(temp.getCnName());
                 attach.setFilePath(temp.getFilePath());
@@ -61,7 +65,7 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
 
 
     /***
-     * selectionTaskBid方法概述:需求方选标
+     * TaskBiding方法概述:服务方确认竞标结果(选标)
      * @param taskBidDto
      * @return
      * @创建人 niehy(Frunk)
@@ -71,12 +75,26 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void selectionTaskBid(ZGTaskBidDto taskBidDto) {
+    public void TaskBiding(ZGTaskBidDto taskBidDto) {
         ZGTaskBid taskBid = new ZGTaskBid();
         BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
                 .copy(taskBidDto, taskBid, null);
         baseMapper.updateById(taskBid);
+    }
 
+
+    /***
+     * taskBidDetail方法概述:查看竞标详情
+     * @param id
+     * @return
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/2
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Override
+    public ZGTaskBidDto taskBidDetail(Long id) {
+        return taskBidExtMapper.taskBidDetail(id);
     }
 
 

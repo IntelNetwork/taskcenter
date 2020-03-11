@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartwork.dal.mapper.ext.ZGTaskBidExtMapper">
+  <resultMap id="BaseResultMap" type="org.smartwork.dal.entity.ZGTaskBid">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="membe_name" jdbcType="VARCHAR" property="membeName" />
+    <result column="offe_start_price" jdbcType="DECIMAL" property="offeStartPrice" />
+    <result column="offer_end_price" jdbcType="DECIMAL" property="offerEndPrice" />
+    <result column="intr" jdbcType="VARCHAR" property="intr" />
+    <result column="hit_state" jdbcType="VARCHAR" property="hitState" />
+    <result column="task_id" jdbcType="BIGINT" property="taskId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_by, create_time, update_by, update_time, member_id, membe_name, offe_start_price, 
+    offer_end_price, intr, hit_state, task_id
+  </sql>
+
+<select id="taskBidDetail" parameterType="Long" resultType="org.smartwork.comm.model.ZGTaskBidDto">
+  SELECT id, create_by, create_time, update_by, update_time, member_id, membe_name, offe_start_price,
+    offer_end_price, intr, hit_state, task_id
+    FROM fb_zg_task_bid
+    WHERE id = #{id}
+</select>
+</mapper>

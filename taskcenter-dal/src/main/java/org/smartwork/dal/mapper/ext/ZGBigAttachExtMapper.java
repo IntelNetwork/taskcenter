@@ -1,14 +1,13 @@
-package org.smartwork.biz.service;
+package org.smartwork.dal.mapper.ext;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.dal.entity.ZGBigAttach;
 
 import java.util.List;
 
-public interface IZGBigAttachService extends IService<ZGBigAttach> {
-
+public interface ZGBigAttachExtMapper extends BaseMapper<ZGBigAttach> {
 
     /***
      * listBidId方法概述:查询一个竞标的附件集合

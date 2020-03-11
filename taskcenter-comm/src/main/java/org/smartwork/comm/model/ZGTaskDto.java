@@ -184,8 +184,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_type_code
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务类型编码",required = true)
-    @NotEmpty(message = "任务类型编码为空")
+    @ApiModelProperty(value = "任务类型编码,添加不传值")
     private String typeCode;
 
     /**
