@@ -1,7 +1,9 @@
 package org.smartwork.biz.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.forbes.comm.exception.ForbesException;
 import org.smartwork.biz.service.IZGTaskOrderService;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.model.ZGTaskOrderDto;
 import org.smartwork.dal.entity.ZGTaskOrder;
 import org.smartwork.dal.mapper.ZGTaskOrderMapper;
@@ -27,7 +29,12 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
         BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
                 .copy(zgTaskOrderDto, zgTaskOrder, null);
-        baseMapper.insert(zgTaskOrder);
+        if(zgTaskOrderDto.getHostAmount().intValue()>0 && zgTaskOrderDto.getPointAmount().intValue()>0 && zgTaskOrderDto.getActualAmount().intValue()>0){
+            baseMapper.insert(zgTaskOrder);
+        }else {
+            throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()
+                    ,String.format(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage()));
+        }
     }
 
 }
