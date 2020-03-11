@@ -122,43 +122,4 @@ public class ZGTaskBidApiProvider {
         return result;
     }
 
-    /***
-     * 方法概述:需求方选标
-     * @param taskBidDto 竞标实体类
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/selection-bid", method = RequestMethod.PUT)
-    @ApiOperation("需求方选标")
-
-    public Result<ZGTaskBidDto> selectionTaskBid(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBidDto taskBidDto) {
-        log.debug("传入参数为:" + JSON.toJSONString(taskBidDto));
-        Result<ZGTaskBidDto> result = new Result<ZGTaskBidDto>();
-        //传入实体类对象为空
-        if (ConvertUtils.isEmpty(taskBidDto)) {
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        //如果已经有选标成功的,则不执行,提示已经有已中标人员,不能重复选标
-        QueryWrapper<ZGTaskBid> query = new QueryWrapper<>();
-        query.eq(DataColumnConstant.HITSTATE, YesNoEnum.YES.getCode());
-        query.eq(DataColumnConstant.TASKID, taskBidDto.getTaskId());
-        int count = taskBidService.count(query);
-        if (count > 0) {
-            result.setBizCode(TaskBizResultEnum.MEMBERS_HIT_EXIST.getBizCode());
-            result.setMessage(TaskBizResultEnum.MEMBERS_HIT_EXIST.getBizMessage());
-            return result;
-        }
-        //没有中标人员,让此人中标,更改状态 已中标
-        taskBidDto.setHitState(TaskHitstateEnum.HITSTATE.getCode());
-        //进入业务层
-        taskBidService.TaskBiding(taskBidDto);
-        result.setResult(taskBidDto);
-        log.debug("返回内容为:" + JSON.toJSONString(taskBidDto));
-        return result;
-    }
-
 }
