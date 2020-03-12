@@ -27,6 +27,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.smartwork.comm.model.ZGTaskDto;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -89,7 +90,23 @@ public class ZGTaskAPIProvider {
             taskDto.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp()) + dateFormat2.format(result.getTimestamp()));
             taskDto.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
             taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
+
+            //临时自定义提点比例
+            BigDecimal proportion = BigDecimal.valueOf(0.02);
+            //提点金额计算
+            BigDecimal point = taskDto.getStartPrice().multiply(proportion);
+            //托管金额计算
+            BigDecimal host = point.add(taskDto.getStartPrice());
+            //实际收款计算
+            BigDecimal actual = taskDto.getStartPrice();
+            //托管金额
+            taskDto.getZgTaskOrderDto().setHostAmount(host);
+            //实际金额
+            taskDto.getZgTaskOrderDto().setActualAmount(actual);
+            //提点金额
+            taskDto.getZgTaskOrderDto().setPointAmount(point);
             izgTaskOrderService.saveOrder(taskDto.getZgTaskOrderDto());
+
         }
         if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
             //有指定服务方直接生成订单,修改状态为托管金额接口(需要支付成功后)
@@ -447,16 +464,16 @@ public class ZGTaskAPIProvider {
             return result;
         }
         //如果任务处于待审核，未发布和已下架才能编辑
-        if(task.getTaskState().equals(TaskStateEnum.UNPUBLISHED.getCode()) |
+        if (task.getTaskState().equals(TaskStateEnum.UNPUBLISHED.getCode()) |
                 task.getTaskState().equals(TaskStateEnum.CHECK.getCode()) |
-                task.getTaskState().equals(TaskStateEnum.LOWER_SHELF.getCode())){
+                task.getTaskState().equals(TaskStateEnum.LOWER_SHELF.getCode())) {
             //给定默认状态 待审核
             task.setTaskState(TaskStateEnum.CHECK.getCode());
             //给定任务类型编码
             task.setTypeCode(UUIDGenerator.generateString(8));
             taskService.updateTask(task);
             result.setResult(task);
-        }else {
+        } else {
             result.setBizCode(TaskBizResultEnum.TASK_STATE_CHECK.getBizCode());
             result.setMessage(TaskBizResultEnum.TASK_STATE_CHECK.getBizMessage());
             return result;

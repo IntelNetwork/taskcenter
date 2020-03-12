@@ -9,6 +9,7 @@
         <module>taskcenter-comm</module>
         <module>taskcenter-provider</module>
         <module>taskcenter-api</module>
+        <module>taskcenter-client</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

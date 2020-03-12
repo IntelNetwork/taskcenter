@@ -102,6 +102,17 @@ public class ZGTaskOrder extends BaseEntity {
     @ApiModelProperty(value = "提点金额",example="0.00")
     private BigDecimal pointAmount;
 
+
+    /**
+     * 提点比例
+     *
+     * Table:     fb_task_order
+     * Column:    point_amount
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "提点比例",example="0.00")
+    private BigDecimal proportion;
+
     /**
      * 会员ID
      *
