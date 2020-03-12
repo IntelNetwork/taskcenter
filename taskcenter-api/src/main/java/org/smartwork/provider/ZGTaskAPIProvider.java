@@ -91,21 +91,7 @@ public class ZGTaskAPIProvider {
             taskDto.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
             taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
 
-            //临时自定义提点比例
-            BigDecimal proportion = BigDecimal.valueOf(0.02);
-            //提点金额计算
-            BigDecimal point = taskDto.getStartPrice().multiply(proportion);
-            //托管金额计算
-            BigDecimal host = point.add(taskDto.getStartPrice());
-            //实际收款计算
-            BigDecimal actual = taskDto.getStartPrice();
-            //托管金额
-            taskDto.getZgTaskOrderDto().setHostAmount(host);
-            //实际金额
-            taskDto.getZgTaskOrderDto().setActualAmount(actual);
-            //提点金额
-            taskDto.getZgTaskOrderDto().setPointAmount(point);
-            izgTaskOrderService.saveOrder(taskDto.getZgTaskOrderDto());
+            izgTaskOrderService.saveOrder(taskDto);
 
         }
         if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
