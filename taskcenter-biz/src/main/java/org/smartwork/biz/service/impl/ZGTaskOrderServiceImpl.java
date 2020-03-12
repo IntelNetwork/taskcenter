@@ -35,7 +35,7 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
         BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
                 .copy(zgTaskOrderDto, zgTaskOrder, null);
-        if(zgTaskOrderDto.getHostAmount().intValue()>0 || zgTaskOrderDto.getPointAmount().intValue()>0 || zgTaskOrderDto.getActualAmount().intValue()>0){
+        if(zgTaskOrderDto.getHostAmount().intValue()>0 && zgTaskOrderDto.getPointAmount().intValue()>0 && zgTaskOrderDto.getActualAmount().intValue()>0){
             baseMapper.insert(zgTaskOrder);
         }else {
             throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()

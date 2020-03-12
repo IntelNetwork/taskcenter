@@ -47,13 +47,19 @@ public class ZGTaskOrderApiProvider {
     public Result<ZGTaskOrder> addProductLabel(@RequestBody @Validated(value=SaveValid.class) ZGTaskOrder zgTaskOrder){
         Result<ZGTaskOrder> result=new Result<ZGTaskOrder>();
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
-            SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
-            zgTaskOrder.setSn(dateFormat.format(result.getTimestamp())+dateFormat2.format(result.getTimestamp()));
-            zgTaskOrder.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
-            zgTaskOrder.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-            izgTaskOrderService.save(zgTaskOrder);
-            result.setResult(zgTaskOrder);
+            if(zgTaskOrder.getHostAmount().intValue()>0 && zgTaskOrder.getPointAmount().intValue()>0 && zgTaskOrder.getActualAmount().intValue()>0){
+                SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
+                SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
+                zgTaskOrder.setSn(dateFormat.format(result.getTimestamp())+dateFormat2.format(result.getTimestamp()));
+                zgTaskOrder.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
+                zgTaskOrder.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
+                izgTaskOrderService.save(zgTaskOrder);
+                result.setResult(zgTaskOrder);
+            }else{
+                result.setBizCode(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode());
+                result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
+                return result;
+            }
         }catch(ForbesException e){
             result.setBizCode(e.getErrorCode());
             result.setMessage(e.getErrorMsg());
