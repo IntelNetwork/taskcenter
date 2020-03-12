@@ -97,24 +97,24 @@ public class ZGTask extends BaseEntity {
     private BigDecimal endPrice;
 
     /**
-     * 任务结束时间
+     * 竞标结束时间
      * <p>
      * Table:     fb_zg_task
      * Column:    t_end_time
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务结束时间", example = "0")
+    @ApiModelProperty(value = "竞标结束时间", example = "0",required = true)
     private Date endTime;
 
     /**
-     * 任务期限
+     * 任务周期
      * <p>
      * Table:     fb_zg_task
      * Column:    t_period
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务期限,单位(月)", example = "0",required = true)
-    @NotNull(message = "任务期限为空")
+    @ApiModelProperty(value = "任务周期,单位(月)", example = "0",required = true)
+    @NotNull(message = "任务周期为空")
     private Long period;
 
     /**
