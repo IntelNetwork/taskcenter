@@ -41,7 +41,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/${smartwork.verision}/task")
-@Api(tags = {"任务大厅,添加任务,任务列表等"})
+@Api(tags = {"API任务大厅,添加任务,任务列表等"})
 @Slf4j
 public class ZGTaskAPIProvider {
 
@@ -269,6 +269,7 @@ public class ZGTaskAPIProvider {
         if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.SUBMIT_ACCEPTANCE.getCode())) {
             //更改状态 确认验收
             task.setTaskState(TaskStateEnum.CONFIRMATION_ACCEPTANCE.getCode());
+            task.setEndTime(new Date());
             taskService.updateById(task);
             result.setResult(task);
         }

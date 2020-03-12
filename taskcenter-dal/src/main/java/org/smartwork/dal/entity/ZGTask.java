@@ -107,14 +107,14 @@ public class ZGTask extends BaseEntity {
     private Date endTime;
 
     /**
-     * 任务周期
+     * 任务期限
      * <p>
      * Table:     fb_zg_task
      * Column:    t_period
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务周期,单位(月)", example = "0",required = true)
-    @NotNull(message = "任务周期为空")
+    @ApiModelProperty(value = "任务期限,单位(月)", example = "0",required = true)
+    @NotNull(message = "任务期限为空")
     private Long period;
 
     /**
@@ -135,8 +135,7 @@ public class ZGTask extends BaseEntity {
      * Column:    member_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员名称", example = "0",required = true)
-    @NotEmpty(message = "会员名称为空")
+    @ApiModelProperty(value = "会员名称", example = "0")
     private String memberName;
 
     /**
@@ -189,8 +188,7 @@ public class ZGTask extends BaseEntity {
      * Column:    industry
      * Nullable:  true
      */
-    @ApiModelProperty(value = "行业名称",required = true)
-    @NotEmpty(message = "行业名称为空")
+    @ApiModelProperty(value = "行业名称")
     private String industry;
 
     /**
