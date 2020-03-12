@@ -1,5 +1,6 @@
 package org.smartwork.comm.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -87,6 +88,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    release_time
      * Nullable:  true
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "发布时间,添加不传值")
     @NotNull(message = "发布时间为空")
     private Date releaseTime;
@@ -109,6 +111,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_end_time
      * Nullable:  true
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "竞标结束时间", example = "0", required = true)
     private Date endTime;
 
