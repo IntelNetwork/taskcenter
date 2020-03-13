@@ -78,7 +78,7 @@ public class ZGTaskAPIProvider {
             return result;
         }
         //任务金额小于0判断
-        if (taskDto.getStartPrice().intValue() < 0 || taskDto.getEndPrice().intValue() < 0) {
+        if (taskDto.getStartPrice().intValue() < 0 || taskDto.getEndPrice().intValue() <= 0) {
             result.setBizCode(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode());
             result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
             return result;

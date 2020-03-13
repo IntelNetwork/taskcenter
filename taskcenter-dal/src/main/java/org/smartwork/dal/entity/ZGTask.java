@@ -60,8 +60,7 @@ public class ZGTask extends BaseEntity {
      * Column:    t_start_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务起价格", example = "0.00",required = true)
-    @NotNull(message = "任务起价格为空")
+    @ApiModelProperty(value = "任务起价格", example = "0.00")
     private BigDecimal startPrice;
 
     /**
@@ -94,8 +93,7 @@ public class ZGTask extends BaseEntity {
      * Column:    t_end_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务止价", example = "0.00",required = true)
-    @NotNull(message = "任务止价为空")
+    @ApiModelProperty(value = "任务止价", example = "0.00")
     private BigDecimal endPrice;
 
     /**
