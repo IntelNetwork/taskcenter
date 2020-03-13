@@ -26,7 +26,7 @@ public class ZGTaskPageDto implements Serializable {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务类型名称",example="")
-    private String tTypeName;
+    private String typeName;
 
     /**
      * 行业名称
