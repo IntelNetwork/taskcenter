@@ -1,6 +1,8 @@
 package org.smartwork.provider;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
@@ -13,6 +15,7 @@ import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskOrderStateEnum;
 import org.smartwork.comm.enums.TaskPayStateEnum;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * @author lzw
@@ -79,7 +83,7 @@ public class ZGTaskOrderApiProvider {
     }
 
     /***
-     * updateOrderState方法概述:
+     * updateOrderState方法概述:订单状态修改
      * @param zgTaskOrder
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
      * @创建人 Tom
@@ -102,5 +106,28 @@ public class ZGTaskOrderApiProvider {
         return result;
     }
 
+    /***
+     * selectOrder方法概述:通过会员id和任务id查询订单详情
+     * @param taskId, memberId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
+     * @创建人 Tom
+     * @创建时间 2020/3/13 13:59
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/select-order", method = RequestMethod.GET)
+    @ApiOperation("通过会员id和任务id查询订单详情")
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(name="taskId",value = "任务id"),
+                    @ApiImplicitParam(name="memberId",value = "会员id")
+            }
+    )
+    public Result<ZGTaskOrder> selectOrder(@RequestParam(value = "taskId", required = true) Long taskId,@RequestParam(value = "memberId", required = true) Long memberId) {
+        Result<ZGTaskOrder> result = new Result<ZGTaskOrder>();
+        ZGTaskOrder zgTaskOrder=izgTaskOrderService.selectOrder(taskId,memberId);
+        result.setResult(zgTaskOrder);
+        return result;
+    }
 
 }

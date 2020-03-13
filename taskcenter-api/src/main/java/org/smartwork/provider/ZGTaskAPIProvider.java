@@ -19,8 +19,10 @@ import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.comm.utils.UUIDGenerator;
 import org.smartwork.comm.vo.ZGTaskCountVo;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
+import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.validation.annotation.Validated;
@@ -392,7 +394,7 @@ public class ZGTaskAPIProvider {
     }
 
     /***
-     * getByMemberId方法概述:通过会员id查询任务信息
+     * getByRelease方法概述:通过会员id查询已发布任务信息
      * @param memberId
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
@@ -400,16 +402,54 @@ public class ZGTaskAPIProvider {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    @RequestMapping(value = "/emand-list", method = RequestMethod.GET)
-    @ApiOperation("通过会员id查询任务信息")
+    @RequestMapping(value = "/get-release", method = RequestMethod.GET)
+    @ApiOperation("通过会员id查询任务已发布信息")
     @ApiImplicitParams(
             @ApiImplicitParam(name = "memberId", value = "会员id")
     )
-    public Result<List<ZGTask>> getByMemberId(@RequestParam(value = "memberId", required = true) Long memberId) {
-        Result<List<ZGTask>> result = new Result<List<ZGTask>>();
+    public Result<List<ZGTaskVo>> getByRelease(@RequestParam(value = "memberId", required = true) Long memberId) {
+        Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
         //查询任务信息
-        List<ZGTask> zgTask = taskService.list(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.MEMBERID, memberId));
-        result.setResult(zgTask);
+        List<ZGTaskVo> zgTaskVos = taskService.getRelease(memberId);
+        zgTaskVos.stream().forEach(zgTaskVo ->{
+            int count=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID,zgTaskVo.getId()));
+            int counts=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.MEMBERID,memberId));
+            if (count>0 && counts >0) {
+                ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(zgTaskVo.getId(), memberId);
+                zgTaskVo.setTaskMemberName(zgTaskOrder.getTaskMemberName());
+            }
+        });
+        result.setResult(zgTaskVos);
+        return result;
+    }
+
+    /***
+     * getPass方法概述:通过会员id查询已完成任务信息
+     * @param memberId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
+     * @创建人 Tom
+     * @创建时间 2020/3/4 17:18
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/get-by-release", method = RequestMethod.GET)
+    @ApiOperation("通过会员id查询已完成任务信息")
+    @ApiImplicitParams(
+            @ApiImplicitParam(name = "memberId", value = "会员id")
+    )
+    public Result<List<ZGTaskVo>> getPass(@RequestParam(value = "memberId", required = true) Long memberId) {
+        Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
+        //查询任务信息
+        List<ZGTaskVo> zgTaskVos = taskService.getPass(memberId);
+        zgTaskVos.stream().forEach(zgTaskVo ->{
+            int count=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID,zgTaskVo.getId()));
+            int counts=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.MEMBERID,memberId));
+            if (count>0 && counts>0) {
+                ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(zgTaskVo.getId(), memberId);
+                zgTaskVo.setTaskMemberName(zgTaskOrder.getTaskMemberName());
+            }
+        });
+        result.setResult(zgTaskVos);
         return result;
     }
 

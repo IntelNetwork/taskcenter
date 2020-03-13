@@ -11,6 +11,8 @@ import org.smartwork.comm.model.ZGTaskDto;
 import org.smartwork.comm.model.ZGTaskOrderDto;
 import org.smartwork.dal.entity.ZGTaskOrder;
 import org.smartwork.dal.mapper.ZGTaskOrderMapper;
+import org.smartwork.dal.mapper.ext.ZGTaskOrderExtMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +22,12 @@ import java.math.BigDecimal;
 @Service
 public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTaskOrder> implements IZGTaskOrderService {
 
+    @Autowired
+    ZGTaskOrderExtMapper zgTaskOrderExtMapper;
 
     /***
      * saveOrder方法概述:指定服务方生成订单
-     * @param zgTaskOrderDto
+     * @param taskDto
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/10
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -75,6 +79,20 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         zgTaskOrder.setPayStatus(TaskPayStateEnum.PAID.getCode());
         baseMapper.updateById(zgTaskOrder);
         return result;
+    }
+
+    /***
+     * selectOrder方法概述:根据任务id和会员id查询订单详情
+     * @param
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
+     * @创建人 Tom
+     * @创建时间 2020/3/5 10:04
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Override
+    public ZGTaskOrder selectOrder(Long taskId, Long memberId) {
+        return zgTaskOrderExtMapper.selectOrder(taskId,memberId);
     }
 
 

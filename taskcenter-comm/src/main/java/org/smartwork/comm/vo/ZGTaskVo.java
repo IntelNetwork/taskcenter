@@ -211,4 +211,24 @@ public class ZGTaskVo extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "0-否1-已中标",example="false")
     private String hitState;
 
+    /**
+     * 任务会员ID
+     *
+     * Table:     fb_task_order
+     * Column:    task_member_id
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "任务会员编号",example="0")
+    private Long taskMemberId;
+
+    /**
+     * 任务会员名称
+     *
+     * Table:     fb_task_order
+     * Column:    task_member_name
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "任务会员名称",example="")
+    private String taskMemberName;
+
 }
