@@ -44,8 +44,8 @@
     <include refid="Base_Column_List" />
     FROM fb_zg_task t
     <where>
-      <if test="zgTaskPageDto.tTypeName != null and zgTaskPageDto.tTypeName != '' and zgTaskPageDto.tTypeName != 'null'">
-        AND t.type_name=#{zgTaskPageDto.tTypeName,jdbcType=VARCHAR}
+      <if test="zgTaskPageDto.typeName != null and zgTaskPageDto.typeName != '' and zgTaskPageDto.typeName != 'null'">
+        AND t.type_name=#{zgTaskPageDto.typeName,jdbcType=VARCHAR}
       </if>
       <if test="zgTaskPageDto.industry != null and zgTaskPageDto.industry != '' and zgTaskPageDto.industry != 'null'">
         AND t.industry=#{zgTaskPageDto.industry,jdbcType=VARCHAR}
