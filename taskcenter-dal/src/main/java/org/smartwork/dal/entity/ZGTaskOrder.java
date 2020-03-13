@@ -89,7 +89,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    actual_amount
      * Nullable:  true
      */
-    @ApiModelProperty(value = "实际收款",example="0.00")
+    @ApiModelProperty(value = "实际收款",example="0.00",required = true)
     private BigDecimal actualAmount;
 
     /**

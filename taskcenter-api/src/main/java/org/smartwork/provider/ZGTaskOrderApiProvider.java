@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
 /**
@@ -53,6 +54,16 @@ public class ZGTaskOrderApiProvider {
                 zgTaskOrder.setSn(dateFormat.format(result.getTimestamp())+dateFormat2.format(result.getTimestamp()));
                 zgTaskOrder.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
                 zgTaskOrder.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
+                //临时自定义提点比例
+                BigDecimal proportion = BigDecimal.valueOf(0.02);
+                //提点金额计算
+                BigDecimal point = zgTaskOrder.getActualAmount().multiply(proportion);
+                //托管金额计算
+                BigDecimal host = point.add(zgTaskOrder.getActualAmount());
+                //托管金额
+                zgTaskOrder.setHostAmount(host);
+                //提点金额
+                zgTaskOrder.setPointAmount(point);
                 izgTaskOrderService.save(zgTaskOrder);
                 result.setResult(zgTaskOrder);
             }else{
