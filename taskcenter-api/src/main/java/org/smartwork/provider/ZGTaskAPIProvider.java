@@ -374,10 +374,9 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
             return result;
         }
-        //如果任务处于待审核，未发布和已下架才能编辑
-        if (task.getTaskState().equals(TaskStateEnum.UNPUBLISHED.getCode()) |
-                task.getTaskState().equals(TaskStateEnum.CHECK.getCode()) |
-                task.getTaskState().equals(TaskStateEnum.LOWER_SHELF.getCode())) {
+        //如果任务处于待审核，审核未通过才能编辑
+        if (task.getTaskState().equals(TaskStateEnum.CHECK_NULL.getCode()) |
+                task.getTaskState().equals(TaskStateEnum.CHECK.getCode())) {
             //给定默认状态 待审核
             task.setTaskState(TaskStateEnum.CHECK.getCode());
             //给定任务类型编码
