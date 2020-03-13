@@ -407,7 +407,7 @@ public class ZGTaskAPIProvider {
     @ApiImplicitParams(
             @ApiImplicitParam(name = "memberId", value = "会员id")
     )
-    public Result<List<ZGTaskVo>> getByRelease(@RequestParam(value = "memberId", required = true) Long memberId) {
+    public Result<List<ZGTaskVo>> getByRelease(@RequestParam(value = "memberId") Long memberId) {
         Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
         //查询任务信息
         List<ZGTaskVo> zgTaskVos = taskService.getRelease(memberId);
@@ -436,7 +436,7 @@ public class ZGTaskAPIProvider {
     @ApiImplicitParams(
             @ApiImplicitParam(name = "memberId", value = "会员id")
     )
-    public Result<List<ZGTaskVo>> getPass(@RequestParam(value = "memberId", required = true) Long memberId) {
+    public Result<List<ZGTaskVo>> getPass(@RequestParam(value = "memberId") Long memberId) {
         Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
         //查询任务信息
         List<ZGTaskVo> zgTaskVos = taskService.getPass(memberId);
