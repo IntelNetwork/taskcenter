@@ -77,8 +77,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    is_bargain
      * Nullable:  true
      */
-    @ApiModelProperty(value = "可否议价0否1是", example = "false", required = true)
-    @NotEmpty(message = "可否议价为空")
+    @ApiModelProperty(value = "可否议价0否1是", example = "false")
     private String isBargain;
 
     /**
@@ -100,8 +99,8 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_end_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务止价", example = "0.00", required = true)
-    @NotNull(message = "任务止价为空")
+    @ApiModelProperty(value = "任务止价", example = "0.00",required = true)
+    @NotNull(message = "任务起价格为空")
     private BigDecimal endPrice;
 
     /**
