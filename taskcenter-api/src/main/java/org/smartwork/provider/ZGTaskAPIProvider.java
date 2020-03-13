@@ -413,8 +413,7 @@ public class ZGTaskAPIProvider {
         List<ZGTaskVo> zgTaskVos = taskService.getRelease(memberId);
         zgTaskVos.stream().forEach(zgTaskVo ->{
             int count=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID,zgTaskVo.getId()));
-            int counts=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.MEMBERID,memberId));
-            if (count>0 && counts >0) {
+            if (count>0 ) {
                 ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(zgTaskVo.getId(), memberId);
                 zgTaskVo.setTaskMemberName(zgTaskOrder.getTaskMemberName());
             }
@@ -443,8 +442,7 @@ public class ZGTaskAPIProvider {
         List<ZGTaskVo> zgTaskVos = taskService.getPass(memberId);
         zgTaskVos.stream().forEach(zgTaskVo ->{
             int count=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID,zgTaskVo.getId()));
-            int counts=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.MEMBERID,memberId));
-            if (count>0 && counts>0) {
+            if (count>0 ) {
                 ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(zgTaskVo.getId(), memberId);
                 zgTaskVo.setTaskMemberName(zgTaskOrder.getTaskMemberName());
             }
