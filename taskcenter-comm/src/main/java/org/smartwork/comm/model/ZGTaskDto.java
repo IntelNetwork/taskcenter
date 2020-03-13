@@ -148,13 +148,13 @@ public class ZGTaskDto implements Serializable {
     private String memberName;
 
     /**
-     * 0-未发布1-待审核2-已下架3-发布（竞标中）4-托管赏金5-开始工作 6-提交验收7-确认验收8-支付赏金 9-审核未通过 99-任务过期(添加不传值)
+     * 0-待审核1-竞标中2-托管赏金3-开始工作4-提交验收5-确认验收6-支付赏金7-审核未通过 99-任务过期(添加不传值)
      * <p>
      * Table:     fb_zg_task
      * Column:    task_state
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0-未发布1-待审核2-已下架3-发布（竞标中）4-托管赏金5-开始工作 6-提交验收7-确认验收8-支付赏金 9-审核未通过 99-任务过期(添加不传值)", example = "0")
+    @ApiModelProperty(value = "0-待审核1-竞标中2-托管赏金3-开始工作4-提交验收5-确认验收6-支付赏金7-审核未通过 99-任务过期(添加不传值)", example = "0")
     private String taskState;
 
     /**
