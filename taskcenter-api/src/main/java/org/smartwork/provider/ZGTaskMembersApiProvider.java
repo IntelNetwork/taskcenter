@@ -15,10 +15,7 @@ import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,14 +36,14 @@ public class ZGTaskMembersApiProvider {
     @Autowired
     private IZGTaskBidService izgTaskBidService;
 
-    @RequestMapping(value = "/list/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ApiOperation("查询任务相关人员")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
 
-    public Result<List<ZGTaskBid>> list(@PathVariable long id){
+    public Result<List<ZGTaskBid>> list(@RequestParam long id){
         log.debug("参数为："+ JSON.toJSONString(id));
         QueryWrapper<ZGTaskBid> qw=new  QueryWrapper<ZGTaskBid>();
         Result<List<ZGTaskBid>> result=new Result<List<ZGTaskBid>>();
