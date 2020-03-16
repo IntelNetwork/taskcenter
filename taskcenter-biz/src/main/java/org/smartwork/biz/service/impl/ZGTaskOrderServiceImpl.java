@@ -121,15 +121,11 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
             //临时自定义提点比例
             BigDecimal proportion = BigDecimal.valueOf(0.02);
             //提点金额计算
-            BigDecimal point = zgTaskOrderDto.getStartPrice().multiply(proportion);
+            BigDecimal point = zgTaskOrderDto.getActualAmount().multiply(proportion);
             //托管金额计算
-            BigDecimal host = point.add(zgTaskOrderDto.getStartPrice());
-            //实际收款计算
-            BigDecimal actual = zgTaskOrderDto.getStartPrice();
+            BigDecimal host = point.add(zgTaskOrderDto.getActualAmount());
             //托管金额
             zgTaskOrderDto.setHostAmount(host);
-            //实际金额
-            zgTaskOrderDto.setActualAmount(actual);
             //提点金额
             zgTaskOrderDto.setPointAmount(point);
 

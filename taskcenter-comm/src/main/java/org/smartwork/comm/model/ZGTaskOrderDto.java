@@ -83,7 +83,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    actual_amount
      * Nullable:  true
      */
-    @ApiModelProperty(value = "实际收款",example="0.00")
+    @ApiModelProperty(value = "实际收款",example="0.00",required = true)
     private BigDecimal actualAmount;
 
     /**
@@ -138,24 +138,4 @@ public class ZGTaskOrderDto implements Serializable{
     @ApiModelProperty(value = "0-未支付1--已支付3-支付异常",example="0")
     private String payStatus;
 
-    /**
-     * 任务起价格
-     * <p>
-     * Table:     fb_zg_task
-     * Column:    t_start_price
-     * Nullable:  true
-     */
-    @ApiModelProperty(value = "任务起价格", example = "0.00", required = true)
-    @NotNull(message = "任务起价格为空")
-    private BigDecimal startPrice;
-
-    /**
-     * 任务止价
-     * <p>
-     * Table:     fb_zg_task
-     * Column:    t_end_price
-     * Nullable:  true
-     */
-    @ApiModelProperty(value = "任务止价", example = "0.00")
-    private BigDecimal endPrice;
 }
