@@ -31,8 +31,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    task_member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务会员编号",example="0",required = true)
-    @NotNull(message = "任务会员ID为空(服务方ID)")
+    @ApiModelProperty(value = "任务会员编号",example="0")
     private Long taskMemberId;
 
     /**
@@ -42,8 +41,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    task_member_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务会员名称",example="",required = true)
-    @NotEmpty(message = "任务会员名称为空(服务方名称)")
+    @ApiModelProperty(value = "任务会员名称",example="")
     private String taskMemberName;
 
     /**
@@ -139,4 +137,25 @@ public class ZGTaskOrderDto implements Serializable{
      */
     @ApiModelProperty(value = "0-未支付1--已支付3-支付异常",example="0")
     private String payStatus;
+
+    /**
+     * 任务起价格
+     * <p>
+     * Table:     fb_zg_task
+     * Column:    t_start_price
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "任务起价格", example = "0.00", required = true)
+    @NotNull(message = "任务起价格为空")
+    private BigDecimal startPrice;
+
+    /**
+     * 任务止价
+     * <p>
+     * Table:     fb_zg_task
+     * Column:    t_end_price
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "任务止价", example = "0.00")
+    private BigDecimal endPrice;
 }

@@ -15,6 +15,7 @@ import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskOrderStateEnum;
 import org.smartwork.comm.enums.TaskPayStateEnum;
+import org.smartwork.comm.model.ZGTaskOrderDto;
 import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class ZGTaskOrderApiProvider {
 
     /***
      * addProductLabel方法概述:
-     * @param zgTaskOrder
+     * @param zgTaskOrderDto
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
      * @创建人 Tom
      * @创建时间 2020/3/5 9:32
@@ -49,32 +50,11 @@ public class ZGTaskOrderApiProvider {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ApiOperation("任务订单生成")
-    public Result<ZGTaskOrder> addProductLabel(@RequestBody @Validated(value=SaveValid.class) ZGTaskOrder zgTaskOrder){
-        Result<ZGTaskOrder> result=new Result<ZGTaskOrder>();
+    public Result<ZGTaskOrderDto> addOrder(@RequestBody @Validated(value=SaveValid.class) ZGTaskOrderDto zgTaskOrderDto){
+        Result<ZGTaskOrderDto> result=new Result<ZGTaskOrderDto>();
         try {
-            if(zgTaskOrder.getHostAmount().intValue()>0 && zgTaskOrder.getPointAmount().intValue()>0 && zgTaskOrder.getActualAmount().intValue()>0){
-                SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
-                SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
-                zgTaskOrder.setSn(dateFormat.format(result.getTimestamp())+dateFormat2.format(result.getTimestamp()));
-                zgTaskOrder.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
-                zgTaskOrder.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-                //临时自定义提点比例
-                BigDecimal proportion = BigDecimal.valueOf(0.02);
-                //提点金额计算
-                BigDecimal point = zgTaskOrder.getActualAmount().multiply(proportion);
-                //托管金额计算
-                BigDecimal host = point.add(zgTaskOrder.getActualAmount());
-                //托管金额
-                zgTaskOrder.setHostAmount(host);
-                //提点金额
-                zgTaskOrder.setPointAmount(point);
-                izgTaskOrderService.save(zgTaskOrder);
-                result.setResult(zgTaskOrder);
-            }else{
-                result.setBizCode(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode());
-                result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
-                return result;
-            }
+            izgTaskOrderService.addOrder(zgTaskOrderDto);
+            result.setResult(zgTaskOrderDto);
         }catch(ForbesException e){
             result.setBizCode(e.getErrorCode());
             result.setMessage(e.getErrorMsg());

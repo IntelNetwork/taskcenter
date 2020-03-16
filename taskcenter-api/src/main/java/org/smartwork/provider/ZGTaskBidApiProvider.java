@@ -2,10 +2,7 @@ package org.smartwork.provider;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.enums.BizResultEnum;
 import org.forbes.comm.vo.Result;
@@ -23,9 +20,11 @@ import org.smartwork.comm.enums.YesNoEnum;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.comm.utils.ConvertUtils;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGBigAttach;
 import org.smartwork.dal.entity.ZGTaskAttach;
 import org.smartwork.dal.entity.ZGTaskBid;
+import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -121,5 +120,28 @@ public class ZGTaskBidApiProvider {
         log.debug("返回内容为:" + JSON.toJSONString(taskBidDto));
         return result;
     }
+
+    /***
+     * selectByTaskId方法概述:根据任务id查询已中标会员
+     * @param taskId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskBid>
+     * @创建人 Tom
+     * @创建时间 2020/3/16 9:57
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/select-by-taskId", method = RequestMethod.PUT)
+    @ApiOperation("根据任务id查询已中标会员")
+    @ApiImplicitParams(
+            @ApiImplicitParam(name = "taskId", value = "任务id")
+    )
+    public Result<ZGTaskBid> selectByTaskId(@RequestParam(value = "taskId") Long taskId) {
+        Result<ZGTaskBid> result = new Result<ZGTaskBid>();
+        ZGTaskBid zgTaskBid=taskBidService.selectByTaskId(taskId);
+        result.setResult(zgTaskBid);
+        return result;
+    }
+
+
 
 }

@@ -39,4 +39,6 @@ public interface IZGTaskOrderService extends IService<ZGTaskOrder> {
      * @修改日期 (请填上修改该文件时的日期)
      */
     ZGTaskOrder selectOrder(Long taskId,Long memberId);
+
+    void addOrder(ZGTaskOrderDto zgTaskOrderDto);
 }

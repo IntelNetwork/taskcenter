@@ -1,16 +1,23 @@
 package org.smartwork.biz.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskOrderService;
+import org.smartwork.comm.constant.CommonConstant;
+import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskOrderStateEnum;
 import org.smartwork.comm.enums.TaskPayStateEnum;
 import org.smartwork.comm.model.ZGTaskDto;
 import org.smartwork.comm.model.ZGTaskOrderDto;
+import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.entity.ZGTaskOrder;
+import org.smartwork.dal.mapper.ZGTaskBidMapper;
 import org.smartwork.dal.mapper.ZGTaskOrderMapper;
+import org.smartwork.dal.mapper.ext.ZGTaskBidExtMapper;
 import org.smartwork.dal.mapper.ext.ZGTaskOrderExtMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
@@ -18,12 +25,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 
 @Service
 public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTaskOrder> implements IZGTaskOrderService {
 
     @Autowired
     ZGTaskOrderExtMapper zgTaskOrderExtMapper;
+    @Autowired
+    ZGTaskBidExtMapper zgTaskBidExtMapper;
 
     /***
      * saveOrder方法概述:指定服务方生成订单
@@ -93,6 +103,45 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
     @Override
     public ZGTaskOrder selectOrder(Long taskId, Long memberId) {
         return zgTaskOrderExtMapper.selectOrder(taskId,memberId);
+    }
+
+    @Transactional
+    @Override
+    public void addOrder(ZGTaskOrderDto zgTaskOrderDto) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
+            SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
+            zgTaskOrderDto.setSn(dateFormat.format(System.currentTimeMillis()) + dateFormat2.format(System.currentTimeMillis()));
+            zgTaskOrderDto.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
+            zgTaskOrderDto.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
+            //查询任务会员
+            ZGTaskBid zgTaskBid = zgTaskBidExtMapper.selectByTaskId(zgTaskOrderDto.getTaskId());
+            zgTaskOrderDto.setTaskMemberId(zgTaskBid.getMemberId());
+            zgTaskOrderDto.setTaskMemberName(zgTaskBid.getMembeName());
+
+            //临时自定义提点比例
+            BigDecimal proportion = BigDecimal.valueOf(0.02);
+            //提点金额计算
+            BigDecimal point = zgTaskOrderDto.getStartPrice().multiply(proportion);
+            //托管金额计算
+            BigDecimal host = point.add(zgTaskOrderDto.getStartPrice());
+            //实际收款计算
+            BigDecimal actual = zgTaskOrderDto.getStartPrice();
+            //托管金额
+            zgTaskOrderDto.setHostAmount(host);
+            //实际金额
+            zgTaskOrderDto.setActualAmount(actual);
+            //提点金额
+            zgTaskOrderDto.setPointAmount(point);
+
+            ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
+            BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
+                .copy(zgTaskOrderDto, zgTaskOrder, null);
+        if(zgTaskOrderDto.getHostAmount().intValue()>0 && zgTaskOrderDto.getPointAmount().intValue()>0 && zgTaskOrderDto.getActualAmount().intValue()>0){
+            baseMapper.insert(zgTaskOrder);
+        }else {
+            throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()
+                    ,String.format(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage()));
+        }
     }
 
 

@@ -26,4 +26,12 @@
     FROM fb_zg_task_bid
     WHERE id = #{id}
 </select>
+
+  <select id="selectByTaskId" resultType="org.smartwork.dal.entity.ZGTaskBid">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    fb_zg_task_bid
+    WHERE task_id=#{taskId} AND hit_state=1
+  </select>
 </mapper>

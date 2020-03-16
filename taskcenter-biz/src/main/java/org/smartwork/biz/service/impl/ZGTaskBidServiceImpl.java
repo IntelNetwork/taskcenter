@@ -101,5 +101,19 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
         return taskBidExtMapper.taskBidDetail(id);
     }
 
+    /***
+     * selectByTaskId方法概述:根据任务id查询已中标会员
+     * @param taskId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskBid>
+     * @创建人 Tom
+     * @创建时间 2020/3/16 9:57
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Override
+    public ZGTaskBid selectByTaskId(Long taskId) {
+        return taskBidExtMapper.selectByTaskId(taskId);
+    }
+
 
 }
