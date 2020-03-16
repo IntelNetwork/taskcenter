@@ -46,14 +46,17 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveOrder(ZGTaskDto taskDto) {
+
+
         //临时自定义提点比例
         BigDecimal proportion = BigDecimal.valueOf(0.02);
+
+        //订单实际收款计算
+        BigDecimal actual = taskDto.getZgTaskOrderDto().getActualAmount();
         //提点金额计算
-        BigDecimal point = taskDto.getStartPrice().multiply(proportion);
+        BigDecimal point = actual.multiply(proportion);
         //托管金额计算
-        BigDecimal host = point.add(taskDto.getStartPrice());
-        //实际收款计算
-        BigDecimal actual = taskDto.getStartPrice();
+        BigDecimal host = point.add(actual);
         //托管金额
         taskDto.getZgTaskOrderDto().setHostAmount(host);
         //实际金额

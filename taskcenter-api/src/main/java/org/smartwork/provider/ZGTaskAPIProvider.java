@@ -11,10 +11,7 @@ import org.forbes.comm.model.BasePageDto;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.*;
 import org.smartwork.comm.constant.*;
-import org.smartwork.comm.enums.TaskBizResultEnum;
-import org.smartwork.comm.enums.TaskOrderStateEnum;
-import org.smartwork.comm.enums.TaskPayStateEnum;
-import org.smartwork.comm.enums.TaskStateEnum;
+import org.smartwork.comm.enums.*;
 import org.smartwork.comm.model.ZGTaskPageDto;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.comm.utils.UUIDGenerator;
@@ -92,14 +89,13 @@ public class ZGTaskAPIProvider {
             taskDto.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp()) + dateFormat2.format(result.getTimestamp()));
             taskDto.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
             taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-
             izgTaskOrderService.saveOrder(taskDto);
-
         }
         if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
             //有指定服务方直接生成订单,修改状态为托管金额接口(需要支付成功后)
-            //更改状态 托管赏金
-            taskDto.setTaskState(TaskStateEnum.TRUST_REWARD.getCode());
+            //更改状态 任务:支付赏金,订单:未支付
+            taskDto.setTaskState(TaskStateEnum.PAYMENT_GRATUITY.getCode());
+            taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
             taskService.trustReward(taskDto);
         } else {
             //给定默认状态 待审核
@@ -146,7 +142,7 @@ public class ZGTaskAPIProvider {
 
 
     /***
-     * 方法概述:需求方提交验收任务
+     * 方法概述:服务方提交验收任务
      * @param task 任务实体类
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/2
@@ -154,7 +150,7 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/submit-accept", method = RequestMethod.PUT)
-    @ApiOperation("需求方提交验收任务")
+    @ApiOperation("服务方提交验收任务")
     public Result<ZGTask> submitTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTask> result = new Result<ZGTask>();
@@ -219,7 +215,7 @@ public class ZGTaskAPIProvider {
 
 
     /***
-     * 方法概述:---总后台确认验收任务
+     * 方法概述:需求方确认验收任务
      * @param task
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/16
@@ -227,7 +223,7 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/confirm-accept", method = RequestMethod.PUT)
-    @ApiOperation("---总后台确认验收任务")
+    @ApiOperation("需求方确认验收任务")
     public Result<ZGTask> confirmTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTask> result = new Result<ZGTask>();
