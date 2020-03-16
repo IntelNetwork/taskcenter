@@ -146,7 +146,7 @@ public class ZGTaskAPIProvider {
 
 
     /***
-     * 方法概述:提交验收任务
+     * 方法概述:需求方提交验收任务
      * @param task 任务实体类
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/2
@@ -154,7 +154,7 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/submit-accept", method = RequestMethod.PUT)
-    @ApiOperation("提交验收任务")
+    @ApiOperation("需求方提交验收任务")
     public Result<ZGTask> submitTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
         log.debug("传入参数为:" + JSON.toJSONString(task));
         Result<ZGTask> result = new Result<ZGTask>();
@@ -177,39 +177,7 @@ public class ZGTaskAPIProvider {
 
 
     /***
-     * 方法概述:确认验收任务
-     * @param task
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/confirm-accept", method = RequestMethod.PUT)
-    @ApiOperation("确认验收任务")
-    public Result<ZGTask> confirmTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
-        log.debug("传入参数为:" + JSON.toJSONString(task));
-        Result<ZGTask> result = new Result<ZGTask>();
-        //传入实体类对象为空
-        if (ConvertUtils.isEmpty(task)) {
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        //只有提交验收才可以确认验收
-        if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.SUBMIT_ACCEPTANCE.getCode())) {
-            //更改状态 确认验收
-            task.setTaskState(TaskStateEnum.CONFIRMATION_ACCEPTANCE.getCode());
-            task.setEndTime(new Date());
-            taskService.updateById(task);
-            result.setResult(task);
-        }
-
-        log.debug("返回内容为:" + JSON.toJSONString(task));
-        return result;
-    }
-
-    /***
-     * 方法概述:托管赏金修改状态
+     * 方法概述:支付后修改状态
      * @param taskDto
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/2
@@ -217,7 +185,7 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/trust-reward", method = RequestMethod.PUT)
-    @ApiOperation("托管赏金修改状态")
+    @ApiOperation("支付后修改状态")
     public Result<ZGTaskDto> trustReward(@RequestBody @Validated(value = UpdateValid.class) ZGTaskDto taskDto) {
         log.debug("传入参数为:" + JSON.toJSONString(taskDto));
         Result<ZGTaskDto> result = new Result<ZGTaskDto>();
@@ -250,12 +218,45 @@ public class ZGTaskAPIProvider {
     }
 
 
+    /***
+     * 方法概述:---总后台确认验收任务
+     * @param task
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/16
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/confirm-accept", method = RequestMethod.PUT)
+    @ApiOperation("---总后台确认验收任务")
+    public Result<ZGTask> confirmTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
+        log.debug("传入参数为:" + JSON.toJSONString(task));
+        Result<ZGTask> result = new Result<ZGTask>();
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(task)) {
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
+            return result;
+        }
+        //只有提交验收才可以确认验收
+        if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.SUBMIT_ACCEPTANCE.getCode())) {
+            //更改状态 确认验收
+            task.setTaskState(TaskStateEnum.CONFIRMATION_ACCEPTANCE.getCode());
+            task.setEndTime(new Date());
+            taskService.updateById(task);
+            result.setResult(task);
+        }
+
+        log.debug("返回内容为:" + JSON.toJSONString(task));
+        return result;
+    }
+
+
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    @ApiOperation("删除任务")
+    @ApiOperation("---删除任务")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "id", value = "任务ID", required = true)
     })
-    public Result<ZGTask> deleteNews(@RequestParam(value = "id", required = true) String id) {
+    public Result<ZGTask> deleteTask(@RequestParam(value = "id", required = true) String id) {
         log.debug("传入参数为:" + JSON.toJSONString(id));
         Result<ZGTask> result = new Result<ZGTask>();
         ZGTask task = taskService.getById(id);
@@ -279,8 +280,8 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/delete-batch", method = RequestMethod.DELETE)
-    @ApiOperation("批量删除任务")
-    public Result<ZGTask> deleteBatch(@RequestParam("ids") String ids) {
+    @ApiOperation("---批量删除任务")
+    public Result<ZGTask> deleteMore(@RequestParam("ids") String ids) {
         log.debug("传入参数为:" + JSON.toJSONString(ids));
         Result<ZGTask> result = new Result<ZGTask>();
         taskService.removeTasks(ids);

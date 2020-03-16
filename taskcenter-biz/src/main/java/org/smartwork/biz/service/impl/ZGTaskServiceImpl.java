@@ -3,6 +3,7 @@ package org.smartwork.biz.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.utils.ConvertUtils;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskService;
@@ -11,6 +12,7 @@ import org.smartwork.comm.constant.TaskAttachColumnConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskHitstateEnum;
+import org.smartwork.comm.enums.TaskPayStateEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.*;
 import org.smartwork.comm.vo.ZGTaskCountVo;
@@ -108,8 +110,8 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
 
 
     /***
-     * trustReward方法概述:托管赏金
-     * @param  task
+     * trustReward方法概述:支付成功后修改状态
+     * @param  taskDto
      * @创建人 niehy(Frunk)
      * @创建时间 2020/2/29
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -122,7 +124,20 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
         ZGTask task = new ZGTask();
         BeanCopier.create(ZGTaskDto.class, ZGTask.class, false)
                 .copy(taskDto, task, null);
-        baseMapper.updateById(task);
+        //任务状态为支付赏金,并且订单状态为未支付,才可以修改支付状态
+        if(taskDto.getTaskState().equalsIgnoreCase(TaskStateEnum.PAYMENT_GRATUITY.getCode()) &&
+                taskDto.getZgTaskOrderDto().getPayStatus().equalsIgnoreCase(TaskPayStateEnum.UN_PAY.getCode())){
+            //任务改为托管赏金
+            task.setTaskState(TaskStateEnum.TRUST_REWARD.getCode());
+            //订单改为已支付
+            taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.PAID.getCode());
+            baseMapper.updateById(task);
+        }else {
+            //订单操作异常
+            throw new ForbesException(TaskBizResultEnum.ORDER_STATUS_ABNORMAL.getBizCode(),
+            String.format(TaskBizResultEnum.ORDER_STATUS_ABNORMAL.getBizMessage()));
+        }
+
         result.setResult(taskDto);
         return result;
     }

@@ -25,7 +25,7 @@ public enum TaskBizResultEnum {
     MEMBERS_SAME_EXIST("005002003","已经竞标过该任务","%s您已经竞标过该任务"),
     MEMBERS_HIT_EXIST("005002004","该任务已经有中标人员","%s该任务已经有中标人员"),
     /*****任务订单003(中间三位)****/
-    ORDER_STATUS_NO_EXISTS("005003001","该订单状态不存在","%s对应该订单状态不存在"),
+    ORDER_STATUS_ABNORMAL("005003001","操作异常","%s操作异常"),
     PAY_STATUS_NO_EXISTS("005003001","该支付状态不存在","%s对应该支付状态不存在"),
     ;
 

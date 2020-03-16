@@ -31,7 +31,7 @@ public interface IZGTaskService extends IService<ZGTask> {
 
 
     /***
-     * trustReward方法概述:托管赏金
+     * trustReward方法概述:支付成功后修改状态 托管赏金
      * @param  task
      * @创建人 niehy(Frunk)
      * @创建时间 2020/2/29
