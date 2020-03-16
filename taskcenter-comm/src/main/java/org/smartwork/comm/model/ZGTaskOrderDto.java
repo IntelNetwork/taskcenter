@@ -84,6 +84,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Nullable:  true
      */
     @ApiModelProperty(value = "实际收款",example="0.00",required = true)
+    @NotNull(message = "实际收款为空")
     private BigDecimal actualAmount;
 
     /**
