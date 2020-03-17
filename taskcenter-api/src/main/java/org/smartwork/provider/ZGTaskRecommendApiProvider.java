@@ -17,10 +17,7 @@ import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.dal.entity.ZGTask;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName TaskRecommendController
@@ -48,13 +45,13 @@ public class ZGTaskRecommendApiProvider {
      * @parameter [industryId]
      * @return org.smartwork.comm.vo.Result<java.util.List<org.smartwork.dal.entity.ZGTask>>
      */
-    @RequestMapping(value = "/list/{industryId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ApiOperation("查询相关任务推荐")
     @ApiResponses(value = {
             @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
-    public Result<IPage<ZGTask>>  list(BasePageDto basePageDto, @PathVariable long industryId){
+    public Result<IPage<ZGTask>>  list(BasePageDto basePageDto, @RequestParam long industryId){
         log.debug(JSON.toJSONString("传入参数为："+industryId));
         Result<IPage<ZGTask>> result=new  Result<IPage<ZGTask>>();
         if(ConvertUtils.isEmpty(industryId)){

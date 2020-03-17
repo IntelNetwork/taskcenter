@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
 import org.forbes.comm.vo.Result;
 import org.smartwork.comm.model.ZGTaskBidDto;
+import org.smartwork.comm.vo.ZGTaskBidVo;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTaskBid;
+
+import java.util.List;
 
 public interface IZGTaskBidService extends IService<ZGTaskBid> {
 
@@ -52,4 +56,13 @@ public interface IZGTaskBidService extends IService<ZGTaskBid> {
      */
     ZGTaskBid selectByTaskId(Long taskId);
 
+
+    /**
+     * @description 已参与任务竞标返回视图
+     * @author xfx
+     * @date 2020/3/13 17:56
+     * @parameter
+     * @return 
+     */
+    List<ZGTaskBidVo> taskBidlist(List<ZGTaskBidVo> zgTaskBidVos);
 }
