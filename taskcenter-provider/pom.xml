@@ -25,7 +25,8 @@
             <groupId>org.smartwork</groupId>
             <artifactId>taskcenter-dal</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency><dependency>
+        </dependency>
+        <dependency>
             <groupId>org.smartwork</groupId>
             <artifactId>taskcenter-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
