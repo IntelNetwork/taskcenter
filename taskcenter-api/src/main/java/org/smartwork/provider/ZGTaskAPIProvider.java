@@ -329,25 +329,6 @@ public class ZGTaskAPIProvider {
     }
 
     /***
-     * AllCount方法概述:任务总数查询
-     * @param
-     * @return java.lang.Integer
-     * @创建人 Tom
-     * @创建时间 2020/3/3 9:21
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/all-count", method = RequestMethod.GET)
-    @ApiOperation("任务总数查询")
-    public Result<Integer> AllCount() {
-        Result<Integer> result = new Result<>();
-        Integer tasks = taskService.count();
-        result.setResult(tasks);
-        return result;
-    }
-
-
-    /***
      * updateTask方法概述:任务编辑
      * @param task
      * @return org.smartwork.comm.model.ZGTaskDto
