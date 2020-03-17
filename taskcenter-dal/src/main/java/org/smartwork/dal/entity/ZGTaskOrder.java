@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import lombok.Data;
+import org.forbes.comm.annotations.ValidUnique;
+import org.forbes.comm.constant.SaveValid;
+import org.forbes.comm.constant.UpdateValid;
 import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -70,6 +73,8 @@ public class ZGTaskOrder extends BaseEntity {
      */
     @ApiModelProperty(value = "任务名称",example="",required = true)
     @NotEmpty(message = "任务名称为空")
+    @ValidUnique(column = "ad_code",bizCode = "005001004",bizErrorMsg = "%s编码已经存在")
+    @NotEmpty(message = "任务名称为空",groups = {UpdateValid.class, SaveValid.class})
     private String taskName;
 
     /**
