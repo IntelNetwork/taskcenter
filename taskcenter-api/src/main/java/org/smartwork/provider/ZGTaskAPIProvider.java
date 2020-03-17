@@ -428,7 +428,7 @@ public class ZGTaskAPIProvider {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    @RequestMapping(value = "/get-by-release", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-pass", method = RequestMethod.GET)
     @ApiOperation("通过会员id查询已完成任务信息")
     @ApiImplicitParams(
             @ApiImplicitParam(name = "memberId", value = "会员id")
