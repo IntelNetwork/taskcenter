@@ -247,45 +247,6 @@ public class ZGTaskAPIProvider {
     }
 
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    @ApiOperation("---删除任务")
-    @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "id", value = "任务ID", required = true)
-    })
-    public Result<ZGTask> deleteTask(@RequestParam(value = "id", required = true) String id) {
-        log.debug("传入参数为:" + JSON.toJSONString(id));
-        Result<ZGTask> result = new Result<ZGTask>();
-        ZGTask task = taskService.getById(id);
-        if (ConvertUtils.isEmpty(task)) {
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        taskService.removeTask(id);
-        log.debug("返回值为:" + JSON.toJSONString(result.getResult()));
-        return result;
-    }
-
-
-    /***
-     * deleteBatch方法概述:批量删除任务
-     * @return
-     * @创建人 niehy(Frunk)
-     * @创建时间 2019/12/17
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/delete-batch", method = RequestMethod.DELETE)
-    @ApiOperation("---批量删除任务")
-    public Result<ZGTask> deleteMore(@RequestParam("ids") String ids) {
-        log.debug("传入参数为:" + JSON.toJSONString(ids));
-        Result<ZGTask> result = new Result<ZGTask>();
-        taskService.removeTasks(ids);
-        log.debug("返回值为:" + JSON.toJSONString(result.getResult()));
-        return result;
-    }
-
-
     /***
      * pageTasks方法概述:任务分页查询
      * @param basePageDto, zgTaskPageDto
