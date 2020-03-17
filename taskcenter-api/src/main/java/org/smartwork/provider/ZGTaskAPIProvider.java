@@ -337,7 +337,7 @@ public class ZGTaskAPIProvider {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/alter-task", method = RequestMethod.PUT)
     @ApiOperation("任务编辑")
     public Result<ZGTaskDto> updateTask(@RequestBody @Validated(value = UpdateValid.class) ZGTaskDto task) {
         log.debug("传入的参数为" + JSON.toJSONString(task));
