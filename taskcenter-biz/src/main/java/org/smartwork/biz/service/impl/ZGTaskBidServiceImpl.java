@@ -2,12 +2,14 @@ package org.smartwork.biz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.swagger.models.auth.In;
 import org.forbes.comm.utils.ConvertUtils;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
+import org.smartwork.comm.vo.ZGTaskBidVo;
 import org.smartwork.dal.entity.ZGBigAttach;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.mapper.ZGBigAttachMapper;
@@ -116,4 +118,20 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
     }
 
 
+    /**
+     * @description 已参与任务竞标返回视图
+     * @author xfx
+     * @date 2020/3/13 17:57
+     * @parameter
+     * @return 
+     */
+    @Override
+    public List<ZGTaskBidVo> taskBidlist(List<ZGTaskBidVo> zgTaskBidVos) {
+        zgTaskBidVos.stream().forEach(zgTaskBidVoTemp ->{
+            QueryWrapper<ZGTaskBid> query = new QueryWrapper<>();
+            query.eq(DataColumnConstant.MEMBERID,zgTaskBidVoTemp.getMemberId());
+            zgTaskBidVoTemp.setAmount(taskBidExtMapper.selectCount(query));
+        } );
+        return zgTaskBidVos;
+    }
 }
