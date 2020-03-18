@@ -1,29 +1,28 @@
-package org.smartwork.comm.model;
+package org.smartwork.comm.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
+/**
+ * @description: 任务竞标返回vo
+ * @author: xfx
+ * @date: Created in 2020/3/13 17:45
+ * @version:
+ * @modified By:
+ */
 @Data
-@ApiModel(description="任务竞标dto")
-public class ZGTaskBidDto implements Serializable{
+@ApiModel(description="任务返回VO")
+public class ZGTaskBidVo extends BaseEntity implements Serializable {
 
-    private static final long serialVersionUID = 4353077127997753814L;
-    /**
-     * ID
-     *
-     * Table:     fb_zg_task_bid
-     * Column:    id
-     * Nullable:  true
-     */
-    @ApiModelProperty(value = "ID,添加不传值",example="0")
-    private Long id;
+    private static final long serialVersionUID = -9020907687698802443L;
+
 
     /**
      * 会员ID
@@ -101,9 +100,16 @@ public class ZGTaskBidDto implements Serializable{
     @NotNull(message = "任务id为空")
     private Long taskId;
 
+
     /**
-     * 任务竞标附件
+     * 接收任务数量
+     *
+     * Table:     fb_zg_task_bid
+     * Column:    task_id
+     * Nullable:  true
      */
-    @ApiModelProperty(value = "任务竞标附件(集合)")
-    private List<ZGBigAttachDto> zgBigAttachDtos;
+
+    @ApiModelProperty(value = "接收任务数量",example="0",required = true)
+    private Integer amount;
+
 }

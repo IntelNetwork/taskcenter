@@ -55,10 +55,10 @@ public class ZGTaskDetailApiProvider {
             @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
 
-    public Result<ZGTaskVo> detail(@RequestParam (required = true)long id,@RequestParam (required = true) long memberId,@RequestParam(required = true) String memberName){
+    public Result<ZGTaskVo> detail(@RequestParam long id,@RequestParam (required = false) long memberId,@RequestParam(required = false) String memberName){
         log.debug("传入的参数为 id"+ JSON.toJSONString(id)+"memberId"+JSON.toJSONString(memberId)+"memberName"+JSON.toJSONString(memberName));
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
-        if(ConvertUtils.isEmpty(id)||ConvertUtils.isEmpty(memberId)||ConvertUtils.isEmpty(memberName)){
+        if(ConvertUtils.isEmpty(id)){
             result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
@@ -72,8 +72,11 @@ public class ZGTaskDetailApiProvider {
         qw.eq(DataColumnConstant.MEMBERID,memberId);
         /*根据用户id，任务id查询该用户竞标状态*/
         ZGTaskBid zgTaskBid=izgTaskBidService.getOne(qw);
-        if(ConvertUtils.isNotEmpty(zgTaskVo)&&ConvertUtils.isNotEmpty(zgTaskBid)){
-            zgTaskVo.setHitState(zgTaskBid.getHitState());
+
+        if(ConvertUtils.isNotEmpty(zgTaskVo)){
+            if(ConvertUtils.isNotEmpty(zgTaskBid)){
+                zgTaskVo.setHitState(zgTaskBid.getHitState());
+            }
             result.setResult(zgTaskVo);
         }else {
             result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());

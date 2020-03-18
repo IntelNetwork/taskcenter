@@ -31,6 +31,7 @@
     member_name, task_state, industry_id, type_name, type_code, industry
   </sql>
 
+  <!--获取最新成交动态 -->
   <select id="selectAllTask" resultType="org.smartwork.dal.entity.ZGTask">
     SELECT
     <include refid="Base_Column_List" />
@@ -39,20 +40,42 @@
     WHERE task_state = 3
   </select>
 
+  <!--分页查询 -->
   <select id="pageTasks" parameterType="org.smartwork.comm.model.ZGTaskPageDto" resultType="org.smartwork.comm.vo.ZGTaskCountVo">
     SELECT
     <include refid="Base_Column_List" />
     FROM fb_zg_task t
     <where>
-      <if test="zgTaskPageDto.tTypeName != null and zgTaskPageDto.tTypeName != '' and zgTaskPageDto.tTypeName != 'null'">
-        AND t.tTypeName=#{zgTaskPageDto.tTypeName,jdbcType=VARCHAR}
+      <if test="zgTaskPageDto.typeName != null and zgTaskPageDto.typeName != '' and zgTaskPageDto.typeName != 'null'">
+        AND t.type_name=#{zgTaskPageDto.typeName,jdbcType=VARCHAR}
       </if>
       <if test="zgTaskPageDto.industry != null and zgTaskPageDto.industry != '' and zgTaskPageDto.industry != 'null'">
         AND t.industry=#{zgTaskPageDto.industry,jdbcType=VARCHAR}
       </if>
       <if test="zgTaskPageDto.taskState != null and zgTaskPageDto.taskState != '' and zgTaskPageDto.taskState != 'null'">
-        AND t.taskState=#{zgTaskPageDto.taskState,jdbcType=VARCHAR}
+        AND t.task_state=#{zgTaskPageDto.taskState,jdbcType=VARCHAR}
+      </if>
+      <if test="zgTaskPageDto.startPrice != null and zgTaskPageDto.endPrice != null ">
+        AND t.start_price &gt;=#{zgTaskPageDto.startPrice} AND t.end_price &lt;=#{zgTaskPageDto.endPrice}
       </if>
     </where>
+  </select>
+
+  <!--通过会员id查询已发布任务信息 -->
+  <select id="getRelease" resultType="org.smartwork.comm.vo.ZGTaskVo">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    fb_zg_task
+    WHERE member_id=#{memberId} AND task_state = 1
+  </select>
+
+  <!--通过会员id查询已完成任务信息 -->
+  <select id="getPass" resultType="org.smartwork.comm.vo.ZGTaskVo">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    fb_zg_task
+    WHERE member_id=#{memberId} AND task_state = 5
   </select>
 </mapper>

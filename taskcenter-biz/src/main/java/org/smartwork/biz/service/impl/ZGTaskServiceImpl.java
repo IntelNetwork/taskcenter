@@ -3,18 +3,26 @@ package org.smartwork.biz.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.utils.ConvertUtils;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.TaskAttachColumnConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
-import org.smartwork.comm.model.ZGTaskPageDto;
-import org.smartwork.comm.model.ZGTaskRelTagDto;
+import org.smartwork.comm.enums.TaskBizResultEnum;
+import org.smartwork.comm.enums.TaskHitstateEnum;
+import org.smartwork.comm.enums.TaskPayStateEnum;
+import org.smartwork.comm.enums.TaskStateEnum;
+import org.smartwork.comm.model.*;
 import org.smartwork.comm.vo.ZGTaskCountVo;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskAttach;
+import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.entity.ZGTaskRelTag;
 import org.smartwork.dal.mapper.ZGTaskAttachMapper;
+import org.smartwork.dal.mapper.ZGTaskBidMapper;
 import org.smartwork.dal.mapper.ZGTaskMapper;
 import org.smartwork.dal.mapper.ZGTaskRelTagMapper;
 import org.smartwork.dal.mapper.ext.ZGTaskExtMapper;
@@ -22,8 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.smartwork.comm.model.ZGTaskAttachDto;
-import org.smartwork.comm.model.ZGTaskDto;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -31,15 +37,18 @@ import java.util.List;
 
 @Service
 public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> implements IZGTaskService {
-    //任务Ext
+
     @Autowired
     ZGTaskExtMapper zgTaskExtMapper;
-    //任务附件
+
     @Autowired
     ZGTaskAttachMapper zgTaskAttachMapper;
-    //任务标签
+
     @Autowired
     ZGTaskRelTagMapper zgTaskRelTagMapper;
+
+    @Autowired
+    ZGTaskBidMapper zgTaskBidMapper;
 
     /***
      * addZGTask方法概述: 添加任务
@@ -72,7 +81,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             });
         }
 
-        //任务关联
+        //任务附件关联
         List<ZGTaskAttachDto> zgTaskAttachDtos = taskDto.getZgTaskAttachDtos();
         if (ConvertUtils.isNotEmpty(zgTaskAttachDtos)) {
             Long taskId = task.getId();
@@ -86,6 +95,51 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
                 zgTaskAttachMapper.insert(attach);
             });
         }
+
+        //任务竞标记录关联(指定服务方)
+        ZGTaskBidDto zgTaskBidDto = taskDto.getZgTaskBidDto();
+        if (ConvertUtils.isNotEmpty(zgTaskBidDto)) {
+            ZGTaskBid taskBid = new ZGTaskBid();
+            BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
+                    .copy(zgTaskBidDto, taskBid, null);
+            taskBid.setHitState(TaskHitstateEnum.HITSTATE.getCode());
+            zgTaskBidMapper.insert(taskBid);
+        }
+
+    }
+
+
+    /***
+     * trustReward方法概述:支付成功后修改状态
+     * @param  taskDto
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/2/29
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public Result<ZGTaskDto> trustReward(ZGTaskDto taskDto) {
+        Result<ZGTaskDto> result = new Result<ZGTaskDto>();
+        ZGTask task = new ZGTask();
+        BeanCopier.create(ZGTaskDto.class, ZGTask.class, false)
+                .copy(taskDto, task, null);
+        //任务状态为支付赏金,并且订单状态为未支付,才可以修改支付状态
+        if(taskDto.getTaskState().equalsIgnoreCase(TaskStateEnum.PAYMENT_GRATUITY.getCode()) &&
+                taskDto.getZgTaskOrderDto().getPayStatus().equalsIgnoreCase(TaskPayStateEnum.UN_PAY.getCode())){
+            //任务改为托管赏金
+            task.setTaskState(TaskStateEnum.TRUST_REWARD.getCode());
+            //订单改为已支付
+            taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.PAID.getCode());
+            baseMapper.updateById(task);
+        }else {
+            //订单操作异常
+            throw new ForbesException(TaskBizResultEnum.ORDER_STATUS_ABNORMAL.getBizCode(),
+            String.format(TaskBizResultEnum.ORDER_STATUS_ABNORMAL.getBizMessage()));
+        }
+
+        result.setResult(taskDto);
+        return result;
     }
 
 
@@ -192,6 +246,34 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      */
     @Override
     public IPage<ZGTaskCountVo> pageTasks(IPage<ZGTaskCountVo> page, ZGTaskPageDto zgTaskPageDto) {
-        return zgTaskExtMapper.pageTasks(page,zgTaskPageDto);
+        return zgTaskExtMapper.pageTasks(page, zgTaskPageDto);
+    }
+
+    /***
+     * getByRelease方法概述:通过会员id查询已发布任务信息
+     * @param memberId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
+     * @创建人 Tom
+     * @创建时间 2020/3/4 17:18
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Override
+    public List<ZGTaskVo> getRelease(Long memberId) {
+        return zgTaskExtMapper.getRelease(memberId);
+    }
+
+    /***
+     * getByRelease方法概述:通过会员id查询已完成任务信息
+     * @param memberId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
+     * @创建人 Tom
+     * @创建时间 2020/3/4 17:18
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Override
+    public List<ZGTaskVo> getPass(Long memberId) {
+        return zgTaskExtMapper.getPass(memberId);
     }
 }

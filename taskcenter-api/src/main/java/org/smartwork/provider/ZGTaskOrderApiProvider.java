@@ -1,19 +1,30 @@
 package org.smartwork.provider;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.utils.ConvertUtils;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskOrderService;
+import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.SaveValid;
+import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskOrderStateEnum;
 import org.smartwork.comm.enums.TaskPayStateEnum;
+import org.smartwork.comm.model.ZGTaskOrderDto;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * @author lzw
@@ -30,7 +41,7 @@ public class ZGTaskOrderApiProvider {
 
     /***
      * addProductLabel方法概述:
-     * @param zgTaskOrder
+     * @param zgTaskOrderDto
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
      * @创建人 Tom
      * @创建时间 2020/3/5 9:32
@@ -39,18 +50,21 @@ public class ZGTaskOrderApiProvider {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ApiOperation("任务订单生成")
-    public Result<ZGTaskOrder> addProductLabel(@RequestBody @Validated(value=SaveValid.class) ZGTaskOrder zgTaskOrder){
-        Result<ZGTaskOrder> result=new Result<ZGTaskOrder>();
-        zgTaskOrder.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
-        zgTaskOrder.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-        izgTaskOrderService.save(zgTaskOrder);
-        result.setResult(zgTaskOrder);
+    public Result<ZGTaskOrderDto> addOrder(@RequestBody @Validated(value=SaveValid.class) ZGTaskOrderDto zgTaskOrderDto){
+        Result<ZGTaskOrderDto> result=new Result<ZGTaskOrderDto>();
+        try {
+            izgTaskOrderService.addOrder(zgTaskOrderDto);
+            result.setResult(zgTaskOrderDto);
+        }catch(ForbesException e){
+            result.setBizCode(e.getErrorCode());
+            result.setMessage(e.getErrorMsg());
+        }
         return result;
     }
 
     /***
-     * updateOrderState方法概述:
-     * @param sn, orderStatus
+     * updateOrderState方法概述:订单状态修改
+     * @param zgTaskOrder
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
      * @创建人 Tom
      * @创建时间 2020/3/5 10:04
@@ -58,56 +72,42 @@ public class ZGTaskOrderApiProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/update-order-state", method = RequestMethod.PUT)
-    @ApiOperation("订单状态修改")
-    public Result<ZGTaskOrder> updateOrderState(@RequestParam(value="sn",required=true)String sn, @RequestParam(value = "orderStatus",required = true)String orderStatus){
+    @ApiOperation("订单状态修改(支付成功后)")
+    public Result<ZGTaskOrder> updateOrderState(@RequestBody @Validated(value=UpdateValid.class) ZGTaskOrder zgTaskOrder){
         Result<ZGTaskOrder> result=new Result<ZGTaskOrder>();
-        ZGTaskOrder zgTaskOrder = izgTaskOrderService.getById(sn);
-        if(ConvertUtils.isEmpty(zgTaskOrder)){
+        //传入实体类对象为空
+        if (ConvertUtils.isEmpty(zgTaskOrder)) {
             result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        boolean isOrderStatus = TaskOrderStateEnum.existsTaskOrderStateEnum(orderStatus);
-        if(!isOrderStatus){
-            result.setBizCode(TaskBizResultEnum.ORDER_STATUS_NO_EXISTS.getBizCode());
-            result.setMessage(String.format(TaskBizResultEnum.ORDER_STATUS_NO_EXISTS.getBizFormateMessage(), orderStatus));
-            return result;
-        }
-        zgTaskOrder.setOrderStatus(orderStatus);
-        izgTaskOrderService.updateById(zgTaskOrder);
+        izgTaskOrderService.updateOrderState(zgTaskOrder);
+        result.setResult(zgTaskOrder);
         return result;
     }
 
     /***
-     * updatePayState方法概述:
-     * @param sn, payStatus
+     * selectOrder方法概述:通过会员id和任务id查询订单详情
+     * @param taskId, memberId
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
      * @创建人 Tom
-     * @创建时间 2020/3/5 10:15
+     * @创建时间 2020/3/13 13:59
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    @RequestMapping(value = "/update-pay-state", method = RequestMethod.PUT)
-    @ApiOperation("支付状态修改")
-    public Result<ZGTaskOrder> updatePayState(@RequestParam(value="sn",required=true)String sn, @RequestParam(value = "payStatus",required = true)String payStatus){
-        Result<ZGTaskOrder> result=new Result<ZGTaskOrder>();
-        ZGTaskOrder zgTaskOrder = izgTaskOrderService.getById(sn);
-        if(ConvertUtils.isEmpty(zgTaskOrder)){
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        boolean isPayStatus = TaskPayStateEnum.existsTaskPayStateEnum(payStatus);
-        if(!isPayStatus){
-            result.setBizCode(TaskBizResultEnum.PAY_STATUS_NO_EXISTS.getBizCode());
-            result.setMessage(String.format(TaskBizResultEnum.PAY_STATUS_NO_EXISTS.getBizFormateMessage(), payStatus));
-            return result;
-        }
-        zgTaskOrder.setPayStatus(payStatus);
-        izgTaskOrderService.updateById(zgTaskOrder);
+    @RequestMapping(value = "/select-order", method = RequestMethod.GET)
+    @ApiOperation("通过会员id和任务id查询订单详情")
+    @ApiImplicitParams(
+            value = {
+                    @ApiImplicitParam(name="taskId",value = "任务id"),
+                    @ApiImplicitParam(name="memberId",value = "会员id")
+            }
+    )
+    public Result<ZGTaskOrder> selectOrder(@RequestParam(value = "taskId", required = true) Long taskId,@RequestParam(value = "memberId", required = true) Long memberId) {
+        Result<ZGTaskOrder> result = new Result<ZGTaskOrder>();
+        ZGTaskOrder zgTaskOrder=izgTaskOrderService.selectOrder(taskId,memberId);
+        result.setResult(zgTaskOrder);
         return result;
     }
-
-
 
 }

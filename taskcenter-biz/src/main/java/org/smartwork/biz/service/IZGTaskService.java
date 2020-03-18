@@ -31,6 +31,17 @@ public interface IZGTaskService extends IService<ZGTask> {
 
 
     /***
+     * trustReward方法概述:支付成功后修改状态
+     * @param  task
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/2/29
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    Result<ZGTaskDto> trustReward(ZGTaskDto task);
+
+
+    /***
      * removeTask方法概述:删除任务,关联附件
      * @param id
      * @return
@@ -85,4 +96,26 @@ public interface IZGTaskService extends IService<ZGTask> {
      * @修改日期 (请填上修改该文件时的日期)
      */
     IPage<ZGTaskCountVo> pageTasks(IPage<ZGTaskCountVo> page, ZGTaskPageDto zgTaskPageDto);
+
+    /***
+     * getByRelease方法概述:通过会员id查询已发布任务信息
+     * @param memberId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
+     * @创建人 Tom
+     * @创建时间 2020/3/4 17:18
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    List<ZGTaskVo> getRelease(Long memberId);
+
+    /***
+     * getByRelease方法概述:通过会员id查询已完成任务信息
+     * @param memberId
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
+     * @创建人 Tom
+     * @创建时间 2020/3/4 17:18
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    List<ZGTaskVo> getPass(Long memberId);
 }

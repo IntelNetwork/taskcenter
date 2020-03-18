@@ -12,16 +12,14 @@ import java.util.stream.Collectors;
  */
 public enum TaskStateEnum {
 
-    UNPUBLISHED("0", "未发布"),
-    CHECK("1", "待审核"),
-    LOWER_SHELF("2", "已下架"),
-    RELEASE("3", "发布（竞标中）"),
-    SELECTION_STANDARD("4", "选标中"),
-    TRUST_REWARD("5", "托管赏金"),
-    START_UP("6", "开始工作"),
-    SUBMIT_ACCEPTANCE("7", "提交验收"),
-    CONFIRMATION_ACCEPTANCE("8", "确认验收"),
-    PAYMENT_GRATUITY("9", "支付赏金"),
+    CHECK("0", "待审核"),
+    RELEASE("1", "竞标中"),
+    TRUST_REWARD("2", "托管赏金"),
+    START_UP("3", "开始工作"),
+    SUBMIT_ACCEPTANCE("4", "提交验收"),
+    CONFIRMATION_ACCEPTANCE("5", "确认验收"),
+    PAYMENT_GRATUITY("6", "支付赏金"),
+    CHECK_NULL("7", "审核未通过"),
     TASK_OVERDUE("99", "任务过期");
 
     /***编码

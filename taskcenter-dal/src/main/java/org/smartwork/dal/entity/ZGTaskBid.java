@@ -1,12 +1,14 @@
 package org.smartwork.dal.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.core.enums.SqlKeyword;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
 import lombok.Data;
+import org.forbes.comm.annotations.QueryColumn;
 import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -20,6 +22,7 @@ import javax.validation.constraints.NotNull;
 @TableName("fb_zg_task_bid")
 public class ZGTaskBid extends BaseEntity {
     private static final long serialVersionUID = 6751914535022694502L;
+
     /**
      * 会员ID
      * <p>
@@ -62,7 +65,11 @@ public class ZGTaskBid extends BaseEntity {
 =======
     @ApiModelProperty(value = "低价",example="0.00",required = true)
     @NotNull(message = "低价为空")
+<<<<<<< HEAD
 >>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
+=======
+    @QueryColumn(column = "offe_start_price",sqlKeyword = SqlKeyword.GE)
+>>>>>>> ff4fe57aee4664f9b08028366befd56a6f84d35f
     private BigDecimal offeStartPrice;
 
     /**
@@ -77,7 +84,11 @@ public class ZGTaskBid extends BaseEntity {
 =======
     @ApiModelProperty(value = "止价",example="0.00",required = true)
     @NotNull(message = "止价为空")
+<<<<<<< HEAD
 >>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
+=======
+    @QueryColumn(column = "offer_end_price",sqlKeyword = SqlKeyword.LE)
+>>>>>>> ff4fe57aee4664f9b08028366befd56a6f84d35f
     private BigDecimal offerEndPrice;
 
     /**
@@ -110,7 +121,11 @@ public class ZGTaskBid extends BaseEntity {
     @ApiModelProperty(value = "0-否1-已中标",example="false")
 =======
     @ApiModelProperty(value = "0-否1-已中标2审核中(添加不传值)",example="false")
+<<<<<<< HEAD
 >>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
+=======
+    @QueryColumn(column = "hit_state",sqlKeyword = SqlKeyword.EQ)
+>>>>>>> ff4fe57aee4664f9b08028366befd56a6f84d35f
     private String hitState;
 >>>>>>> c1a4acb33da5ac588c229fecb639c6bd5a72b282
 

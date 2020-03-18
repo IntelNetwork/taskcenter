@@ -7,6 +7,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 
 import lombok.Data;
+import org.forbes.comm.annotations.ValidUnique;
+import org.forbes.comm.constant.SaveValid;
+import org.forbes.comm.constant.UpdateValid;
 import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -28,6 +31,7 @@ public class ZGTaskOrder extends BaseEntity {
      * Nullable:  true
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     @ApiModelProperty(value = "订单编号", example = "")
     private String sn;
 
@@ -37,6 +41,9 @@ public class ZGTaskOrder extends BaseEntity {
 =======
     @ApiModelProperty(value = "订单编号",example="",required = true)
     @NotEmpty(message = "订单编号为空")
+=======
+    @ApiModelProperty(value = "订单编号",example="")
+>>>>>>> ff4fe57aee4664f9b08028366befd56a6f84d35f
     private String sn;
 
     /**
@@ -71,6 +78,17 @@ public class ZGTaskOrder extends BaseEntity {
     private String taskMemberName;
 
     /**
+     * 任务ID
+     *
+     * Table:     fb_zg_task_attach
+     * Column:    task_id
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "任务ID",example="0",required = true)
+    @NotNull(message = "任务ID为空")
+    private Long taskId;
+
+    /**
      * 任务名称
      * <p>
      * Table:     fb_task_order
@@ -82,7 +100,12 @@ public class ZGTaskOrder extends BaseEntity {
 =======
     @ApiModelProperty(value = "任务名称",example="",required = true)
     @NotEmpty(message = "任务名称为空")
+<<<<<<< HEAD
 >>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
+=======
+    @ValidUnique(column = "ad_code",bizCode = "005001004",bizErrorMsg = "%s编码已经存在")
+    @NotEmpty(message = "任务名称为空",groups = {UpdateValid.class, SaveValid.class})
+>>>>>>> ff4fe57aee4664f9b08028366befd56a6f84d35f
     private String taskName;
 
     /**
@@ -102,7 +125,11 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    actual_amount
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "实际收款", example = "0.00")
+=======
+    @ApiModelProperty(value = "实际收款",example="0.00",required = true)
+>>>>>>> ff4fe57aee4664f9b08028366befd56a6f84d35f
     private BigDecimal actualAmount;
 
     /**
