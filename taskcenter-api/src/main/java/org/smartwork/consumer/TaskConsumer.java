@@ -7,6 +7,7 @@ import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.service.IMchApiNotifyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
  */
 @Slf4j
 @Component
+@ConditionalOnProperty(value = "spring.kafka.bootstrap-servers")
 public class TaskConsumer {
 
     @Autowired
