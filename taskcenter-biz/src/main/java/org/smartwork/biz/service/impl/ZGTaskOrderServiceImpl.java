@@ -83,7 +83,7 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
         BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
                 .copy(taskDto.getZgTaskOrderDto(), zgTaskOrder, null);
-        if (taskDto.getZgTaskOrderDto().getHostAmount().intValue() > 0 && taskDto.getZgTaskOrderDto().getPointAmount().intValue() > 0 && taskDto.getZgTaskOrderDto().getActualAmount().intValue() > 0) {
+        if (taskDto.getZgTaskOrderDto().getActualAmount().intValue() > 0) {
             //加入需求方(当前登录用户)ID
             SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
             zgTaskOrder.setMemberId(user.getId());
@@ -136,22 +136,10 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         zgTaskOrderDto.setMemberName(user.getUsername());
         zgTaskOrderDto.setMemberId(user.getId());
-        
-        //临时自定义提点比例
-        BigDecimal proportion = BigDecimal.valueOf(0.02);
-        //提点金额计算
-        BigDecimal point = zgTaskOrderDto.getActualAmount().multiply(proportion);
-        //托管金额计算
-        BigDecimal host = point.add(zgTaskOrderDto.getActualAmount());
-        //托管金额
-        zgTaskOrderDto.setHostAmount(host);
-        //提点金额
-        zgTaskOrderDto.setPointAmount(point);
-
         ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
         BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
                 .copy(zgTaskOrderDto, zgTaskOrder, null);
-        if (zgTaskOrderDto.getHostAmount().intValue() > 0 && zgTaskOrderDto.getPointAmount().intValue() > 0 && zgTaskOrderDto.getActualAmount().intValue() > 0) {
+        if ( zgTaskOrderDto.getActualAmount().intValue() > 0) {
             baseMapper.insert(zgTaskOrder);
         } else {
             throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()

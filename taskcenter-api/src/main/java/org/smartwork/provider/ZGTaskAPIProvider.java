@@ -82,8 +82,8 @@ public class ZGTaskAPIProvider {
         //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程,直接生成订单
         if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
             SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
-            SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
-            taskDto.getZgTaskOrderDto().setSn(dateFormat.format(result.getTimestamp()) + dateFormat2.format(result.getTimestamp()));
+
+            taskDto.getZgTaskOrderDto().setSn(TaskOrderCommonConstant.AUTO_UID+dateFormat.format(result.getTimestamp()));
             taskDto.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
             taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
             izgTaskOrderService.saveOrder(taskDto);
