@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 @ConditionalOnProperty(name = "spring.application.paycenter")
-@FeignClient(name = "${spring.application.paycenter}",path = "api/v1.0/pay")
+@FeignClient(name = "${spring.application.paycenter}",path = "/api/v1.0/pay")
 public interface IMchApiNotifyService {
 
 
