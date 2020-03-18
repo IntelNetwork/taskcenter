@@ -311,7 +311,7 @@ public class ZGTaskAPIProvider {
 
     /***
      * getByRelease方法概述:通过会员id查询已发布任务信息
-     * @param memberId
+     * @param
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/4 17:18
@@ -320,11 +320,11 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/get-release", method = RequestMethod.GET)
     @ApiOperation("通过会员id查询任务已发布信息")
-    @ApiImplicitParams(
-            @ApiImplicitParam(name = "memberId", value = "会员id")
-    )
-    public Result<List<ZGTaskVo>> getByRelease(@RequestParam(value = "memberId") Long memberId) {
+    public Result<List<ZGTaskVo>> getByRelease() {
         Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
+        //加入需求方(当前登录用户)ID
+        SysUserVo user = UserContext.getSysUser();
+        Long memberId=user.getId();
         //查询任务信息
         List<ZGTaskVo> zgTaskVos = taskService.getRelease(memberId);
         zgTaskVos.stream().forEach(zgTaskVo -> {
@@ -340,7 +340,7 @@ public class ZGTaskAPIProvider {
 
     /***
      * getPass方法概述:通过会员id查询已完成任务信息
-     * @param memberId
+     * @param
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/4 17:18
@@ -349,11 +349,12 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/get-pass", method = RequestMethod.GET)
     @ApiOperation("通过会员id查询已完成任务信息")
-    @ApiImplicitParams(
-            @ApiImplicitParam(name = "memberId", value = "会员id")
-    )
-    public Result<List<ZGTaskVo>> getPass(@RequestParam(value = "memberId") Long memberId) {
+    public Result<List<ZGTaskVo>> getPass() {
         Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
+        //加入需求方(当前登录用户)ID
+        SysUserVo user = UserContext.getSysUser();
+        Long memberId=user.getId();
+
         //查询任务信息
         List<ZGTaskVo> zgTaskVos = taskService.getPass(memberId);
         zgTaskVos.stream().forEach(zgTaskVo -> {

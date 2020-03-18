@@ -8,10 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.utils.ConvertUtils;
 import org.forbes.comm.vo.Result;
+import org.forbes.comm.vo.SysUserVo;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.SaveValid;
 import org.smartwork.comm.constant.UpdateValid;
+import org.smartwork.comm.constant.UserContext;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskOrderStateEnum;
 import org.smartwork.comm.enums.TaskPayStateEnum;
@@ -80,8 +82,11 @@ public class ZGTaskOrderApiProvider {
                     @ApiImplicitParam(name="memberId",value = "会员id")
             }
     )
-    public Result<ZGTaskOrder> selectOrder(@RequestParam(value = "taskId", required = true) Long taskId,@RequestParam(value = "memberId", required = true) Long memberId) {
+    public Result<ZGTaskOrder> selectOrder(@RequestParam(value = "taskId", required = true) Long taskId) {
         Result<ZGTaskOrder> result = new Result<ZGTaskOrder>();
+        //加入需求方(当前登录用户)ID
+        SysUserVo user = UserContext.getSysUser();
+        Long memberId=user.getId();
         ZGTaskOrder zgTaskOrder=izgTaskOrderService.selectOrder(taskId,memberId);
         result.setResult(zgTaskOrder);
         return result;
