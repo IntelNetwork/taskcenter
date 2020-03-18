@@ -110,7 +110,16 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         return zgTaskOrderExtMapper.selectOrder(taskId, memberId);
     }
 
-    @Transactional
+    /***
+     * 概述:生成订单
+     * @param
+     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
+     * @创建人 Tom
+     * @创建时间 2020/3/5 10:04
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void addOrder(ZGTaskOrderDto zgTaskOrderDto) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);

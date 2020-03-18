@@ -1,5 +1,6 @@
 package org.smartwork.provider;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -10,6 +11,8 @@ import org.forbes.comm.model.SysUser;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.comm.constant.SaveValid;
+import org.smartwork.comm.constant.TaskOrderCommonConstant;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.model.ZGTaskOrderDto;
 import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,12 @@ public class ZGTaskOrderApiProvider {
     public Result<ZGTaskOrderDto> addOrder(@RequestBody @Validated(value=SaveValid.class) ZGTaskOrderDto zgTaskOrderDto){
         Result<ZGTaskOrderDto> result=new Result<ZGTaskOrderDto>();
         try {
+            Integer count=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(TaskOrderCommonConstant.TASKID,zgTaskOrderDto.getTaskId()));
+            if (count >0){
+                result.setBizCode(TaskBizResultEnum.ORDER_EXISTS.getBizCode());
+                result.setMessage(TaskBizResultEnum.ORDER_EXISTS.getBizMessage());
+                return result;
+            }
             izgTaskOrderService.addOrder(zgTaskOrderDto);
             result.setResult(zgTaskOrderDto);
         }catch(ForbesException e){
