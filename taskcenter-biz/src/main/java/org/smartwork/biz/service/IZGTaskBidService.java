@@ -1,8 +1,8 @@
 package org.smartwork.biz.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.forbes.comm.vo.Result;
 import org.smartwork.comm.model.ZGTaskBidDto;
-import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTaskBid;
 
 public interface IZGTaskBidService extends IService<ZGTaskBid> {
@@ -16,5 +16,5 @@ public interface IZGTaskBidService extends IService<ZGTaskBid> {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    Result<ZGTaskBid> Bidding(ZGTaskBidDto taskBidDto);
+    void Bidding(ZGTaskBidDto taskBidDto);
 }

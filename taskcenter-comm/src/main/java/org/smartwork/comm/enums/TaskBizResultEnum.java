@@ -4,24 +4,22 @@ package org.smartwork.comm.enums;
  * BizResultEnum概要说明：业务系统错误代码
  * @author niehy(Frunk)
  */
-public enum BizResultEnum {
+public enum TaskBizResultEnum {
     /***
-     * 007-系统管理
+     * 005-任务管理
      * 功能暂无-表示通用异常
      * 001-为空判断
      */
 
-    EMPTY("007001000", "参数为空", "%s参数为空"),
-    ENTITY_EMPTY("007002000", "对象为空", ""),
+    EMPTY("005001000", "参数为空", "%s参数为空"),
+    ENTITY_EMPTY("005002000", "对象为空", ""),
 
-    /***
-     * 001-任务管理
-     * 功能暂无-表示通用异常
-     * 001-为空判断
-     */
-    TASK_CODE_EXISTS("001001001","任务类型编码已存在","%s对应任务类型编码已存在"),
-
-
+    TASK_CODE_EXISTS("005001001","任务类型编码已存在","%s对应任务类型编码已存在"),
+    TASK_STATE_CHECK("005001002","任务正在审核，无法编辑","%s对应任务正在审核，无法编辑"),
+    TASK_RECORD_EXISTS("005002001","已存在竞标人","%s对应竞标人已存在"),
+    MEMBERS_NOT_EXIST("005002002","该任务下不存在竞标人","%s对应该任务下不存在竞标人"),
+    ORDER_STATUS_NO_EXISTS("005003001","该订单状态不存在","%s对应该订单状态不存在"),
+    PAY_STATUS_NO_EXISTS("005003001","该支付状态不存在","%s对应该支付状态不存在"),
     ;
 
     /**
@@ -43,7 +41,7 @@ public enum BizResultEnum {
      * @param bizMessage
      * @param bizFormateMessage
      */
-    BizResultEnum(String bizCode, String bizMessage, String bizFormateMessage) {
+    TaskBizResultEnum(String bizCode, String bizMessage, String bizFormateMessage) {
         this.bizCode = bizCode;
         this.bizMessage = bizMessage;
         this.bizFormateMessage = bizFormateMessage;

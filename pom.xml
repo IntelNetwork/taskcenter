@@ -16,7 +16,7 @@
         <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.smartwork</groupId>
+    <groupId>org.smartwork</groupId>
     <artifactId>smartwork_taskcenter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>smartwork_taskcenter</name>
@@ -26,6 +26,7 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
         <comm.version>1.0-SNAPSHOT</comm.version>
+        <parentPath>E:/workspace/zg-taskcenter/</parentPath>
     </properties>
     <dependencies>
         <dependency>
@@ -122,6 +123,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>org.smartwork.SmartworkApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

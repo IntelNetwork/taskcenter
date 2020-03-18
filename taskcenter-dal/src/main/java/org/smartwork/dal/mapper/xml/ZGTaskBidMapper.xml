@@ -56,6 +56,7 @@
     id, create_by, create_time, update_by, update_time, member_id, membe_name, offe_start_price, 
     offer_end_price, intr, hit_state, task_id
   </sql>
+<<<<<<< HEAD
   <resultMap id="BaseResultMap" type="org.smartwork.dal.entity.ZGTaskBid">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
@@ -74,4 +75,6 @@
     offer_end_price, intr, hit_state
   </sql>
 >>>>>>> c1a4acb33da5ac588c229fecb639c6bd5a72b282
+=======
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
 </mapper>

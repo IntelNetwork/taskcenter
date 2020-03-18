@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * Table: fb_task_order
  */
@@ -24,17 +27,32 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    sn
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "订单编号", example = "")
     private String sn;
 
     /**
      * 订单编号
      * <p>
+=======
+    @ApiModelProperty(value = "订单编号",example="",required = true)
+    @NotEmpty(message = "订单编号为空")
+    private String sn;
+
+    /**
+     * 任务会员编号
+     *
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
      * Table:     fb_task_order
      * Column:    task_member_id
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "订单编号", example = "0")
+=======
+    @ApiModelProperty(value = "任务会员编号",example="0",required = true)
+    @NotNull(message = "任务会员编号为空")
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
     private Long taskMemberId;
 
     /**
@@ -44,7 +62,12 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    task_member_name
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "任务会员名称", example = "")
+=======
+    @ApiModelProperty(value = "任务会员名称",example="",required = true)
+    @NotEmpty(message = "任务会员名称为空")
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
     private String taskMemberName;
 
     /**
@@ -54,7 +77,12 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    task_name
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "任务名称", example = "")
+=======
+    @ApiModelProperty(value = "任务名称",example="",required = true)
+    @NotEmpty(message = "任务名称为空")
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
     private String taskName;
 
     /**
@@ -94,7 +122,12 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    member_id
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "会员ID", example = "0")
+=======
+    @ApiModelProperty(value = "会员ID",example="0",required = true)
+    @NotNull(message = "会员id为空")
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
     private Long memberId;
 
     /**
@@ -104,7 +137,12 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    member_name
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "会员名称", example = "")
+=======
+    @ApiModelProperty(value = "会员名称",example="",required = true)
+    @NotEmpty(message = "会员名称为空")
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
     private String memberName;
 
     /**
@@ -114,8 +152,13 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    order_status
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "0-资金托管1-开始工作2-开始验收3-确认验收99-异常状态", example = "0")
     private Long orderStatus;
+=======
+    @ApiModelProperty(value = "0-资金托管1-开始工作2-开始验收3-确认验收99-异常状态",example="0")
+    private String orderStatus;
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
 
     /**
      * 0-未支付1--已支付3-支付异常
@@ -124,6 +167,11 @@ public class ZGTaskOrder extends BaseEntity {
      * Column:    pay_status
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "0-未支付1--已支付3-支付异常", example = "0")
     private Long payStatus;
+=======
+    @ApiModelProperty(value = "0-未支付1--已支付3-支付异常",example="0")
+    private String payStatus;
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
 }

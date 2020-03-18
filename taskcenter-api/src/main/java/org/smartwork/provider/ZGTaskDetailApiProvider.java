@@ -1,4 +1,4 @@
-package org.smartwork.controller;
+package org.smartwork.provider;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -11,18 +11,14 @@ import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.DataColumnConstant;
-import org.smartwork.comm.enums.BizResultEnum;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.utils.ConvertUtils;
-import org.smartwork.comm.vo.SysUser;
 import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName TaskDetailController
@@ -33,10 +29,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/taskdetail")
-@Api(tags={"任务详情"})
+@RequestMapping("/${smartwork.verision}/taskdetail")
+@Api(tags={"任务大厅--任务详情"})
 @Slf4j
-public class TaskDetailController {
+public class ZGTaskDetailApiProvider {
 
     @Autowired
     private IZGTaskService izgTaskService;
@@ -47,22 +43,24 @@ public class TaskDetailController {
 
     /**
      * @Author xfx
-     *  @Date 18:45 2020/2/28
+     * @Date 18:45 2020/2/28
      * @Param [id] 任务id
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      **/
-    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ApiOperation("查询任务详情")
     @ApiResponses(value = {
-            @ApiResponse(code = 500, message = org.smartwork.comm.vo.Result.TASK_DETAIL_ERROR),
-            @ApiResponse(code = 200, message = org.smartwork.comm.vo.Result.TASK_DETAIL)
+            @ApiResponse(code = 500, message = Result.COMM_ACTION_ERROR_MSG),
+            @ApiResponse(code = 200, message = Result.COMM_ACTION_MSG)
     })
-    public Result<ZGTaskVo> detail(@PathVariable long id, SysUser sysUser){
-        log.debug("传入的参数为"+ JSON.toJSONString(id)+"SysUser:"+sysUser);
+
+    public Result<ZGTaskVo> detail(@RequestParam (required = true)long id,@RequestParam (required = true) long memberId,@RequestParam(required = true) String memberName){
+        log.debug("传入的参数为 id"+ JSON.toJSONString(id)+"memberId"+JSON.toJSONString(memberId)+"memberName"+JSON.toJSONString(memberName));
         Result<ZGTaskVo> result=new Result<ZGTaskVo>();
-        if(ConvertUtils.isEmpty(sysUser)||ConvertUtils.isEmpty(id)){
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+        if(ConvertUtils.isEmpty(id)||ConvertUtils.isEmpty(memberId)||ConvertUtils.isEmpty(memberName)){
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         ZGTaskVo zgTaskVo=new ZGTaskVo();
@@ -70,16 +68,16 @@ public class TaskDetailController {
         BeanUtils.copyProperties(zgTask, zgTaskVo);
         QueryWrapper<ZGTaskBid> qw=new QueryWrapper<ZGTaskBid>();
         qw.eq(DataColumnConstant.TASKID,id);//任务id
-        //获取当前用id
-        qw.eq(DataColumnConstant.MEMBERID,sysUser.getId());
+        //获取当前用户id
+        qw.eq(DataColumnConstant.MEMBERID,memberId);
         /*根据用户id，任务id查询该用户竞标状态*/
         ZGTaskBid zgTaskBid=izgTaskBidService.getOne(qw);
         if(ConvertUtils.isNotEmpty(zgTaskVo)&&ConvertUtils.isNotEmpty(zgTaskBid)){
             zgTaskVo.setHitState(zgTaskBid.getHitState());
             result.setResult(zgTaskVo);
         }else {
-            result.setBizCode(BizResultEnum.EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.EMPTY.getBizMessage());
             return result;
         }
         return  result;

@@ -17,7 +17,17 @@ public interface TaskColumnConstant {
 	/**
 	 * 任务id
 	 */
-	public static final String ID = "id";
+	public static final String TASKID = "task_id";
+
+	/**
+	 * 会员id
+	 */
+	public static final String MEMBERID = "member_id";
+
+	/**
+	 * 任务状态
+	 */
+	public static final String TASKSTATE = "task_state";
 
 	/**
 	 * 任务类型编码

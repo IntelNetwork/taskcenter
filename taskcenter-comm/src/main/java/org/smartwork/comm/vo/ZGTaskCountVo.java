@@ -1,30 +1,25 @@
-package org.smartwork.comm.model;
+package org.smartwork.comm.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 /**
- * 任务Dto
+ * @author lzw
+ * @date 2020/3/6 10:04
  */
 @Data
-@ApiModel(description="任务dto")
-public class ZGTaskDto implements Serializable {
+@ApiModel(description="任务返回VO")
+public class ZGTaskCountVo extends BaseEntity implements Serializable{
 
-    private static final long serialVersionUID = 4382670048543648377L;
-
-    /**
-     * id
-     */
-    @ApiModelProperty(value = "id,添加不传值", example = "0")
-    private Long id;
+    private static final long serialVersionUID = 8543111111605407534L;
 
     /**
      * 图标
@@ -210,23 +205,9 @@ public class ZGTaskDto implements Serializable {
     @NotEmpty(message = "任务描述为空")
     private String des;
 
-
     /**
-     * 任务附件
+     *
      */
-    @ApiModelProperty(value = "任务附件(集合)")
-    List<ZGTaskAttachDto> zgTaskAttachDtos;
-
-    /**
-     * 任务标签中间表
-     */
-    @ApiModelProperty(value = "任务标签中间表(集合)")
-    List<ZGTaskRelTagDto> zgTaskRelTagDtos;
-
-
-    /**
-     * 制定服务方中间表
-     */
-    @ApiModelProperty(value = "制定服务方中间表(集合)")
-    ZGTaskBidDto zgTaskBidDto;
+    @ApiModelProperty(value = "任务竞标人数", example = "0")
+    private Integer count;
 }

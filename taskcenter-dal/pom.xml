@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>smartwork_taskcenter</artifactId>
-        <groupId>com.smartwork</groupId>
+        <groupId>org.smartwork</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -12,11 +12,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.smartwork</groupId>
+            <groupId>org.smartwork</groupId>
             <artifactId>taskcenter-comm</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <!-- 打包跳过测试 -->
@@ -26,31 +27,6 @@
                 <configuration>
                     <classifier>exec</classifier>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.7</version>
-                <configuration>
-                    <configurationFile>
-                        <!-- 该路径就是我们创建generatorConfig.xml文件的全路径，千万别配错了 -->
-                        src/main/resources/generator/generatorConfig.xml
-                    </configurationFile>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.mybatis.generator</groupId>
-                        <artifactId>mybatis-generator-core</artifactId>
-                        <version>1.3.7</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.chrm</groupId>
-                        <artifactId>mybatis-generator-lombok-plugin</artifactId>
-                        <version>0.1-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
         <!--打包XML文件-->

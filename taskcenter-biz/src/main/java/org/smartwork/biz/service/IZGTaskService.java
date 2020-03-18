@@ -1,7 +1,13 @@
 package org.smartwork.biz.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.forbes.comm.model.SysUserDto;
 import org.forbes.comm.vo.Result;
+import org.forbes.comm.vo.UserVo;
+import org.smartwork.comm.model.ZGTaskPageDto;
+import org.smartwork.comm.vo.ZGTaskCountVo;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.comm.model.ZGTaskDto;
 
@@ -21,7 +27,7 @@ public interface IZGTaskService extends IService<ZGTask> {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    Result<ZGTask> addZGTask(ZGTaskDto taskDto);
+    void addZGTask(ZGTaskDto taskDto);
 
 
     /***
@@ -68,4 +74,15 @@ public interface IZGTaskService extends IService<ZGTask> {
      * @修改日期 (请填上修改该文件时的日期)
      */
     void updateTask(ZGTaskDto zgTaskDto);
+
+    /***
+     * pageTasks方法概述:任务分页查询
+     * @param zgTaskPageDto
+     * @return com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.dal.entity.ZGTask>
+     * @创建人 Tom
+     * @创建时间 2020/3/2 13:41
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    IPage<ZGTaskCountVo> pageTasks(IPage<ZGTaskCountVo> page, ZGTaskPageDto zgTaskPageDto);
 }

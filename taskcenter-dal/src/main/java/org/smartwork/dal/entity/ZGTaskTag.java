@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.forbes.comm.entity.BaseEntity;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * Table: fb_zg_task_tag
  */
@@ -21,6 +23,11 @@ public class ZGTaskTag extends BaseEntity {
      * Column:    name
      * Nullable:  true
      */
+<<<<<<< HEAD
     @ApiModelProperty(value = "标签名称", example = "")
+=======
+    @ApiModelProperty(value = "标签名称",example="",required = true)
+    @NotEmpty(message = "标签名称为空")
+>>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
     private String name;
 }

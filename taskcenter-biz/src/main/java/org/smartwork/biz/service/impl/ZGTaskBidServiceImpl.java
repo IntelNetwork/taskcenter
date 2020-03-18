@@ -2,21 +2,26 @@ package org.smartwork.biz.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.utils.ConvertUtils;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
-import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGBigAttach;
 import org.smartwork.dal.entity.ZGTaskBid;
+import org.smartwork.dal.mapper.ZGBigAttachMapper;
 import org.smartwork.dal.mapper.ZGTaskBidMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid> implements IZGTaskBidService {
 
+    @Autowired
+    ZGBigAttachMapper zgBigAttachMapper;
 
     /***
      * Bidding方法概述:立即竞标关联附件
@@ -27,8 +32,9 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public Result<ZGTaskBid> Bidding(ZGTaskBidDto taskBidDto) {
+    public void Bidding(ZGTaskBidDto taskBidDto) {
 
         ZGTaskBid taskBid = new ZGTaskBid();
         BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
@@ -46,10 +52,11 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
                 attach.setCnName(temp.getCnName());
                 attach.setFilePath(temp.getFilePath());
                 attach.setSuffix(temp.getSuffix());
+                //执行添加操作
+                zgBigAttachMapper.insert(attach);
             });
         }
 
-        return null;
     }
 
 

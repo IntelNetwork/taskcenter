@@ -8,21 +8,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 任务状态枚举
+ * @description 任务模块
+ * @author xfx
+ * @date 2020/3/4 10:07
  */
-public enum TaskStateEnum {
+public enum TaskHitstateEnum {
 
-    UNPUBLISHED("0", "未发布"),
-    CHECK("1", "待审核"),
-    LOWER_SHELF("2", "已下架"),
-    RELEASE("3", "发布（竞标中）"),
-    SELECTION_STANDARD("4", "选标中"),
-    TRUST_REWARD("5", "托管赏金"),
-    START_UP("6", "开始工作"),
-    SUBMIT_ACCEPTANCE("7", "提交验收"),
-    CONFIRMATION_ACCEPTANCE("8", "确认验收"),
-    PAYMENT_GRATUITY("9", "支付赏金"),
-    TASK_OVERDUE("99", "任务过期");
+    HITSTATE_NO("0", "未中标"),
+    HITSTATE("1", "已中标"),
+    CHECK("2","审核中");
 
     /***编码
      */
@@ -71,7 +65,7 @@ public enum TaskStateEnum {
      * @param code
      * @param name
      */
-    TaskStateEnum(String code, String name) {
+    TaskHitstateEnum(String code, String name) {
         this.code = code;
         this.name = name;
     }

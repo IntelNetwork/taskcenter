@@ -1,4 +1,4 @@
-package org.smartwork.controller;
+package org.smartwork.provider;
 
 import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
@@ -6,13 +6,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
+import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.UpdateValid;
-import org.smartwork.comm.enums.BizResultEnum;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.YesNoEnum;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.comm.utils.ConvertUtils;
-import org.smartwork.comm.vo.Result;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -29,10 +29,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @修改日期 (请填上修改该文件时的日期)
  */
 @RestController
-@RequestMapping("/api-bid")
-@Api(tags = {"任务竞标记录API控制层"})
+@RequestMapping("/${smartwork.verision}/bid")
+@Api(tags = {"任务竞标,服务方确认竞标结果"})
 @Slf4j
-public class ZGTaskBidApiController {
+public class ZGTaskBidApiProvider {
 
 
     @Autowired
@@ -49,17 +49,14 @@ public class ZGTaskBidApiController {
      */
     @RequestMapping(value = "/bidding", method = RequestMethod.PUT)
     @ApiOperation("立即竞标")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_RELEASE_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_RELEASE)
-    })
+
     public Result<ZGTaskBidDto> updateTaskBid(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBidDto taskBidDto) {
         log.debug("传入参数为:" + JSON.toJSONString(taskBidDto));
         Result<ZGTaskBidDto> result = new Result<ZGTaskBidDto>();
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(taskBidDto)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         //更改状态 未中标(已参与,等待审核)
@@ -82,17 +79,13 @@ public class ZGTaskBidApiController {
      */
     @RequestMapping(value = "/confirm-result", method = RequestMethod.PUT)
     @ApiOperation("服务方确认竞标结果")
-    @ApiResponses(value = {
-            @ApiResponse(code = 500, message = Result.TASK_CONFIRM_RESULT_ERROR),
-            @ApiResponse(code = 200, message = Result.TASK_CONFIRM_RESULT)
-    })
     public Result<ZGTaskBid> confirmResult(@RequestBody @Validated(value = UpdateValid.class) ZGTaskBid taskBid) {
         log.debug("传入参数为:" + JSON.toJSONString(taskBid));
         Result<ZGTaskBid> result = new Result<ZGTaskBid>();
         //传入实体类对象为空
         if (ConvertUtils.isEmpty(taskBid)) {
-            result.setBizCode(BizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(BizResultEnum.ENTITY_EMPTY.getBizMessage());
+            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
         //更改状态 已中标(已参与,等待审核)
