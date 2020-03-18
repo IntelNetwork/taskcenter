@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="934e8a86-5dff-44ad-95e9-12e2271b8a4a" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/taskcenter-client/src/main/java/org/smartwork/service/IMchApiNotifyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-client/src/main/java/org/smartwork/service/IMchApiNotifyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-provider/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-provider/src/main/resources/application-prod.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +249,7 @@
     <property name="ignore_missing_gitignore" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/taskcenter-comm/src/main/java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../smartwork_gateway" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.38505748" />
@@ -373,7 +374,7 @@
       <workItem from="1583887760076" duration="21602000" />
       <workItem from="1584513311271" duration="1363000" />
       <workItem from="1584514703704" duration="2669000" />
-      <workItem from="1584527416038" duration="1295000" />
+      <workItem from="1584527416038" duration="2303000" />
     </task>
     <task id="LOCAL-00001" summary="生成service和impl">
       <created>1582872218858</created>
@@ -682,10 +683,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="158" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582898856382" />
-    <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1582876075966">
+    <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1584532013067">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582876075966" />
+    <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1584532013067" />
     <state width="1237" height="176" key="GridCell.Tab.0.bottom" timestamp="1582898949871">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
