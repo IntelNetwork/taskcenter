@@ -6,11 +6,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
-import org.forbes.cache.UserCache;
 import org.forbes.comm.model.BasePageDto;
 import org.forbes.comm.model.SysUser;
 import org.forbes.comm.vo.Result;
-import org.forbes.comm.vo.SysUserVo;
 import org.smartwork.biz.service.*;
 import org.smartwork.comm.constant.*;
 import org.smartwork.comm.enums.*;
@@ -100,7 +98,7 @@ public class ZGTaskAPIProvider {
             taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         }
         //加入需求方ID,用户名
-        SysUserVo user = UserContext.getSysUser();
+        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         taskDto.setMemberName(user.getUsername());
         taskDto.setMemberId(user.getId());
         //给定任务类型编码
