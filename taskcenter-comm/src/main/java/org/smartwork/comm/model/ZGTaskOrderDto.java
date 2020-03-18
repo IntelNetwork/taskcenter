@@ -62,7 +62,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    task_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务名称",example="",required = true)
+    @ApiModelProperty(value = "任务名称",example="")
     @NotEmpty(message = "任务名称为空")
     private String taskName;
 
@@ -104,7 +104,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员ID",example="0",required = true)
+    @ApiModelProperty(value = "会员ID")
     @NotNull(message = "会员id为空")
     private Long memberId;
 

@@ -113,7 +113,9 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         ZGTaskBid zgTaskBid = zgTaskBidExtMapper.selectByTaskId(zgTaskOrderDto.getTaskId());
         zgTaskOrderDto.setTaskMemberId(zgTaskBid.getMemberId());
         zgTaskOrderDto.setTaskMemberName(zgTaskBid.getMembeName());
-
+        //加入需求方(当前登录用户)ID
+        SysUser user = UserCache.getSysUser(zgTaskOrderDto.getMemberName());
+        zgTaskOrderDto.setMemberId(user.getId());
         //临时自定义提点比例
         BigDecimal proportion = BigDecimal.valueOf(0.02);
         //提点金额计算
