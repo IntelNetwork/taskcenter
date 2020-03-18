@@ -26,16 +26,9 @@ public class ZGTaskTag extends BaseEntity {
      * Column:    name
      * Nullable:  true
      */
-<<<<<<< HEAD
-    @ApiModelProperty(value = "标签名称", example = "")
-=======
     @ApiModelProperty(value = "标签名称",example="",required = true)
     @NotEmpty(message = "标签名称为空")
-<<<<<<< HEAD
->>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
-=======
     @QueryColumn(column = "name",sqlKeyword = SqlKeyword.LIKE)
     @ValidUnique(column = "name",bizCode = "005006001",bizErrorMsg = "%s标签名称已经存在")
->>>>>>> ff4fe57aee4664f9b08028366befd56a6f84d35f
     private String name;
 }

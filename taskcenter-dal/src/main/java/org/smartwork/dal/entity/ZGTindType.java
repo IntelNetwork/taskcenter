@@ -26,16 +26,9 @@ public class ZGTindType extends BaseEntity {
      * Column:    name
      * Nullable:  true
      */
-<<<<<<< HEAD
-    @ApiModelProperty(value = "行业类型名称", example = "")
-=======
     @ApiModelProperty(value = "行业类型名称",example="",required = true)
     @NotEmpty(message = "行业类型名称为空")
-<<<<<<< HEAD
->>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
-=======
     @ValidUnique(column = "name",bizCode = "005004001",bizErrorMsg = "%s行业类型名称已经存在")
     @QueryColumn(column = "name",sqlKeyword = SqlKeyword.LIKE)
->>>>>>> ff4fe57aee4664f9b08028366befd56a6f84d35f
     private String name;
 }
