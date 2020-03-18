@@ -62,29 +62,6 @@ public class ZGTaskOrderApiProvider {
         return result;
     }
 
-    /***
-     * updateOrderState方法概述:订单状态修改
-     * @param zgTaskOrder
-     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
-     * @创建人 Tom
-     * @创建时间 2020/3/5 10:04
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/update-order-state", method = RequestMethod.PUT)
-    @ApiOperation("订单状态修改(支付成功后)")
-    public Result<ZGTaskOrder> updateOrderState(@RequestBody @Validated(value=UpdateValid.class) ZGTaskOrder zgTaskOrder){
-        Result<ZGTaskOrder> result=new Result<ZGTaskOrder>();
-        //传入实体类对象为空
-        if (ConvertUtils.isEmpty(zgTaskOrder)) {
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        izgTaskOrderService.updateOrderState(zgTaskOrder);
-        result.setResult(zgTaskOrder);
-        return result;
-    }
 
     /***
      * selectOrder方法概述:通过会员id和任务id查询订单详情
@@ -108,6 +85,21 @@ public class ZGTaskOrderApiProvider {
         ZGTaskOrder zgTaskOrder=izgTaskOrderService.selectOrder(taskId,memberId);
         result.setResult(zgTaskOrder);
         return result;
+    }
+
+    /***
+     * 概述:支付后修改任务和订单状态
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/18
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/modify-order-status", method = RequestMethod.PUT)
+    @ApiOperation("支付后修改任务和订单状态")
+    public Result<ZGTaskOrder> modifyOrderStatus(String sn){
+    Result<ZGTaskOrder> result = new Result<>();
+    izgTaskOrderService.modifyOrderStatus(sn);
+    return result;
     }
 
 }

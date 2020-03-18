@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @description 任务模块
+ * @description 竞标记录状态
  * @author xfx
  * @date 2020/3/4 10:07
  */

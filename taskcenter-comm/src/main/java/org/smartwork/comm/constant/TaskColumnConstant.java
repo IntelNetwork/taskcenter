@@ -7,6 +7,10 @@ public interface TaskColumnConstant {
 	/**
 	 * 任务类型名称
 	 */
+	public static final String ID = "id";
+	/**
+	 * 任务类型名称
+	 */
 	public static final String TTYPENAME = "t_type_name";
 
 	/**

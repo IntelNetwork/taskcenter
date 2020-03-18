@@ -17,10 +17,7 @@ import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.*;
 import org.smartwork.comm.vo.ZGTaskCountVo;
 import org.smartwork.comm.vo.ZGTaskVo;
-import org.smartwork.dal.entity.ZGTask;
-import org.smartwork.dal.entity.ZGTaskAttach;
-import org.smartwork.dal.entity.ZGTaskBid;
-import org.smartwork.dal.entity.ZGTaskRelTag;
+import org.smartwork.dal.entity.*;
 import org.smartwork.dal.mapper.ZGTaskAttachMapper;
 import org.smartwork.dal.mapper.ZGTaskBidMapper;
 import org.smartwork.dal.mapper.ZGTaskMapper;
@@ -106,79 +103,6 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             zgTaskBidMapper.insert(taskBid);
         }
 
-    }
-
-
-    /***
-     * trustReward方法概述:支付成功后修改状态
-     * @param  taskDto
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/2/29
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public Result<ZGTaskDto> trustReward(ZGTaskDto taskDto) {
-        Result<ZGTaskDto> result = new Result<ZGTaskDto>();
-        ZGTask task = new ZGTask();
-        BeanCopier.create(ZGTaskDto.class, ZGTask.class, false)
-                .copy(taskDto, task, null);
-        //任务状态为支付赏金,并且订单状态为未支付,才可以修改支付状态
-        if(taskDto.getTaskState().equalsIgnoreCase(TaskStateEnum.PAYMENT_GRATUITY.getCode()) &&
-                taskDto.getZgTaskOrderDto().getPayStatus().equalsIgnoreCase(TaskPayStateEnum.UN_PAY.getCode())){
-            //任务改为托管赏金
-            task.setTaskState(TaskStateEnum.TRUST_REWARD.getCode());
-            //订单改为已支付
-            taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.PAID.getCode());
-            baseMapper.updateById(task);
-        }else {
-            //订单操作异常
-            throw new ForbesException(TaskBizResultEnum.ORDER_STATUS_ABNORMAL.getBizCode(),
-            String.format(TaskBizResultEnum.ORDER_STATUS_ABNORMAL.getBizMessage()));
-        }
-
-        result.setResult(taskDto);
-        return result;
-    }
-
-
-    /***
-     * removeTask方法概述:删除任务,关联附件
-     * @param id
-     * @return
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/3
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void removeTask(String id) {
-        baseMapper.deleteById(id);
-        //同时删除任务附件
-        zgTaskAttachMapper.delete(new QueryWrapper<ZGTaskAttach>().eq(TaskAttachColumnConstant.TASK_ID, id));
-    }
-
-
-    /***
-     * removeTasks方法概述:批量删除任务,关联附件
-     * @param ids
-     * @return
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/3
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void removeTasks(String ids) {
-        List idList = Arrays.asList(ids.split(CommonConstant.SEPARATOR));
-        idList.stream().forEach(id -> {
-            baseMapper.deleteById((Serializable) id);
-            //删除所有附件
-            zgTaskAttachMapper.delete(new QueryWrapper<ZGTaskAttach>().eq(TaskAttachColumnConstant.TASK_ID, id));
-        });
     }
 
 

@@ -21,6 +21,10 @@
             <groupId>org.smartwork</groupId>
             <artifactId>taskcenter-comm</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency> <dependency>
+            <groupId>org.smartwork</groupId>
+            <artifactId>taskcenter-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

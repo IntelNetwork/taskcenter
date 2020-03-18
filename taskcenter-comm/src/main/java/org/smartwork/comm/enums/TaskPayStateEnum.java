@@ -8,13 +8,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 任务状态枚举
+ * 任务订单支付状态枚举
  */
 public enum TaskPayStateEnum {
 
-    UN_PAY("1", "未支付"),
-    PAID("2", "已支付"),
-    PAY_DEBUFF("3", "支付异常");
+    UN_PAY("0", "未支付"),
+    PAID("1", "已支付"),
+    PAY_DEBUFF("2", "支付异常");
 
     /***编码
      */

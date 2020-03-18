@@ -6,8 +6,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
-import org.forbes.comm.exception.ForbesException;
+import org.forbes.cache.UserCache;
 import org.forbes.comm.model.BasePageDto;
+import org.forbes.comm.model.SysUser;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.*;
 import org.smartwork.comm.constant.*;
@@ -20,13 +21,11 @@ import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.entity.ZGTaskOrder;
+import org.smartwork.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.smartwork.comm.model.ZGTaskDto;
-
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -92,15 +91,17 @@ public class ZGTaskAPIProvider {
             izgTaskOrderService.saveOrder(taskDto);
         }
         if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
-            //有指定服务方直接生成订单,修改状态为托管金额接口(需要支付成功后)
+            //如果指定了服务方
             //更改状态 任务:支付赏金,订单:未支付
             taskDto.setTaskState(TaskStateEnum.PAYMENT_GRATUITY.getCode());
             taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-            taskService.trustReward(taskDto);
         } else {
             //给定默认状态 待审核
             taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         }
+        //加入需求方ID
+        SysUser user = UserCache.getSysUser(taskDto.getMemberName());
+        taskDto.setMemberId(user.getId());
         //给定任务类型编码
         taskDto.setTypeCode(UUIDGenerator.generateString(8));
         //进入业务类继续操作
@@ -171,31 +172,6 @@ public class ZGTaskAPIProvider {
         return result;
     }
 
-
-    /***
-     * 方法概述:支付后修改状态
-     * @param taskDto
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @RequestMapping(value = "/trust-reward", method = RequestMethod.PUT)
-    @ApiOperation("支付后修改状态")
-    public Result<ZGTaskDto> trustReward(@RequestBody @Validated(value = UpdateValid.class) ZGTaskDto taskDto) {
-        log.debug("传入参数为:" + JSON.toJSONString(taskDto));
-        Result<ZGTaskDto> result = new Result<ZGTaskDto>();
-        //传入实体类对象为空
-        if (ConvertUtils.isEmpty(taskDto)) {
-            result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
-            return result;
-        }
-        taskService.trustReward(taskDto);
-        result.setResult(taskDto);
-        log.debug("返回内容为:" + JSON.toJSONString(taskDto));
-        return result;
-    }
 
 
     /***
@@ -350,9 +326,9 @@ public class ZGTaskAPIProvider {
         Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
         //查询任务信息
         List<ZGTaskVo> zgTaskVos = taskService.getRelease(memberId);
-        zgTaskVos.stream().forEach(zgTaskVo ->{
-            int count=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID,zgTaskVo.getId()));
-            if (count>0 ) {
+        zgTaskVos.stream().forEach(zgTaskVo -> {
+            int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, zgTaskVo.getId()));
+            if (count > 0) {
                 ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(zgTaskVo.getId(), memberId);
                 zgTaskVo.setTaskMemberName(zgTaskOrder.getTaskMemberName());
             }
@@ -379,9 +355,9 @@ public class ZGTaskAPIProvider {
         Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
         //查询任务信息
         List<ZGTaskVo> zgTaskVos = taskService.getPass(memberId);
-        zgTaskVos.stream().forEach(zgTaskVo ->{
-            int count=izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID,zgTaskVo.getId()));
-            if (count>0 ) {
+        zgTaskVos.stream().forEach(zgTaskVo -> {
+            int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, zgTaskVo.getId()));
+            if (count > 0) {
                 ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(zgTaskVo.getId(), memberId);
                 zgTaskVo.setTaskMemberName(zgTaskOrder.getTaskMemberName());
             }
