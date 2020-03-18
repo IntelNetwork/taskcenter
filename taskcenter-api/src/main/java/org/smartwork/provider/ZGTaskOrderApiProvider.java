@@ -64,10 +64,7 @@ public class ZGTaskOrderApiProvider {
     @RequestMapping(value = "/select-order", method = RequestMethod.GET)
     @ApiOperation("通过会员id和任务id查询订单详情")
     @ApiImplicitParams(
-            value = {
-                    @ApiImplicitParam(name="taskId",value = "任务id"),
-                    @ApiImplicitParam(name="memberId",value = "会员id")
-            }
+            @ApiImplicitParam(name="taskId",value = "任务id")
     )
     public Result<ZGTaskOrder> selectOrder(@RequestParam(value = "taskId", required = true) Long taskId) {
         Result<ZGTaskOrder> result = new Result<ZGTaskOrder>();
