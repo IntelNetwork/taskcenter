@@ -53,6 +53,13 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
     public void modifyOrderStatus(String sn) {
         ZGTaskOrder order = zgTaskOrderExtMapper.selectOne(new QueryWrapper<ZGTaskOrder>().eq(TaskOrderCommonConstant.SN, sn));
         ZGTask task = taskMapper.selectOne(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.ID, order.getTaskId()));
+
+        if(!task.getTaskState().equalsIgnoreCase(TaskStateEnum.PAYMENT_GRATUITY.getCode())){
+            //只有在任务状态为6订单支付的时候再能修改
+            throw new ForbesException(TaskBizResultEnum.TASK_NOT_PAY.getBizCode()
+            , String.format(TaskBizResultEnum.TASK_NOT_PAY.getBizMessage()));
+        }
+
         //修改任务订单状态
         order.setOrderStatus(TaskOrderStateEnum.FUND_TRUSTEESHIP.getCode());
         order.setPayStatus(TaskPayStateEnum.PAID.getCode());

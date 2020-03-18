@@ -3,17 +3,22 @@ package org.smartwork.biz.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.swagger.models.auth.In;
+import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.utils.ConvertUtils;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.comm.constant.DataColumnConstant;
+import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskHitstateEnum;
+import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.comm.vo.ZGTaskBidVo;
 import org.smartwork.dal.entity.ZGBigAttach;
+import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.mapper.ZGBigAttachMapper;
 import org.smartwork.dal.mapper.ZGTaskBidMapper;
+import org.smartwork.dal.mapper.ZGTaskMapper;
 import org.smartwork.dal.mapper.ext.ZGTaskBidExtMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
@@ -30,6 +35,9 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
 
     @Autowired
     ZGTaskBidExtMapper taskBidExtMapper;
+
+    @Autowired
+    ZGTaskMapper taskMapper;
 
     /***
      * Bidding方法概述:立即竞标关联附件
@@ -86,6 +94,16 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
             zgTaskBid.setHitState(TaskHitstateEnum.HITSTATE_NO.getCode());
             baseMapper.updateById(zgTaskBid);
         });
+
+        ZGTask zgTask=taskMapper.selectById(taskId);
+        if(ConvertUtils.isEmpty(zgTask)){
+            //任务不存在
+            throw new ForbesException(TaskBizResultEnum.TASK_NOT_EXISTS.getBizCode()
+                    ,String.format(TaskBizResultEnum.TASK_NOT_EXISTS.getBizMessage()));
+        }
+        //修改任务状态为支付赏金
+        zgTask.setTaskState(TaskStateEnum.PAYMENT_GRATUITY.getCode());
+        taskMapper.updateById(zgTask);
     }
 
 
