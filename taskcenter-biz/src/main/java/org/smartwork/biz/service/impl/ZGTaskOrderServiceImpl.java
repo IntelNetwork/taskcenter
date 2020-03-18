@@ -3,8 +3,10 @@ package org.smartwork.biz.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.cache.UserCache;
+import org.forbes.comm.constant.UserContext;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.SysUser;
+import org.forbes.comm.vo.SysUserVo;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
@@ -114,11 +116,11 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         zgTaskOrderDto.setTaskMemberId(zgTaskBid.getMemberId());
         zgTaskOrderDto.setTaskMemberName(zgTaskBid.getMembeName());
 
-        //加入需求方(当前登录用户)ID
-        SysUserVo user = UserContext.getSysUser();
-        zgTaskOrderDto.setMemberId(user.getId());
+        //加入需求方ID,用户名
+        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         zgTaskOrderDto.setMemberName(user.getUsername());
-
+        zgTaskOrderDto.setMemberId(user.getId());
+        
         //临时自定义提点比例
         BigDecimal proportion = BigDecimal.valueOf(0.02);
         //提点金额计算

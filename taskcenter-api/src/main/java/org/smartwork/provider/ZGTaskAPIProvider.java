@@ -6,9 +6,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
+import org.forbes.comm.constant.UserContext;
 import org.forbes.comm.model.BasePageDto;
 import org.forbes.comm.model.SysUser;
 import org.forbes.comm.vo.Result;
+import org.forbes.comm.vo.SysUserVo;
 import org.smartwork.biz.service.*;
 import org.smartwork.comm.constant.*;
 import org.smartwork.comm.enums.*;
@@ -297,6 +299,10 @@ public class ZGTaskAPIProvider {
             task.setTaskState(TaskStateEnum.CHECK.getCode());
             //给定任务类型编码
             task.setTypeCode(UUIDGenerator.generateString(8));
+            //加入需求方ID,用户名
+            SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
+            task.setMemberName(user.getUsername());
+            task.setMemberId(user.getId());
             taskService.updateTask(task);
             result.setResult(task);
         } else {
@@ -320,8 +326,8 @@ public class ZGTaskAPIProvider {
     @ApiOperation("通过会员id查询任务已发布信息")
     public Result<List<ZGTaskVo>> getByRelease() {
         Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
-        //加入需求方(当前登录用户)ID
-        SysUserVo user = UserContext.getSysUser();
+        //加入需求方ID,用户名
+        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         Long memberId=user.getId();
         //查询任务信息
         List<ZGTaskVo> zgTaskVos = taskService.getRelease(memberId);
@@ -349,10 +355,9 @@ public class ZGTaskAPIProvider {
     @ApiOperation("通过会员id查询已完成任务信息")
     public Result<List<ZGTaskVo>> getPass() {
         Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
-        //加入需求方(当前登录用户)ID
-        SysUserVo user = UserContext.getSysUser();
+        //加入需求方ID,用户名
+        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         Long memberId=user.getId();
-
         //查询任务信息
         List<ZGTaskVo> zgTaskVos = taskService.getPass(memberId);
         zgTaskVos.stream().forEach(zgTaskVo -> {

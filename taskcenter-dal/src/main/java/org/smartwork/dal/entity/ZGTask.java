@@ -35,7 +35,7 @@ public class ZGTask extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "图标", example = "")
-    private String tIcon;
+    private String icon;
 
     /**
      * 任务名称
@@ -69,7 +69,7 @@ public class ZGTask extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "任务起价格", example = "0.00")
-    private BigDecimal tStartPrice;
+    private BigDecimal startPrice;
 
     /**
      * 可否议价
@@ -123,11 +123,9 @@ public class ZGTask extends BaseEntity {
      * 任务期限
      * <p>
      * Table:     fb_zg_task
-     * Column:    t_period
+     * Column:    period
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务期限", example = "0")
-    private Long tPeriod;
     @ApiModelProperty(value = "任务期限,单位(月)", example = "0",required = true)
     @NotNull(message = "任务期限为空")
     private Long period;

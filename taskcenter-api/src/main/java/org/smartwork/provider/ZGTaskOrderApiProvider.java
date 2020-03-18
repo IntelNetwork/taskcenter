@@ -6,28 +6,15 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
-import org.forbes.comm.utils.ConvertUtils;
+import org.forbes.comm.model.SysUser;
 import org.forbes.comm.vo.Result;
-import org.forbes.comm.vo.SysUserVo;
 import org.smartwork.biz.service.IZGTaskOrderService;
-import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.SaveValid;
-import org.smartwork.comm.constant.UpdateValid;
-import org.smartwork.comm.constant.UserContext;
-import org.smartwork.comm.enums.TaskBizResultEnum;
-import org.smartwork.comm.enums.TaskOrderStateEnum;
-import org.smartwork.comm.enums.TaskPayStateEnum;
 import org.smartwork.comm.model.ZGTaskOrderDto;
-import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.List;
-
 /**
  * @author lzw
  * @date 2020/3/5 9:13
@@ -84,8 +71,8 @@ public class ZGTaskOrderApiProvider {
     )
     public Result<ZGTaskOrder> selectOrder(@RequestParam(value = "taskId", required = true) Long taskId) {
         Result<ZGTaskOrder> result = new Result<ZGTaskOrder>();
-        //加入需求方(当前登录用户)ID
-        SysUserVo user = UserContext.getSysUser();
+        //加入需求方ID,用户名
+        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         Long memberId=user.getId();
         ZGTaskOrder zgTaskOrder=izgTaskOrderService.selectOrder(taskId,memberId);
         result.setResult(zgTaskOrder);
