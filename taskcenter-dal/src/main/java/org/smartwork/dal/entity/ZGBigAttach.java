@@ -1,9 +1,11 @@
 package org.smartwork.dal.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.core.enums.SqlKeyword;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.forbes.comm.annotations.QueryColumn;
 import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -37,6 +39,7 @@ public class ZGBigAttach extends BaseEntity {
      */
     @ApiModelProperty(value = "中文名",example="",required = true)
     @NotEmpty(message = "中文名为空")
+    @QueryColumn(column = "cn_name",sqlKeyword = SqlKeyword.LIKE)
     private String cnName;
 
     /**

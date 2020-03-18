@@ -1,6 +1,7 @@
 package org.smartwork.dal.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.core.enums.SqlKeyword;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import lombok.Data;
+import org.forbes.comm.annotations.QueryColumn;
 import org.forbes.comm.annotations.ValidUnique;
 import org.forbes.comm.constant.SaveValid;
 import org.forbes.comm.constant.UpdateValid;
@@ -44,6 +46,7 @@ public class ZGTask extends BaseEntity {
     @ApiModelProperty(value = "任务名称",required = true)
     @ValidUnique(column = "ad_code",bizCode = "005001004",bizErrorMsg = "%s编码已经存在")
     @NotEmpty(message = "任务名称为空",groups = {UpdateValid.class, SaveValid.class})
+    @QueryColumn(column = "name",sqlKeyword = SqlKeyword.LIKE)
     private String name;
 
     /**
@@ -173,6 +176,7 @@ public class ZGTask extends BaseEntity {
      */
     @ApiModelProperty(value = "任务类型名称", example = "",required = true)
     @NotEmpty(message = "任务类型名称为空")
+    @QueryColumn(column = "type_name",sqlKeyword = SqlKeyword.LIKE)
     private String typeName;
 
     /**

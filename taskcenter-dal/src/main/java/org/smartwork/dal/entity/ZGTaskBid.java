@@ -1,10 +1,12 @@
 package org.smartwork.dal.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.core.enums.SqlKeyword;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import lombok.Data;
+import org.forbes.comm.annotations.QueryColumn;
 import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -50,6 +52,7 @@ public class ZGTaskBid extends BaseEntity {
      */
     @ApiModelProperty(value = "低价",example="0.00",required = true)
     @NotNull(message = "低价为空")
+    @QueryColumn(column = "offe_start_price",sqlKeyword = SqlKeyword.GE)
     private BigDecimal offeStartPrice;
 
     /**
@@ -61,6 +64,7 @@ public class ZGTaskBid extends BaseEntity {
      */
     @ApiModelProperty(value = "止价",example="0.00",required = true)
     @NotNull(message = "止价为空")
+    @QueryColumn(column = "offer_end_price",sqlKeyword = SqlKeyword.LE)
     private BigDecimal offerEndPrice;
 
     /**
@@ -81,6 +85,7 @@ public class ZGTaskBid extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "0-否1-已中标2审核中(添加不传值)",example="false")
+    @QueryColumn(column = "hit_state",sqlKeyword = SqlKeyword.EQ)
     private String hitState;
 
     /**
