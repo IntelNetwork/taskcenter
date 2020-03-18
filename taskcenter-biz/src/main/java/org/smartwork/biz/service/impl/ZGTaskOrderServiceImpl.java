@@ -17,6 +17,7 @@ import org.smartwork.comm.enums.TaskPayStateEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGTaskDto;
 import org.smartwork.comm.model.ZGTaskOrderDto;
+import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.entity.ZGTaskOrder;
@@ -45,21 +46,26 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
 
     /**
      * 支付后修改任务和订单状态
-     *  nhy
+     * nhy
+     *
      * @param sn
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void modifyOrderStatus(String sn) {
         ZGTaskOrder order = zgTaskOrderExtMapper.selectOne(new QueryWrapper<ZGTaskOrder>().eq(TaskOrderCommonConstant.SN, sn));
-        ZGTask task = taskMapper.selectOne(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.ID, order.getTaskId()));
 
-        if(!task.getTaskState().equalsIgnoreCase(TaskStateEnum.PAYMENT_GRATUITY.getCode())){
-            //只有在任务状态为6订单支付的时候再能修改
-            throw new ForbesException(TaskBizResultEnum.TASK_NOT_PAY.getBizCode()
-            , String.format(TaskBizResultEnum.TASK_NOT_PAY.getBizMessage()));
+        if (ConvertUtils.isEmpty(order)) {
+            //订单不存在
+            throw new ForbesException(TaskBizResultEnum.ORDER_NOT_EXISTS.getBizCode()
+                    , String.format(TaskBizResultEnum.ORDER_NOT_EXISTS.getBizMessage()));
         }
-
+        ZGTask task = taskMapper.selectOne(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.ID, order.getTaskId()));
+        if (ConvertUtils.isEmpty(task)) {
+            //订单对应的任务不存在
+            throw new ForbesException(TaskBizResultEnum.ORDER_TO_TASK_NOT_EXISTS.getBizCode()
+                    , String.format(TaskBizResultEnum.ORDER_TO_TASK_NOT_EXISTS.getBizMessage()));
+        }
         //修改任务订单状态
         order.setOrderStatus(TaskOrderStateEnum.FUND_TRUSTEESHIP.getCode());
         order.setPayStatus(TaskPayStateEnum.PAID.getCode());
@@ -139,7 +145,7 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
         BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
                 .copy(zgTaskOrderDto, zgTaskOrder, null);
-        if ( zgTaskOrderDto.getActualAmount().intValue() > 0) {
+        if (zgTaskOrderDto.getActualAmount().intValue() > 0) {
             baseMapper.insert(zgTaskOrder);
         } else {
             throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()
