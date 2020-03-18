@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="934e8a86-5dff-44ad-95e9-12e2271b8a4a" name="Default Changelist" comment="Default Changelist">
-      <change beforePath="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/consumer/TaskConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-api/src/main/java/org/smartwork/consumer/TaskConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskcenter-client/src/main/java/org/smartwork/service/IMchApiNotifyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/taskcenter-client/src/main/java/org/smartwork/service/IMchApiNotifyService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,7 +373,7 @@
       <workItem from="1583887760076" duration="21602000" />
       <workItem from="1584513311271" duration="1363000" />
       <workItem from="1584514703704" duration="2669000" />
-      <workItem from="1584527416038" duration="215000" />
+      <workItem from="1584527416038" duration="1262000" />
     </task>
     <task id="LOCAL-00001" summary="生成service和impl">
       <created>1582872218858</created>
