@@ -10,6 +10,7 @@ import org.smartwork.comm.vo.ZGTaskCountVo;
 import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.comm.model.ZGTaskDto;
+import org.smartwork.dal.entity.ZGTaskOrder;
 
 import java.util.List;
 
@@ -30,39 +31,6 @@ public interface IZGTaskService extends IService<ZGTask> {
     void addZGTask(ZGTaskDto taskDto);
 
 
-    /***
-     * trustReward方法概述:支付成功后修改状态
-     * @param  task
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/2/29
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    Result<ZGTaskDto> trustReward(ZGTaskDto task);
-
-
-    /***
-     * removeTask方法概述:删除任务,关联附件
-     * @param id
-     * @return
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/3
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    void removeTask(String id);
-
-
-    /***
-     * removeTasks方法概述:批量删除任务,关联附件
-     * @param ids
-     * @return
-     * @创建人 niehy(Frunk)
-     * @创建时间 2019/12/24
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    void removeTasks(String ids);
 
     /***
      * selectAllTask方法概述:获取最新成交动态

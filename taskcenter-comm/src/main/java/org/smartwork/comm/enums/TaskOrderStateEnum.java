@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 任务状态枚举
+ * 任务订单状态枚举
  */
 public enum TaskOrderStateEnum {
 
