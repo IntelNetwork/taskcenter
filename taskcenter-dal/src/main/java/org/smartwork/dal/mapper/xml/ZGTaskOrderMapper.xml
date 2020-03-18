@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.smartwork.dal.mapper.ZGTaskOrderMapper">
-<<<<<<< HEAD
     <resultMap id="BaseResultMap" type="org.smartwork.dal.entity.ZGTaskOrder">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
@@ -25,30 +24,4 @@
         task_name, host_amount, actual_amount, point_amount, member_id, member_name, order_status,
         pay_status
     </sql>
-=======
-  <resultMap id="BaseResultMap" type="org.smartwork.dal.entity.ZGTaskOrder">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="sn" jdbcType="VARCHAR" property="sn" />
-    <result column="task_member_id" jdbcType="BIGINT" property="taskMemberId" />
-    <result column="task_member_name" jdbcType="VARCHAR" property="taskMemberName" />
-    <result column="task_id" jdbcType="BIGINT" property="taskId" />
-    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
-    <result column="host_amount" jdbcType="DECIMAL" property="hostAmount" />
-    <result column="actual_amount" jdbcType="DECIMAL" property="actualAmount" />
-    <result column="point_amount" jdbcType="DECIMAL" property="pointAmount" />
-    <result column="member_id" jdbcType="BIGINT" property="memberId" />
-    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
-    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
-    <result column="pay_status" jdbcType="VARCHAR" property="payStatus" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, create_by, create_time, update_by, update_time, sn, task_member_id, task_member_name, 
-    task_id,task_name, host_amount, actual_amount, point_amount, member_id, member_name, order_status,
-    pay_status
-  </sql>
->>>>>>> 6232757370a9bb111f84727dbc9a18cc5fbc83fb
 </mapper>

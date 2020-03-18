@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.cache.UserCache;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.SysUser;
+import org.forbes.comm.vo.SysUserVo;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
 import org.smartwork.comm.constant.TaskOrderCommonConstant;
+import org.smartwork.comm.constant.UserContext;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskOrderStateEnum;
 import org.smartwork.comm.enums.TaskPayStateEnum;
@@ -76,9 +78,9 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
                 .copy(taskDto.getZgTaskOrderDto(), zgTaskOrder, null);
         if (taskDto.getZgTaskOrderDto().getHostAmount().intValue() > 0 && taskDto.getZgTaskOrderDto().getPointAmount().intValue() > 0 && taskDto.getZgTaskOrderDto().getActualAmount().intValue() > 0) {
             //加入需求方(当前登录用户)ID
-            SysUser user = UserCache.getSysUser(taskDto.getMemberName());
+            SysUserVo user = UserContext.getSysUser();
             zgTaskOrder.setMemberId(user.getId());
-
+            zgTaskOrder.setMemberName(user.getUsername());
             baseMapper.insert(zgTaskOrder);
         } else {
             throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()

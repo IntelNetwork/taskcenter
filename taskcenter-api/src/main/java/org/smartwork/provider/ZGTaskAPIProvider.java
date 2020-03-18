@@ -22,7 +22,6 @@ import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.smartwork.dal.entity.ZGTaskOrder;
-import org.smartwork.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -100,8 +99,9 @@ public class ZGTaskAPIProvider {
             //给定默认状态 待审核
             taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         }
-        //加入需求方ID
+        //加入需求方ID,用户名
         SysUserVo user = UserContext.getSysUser();
+        taskDto.setMemberName(user.getUsername());
         taskDto.setMemberId(user.getId());
         //给定任务类型编码
         taskDto.setTypeCode(UUIDGenerator.generateString(8));

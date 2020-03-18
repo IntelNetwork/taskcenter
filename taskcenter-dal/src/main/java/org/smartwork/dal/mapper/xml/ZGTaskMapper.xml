@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.smartwork.dal.mapper.ZGTaskMapper">
-<<<<<<< HEAD
     <resultMap id="BaseResultMap" type="org.smartwork.dal.entity.ZGTask">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
@@ -36,35 +35,4 @@
     <sql id="Blob_Column_List">
         t_des
     </sql>
-=======
-  <resultMap id="BaseResultMap" type="org.smartwork.dal.entity.ZGTask">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="icon" jdbcType="VARCHAR" property="icon" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="skills_required" jdbcType="VARCHAR" property="skillsRequired" />
-    <result column="start_price" jdbcType="DECIMAL" property="startPrice" />
-    <result column="is_bargain" jdbcType="CHAR" property="isBargain" />
-    <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
-    <result column="end_price" jdbcType="DECIMAL" property="endPrice" />
-    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="period" jdbcType="BIGINT" property="period" />
-    <result column="member_id" jdbcType="BIGINT" property="memberId" />
-    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
-    <result column="task_state" jdbcType="VARCHAR" property="taskState" />
-    <result column="industry_id" jdbcType="BIGINT" property="industryId" />
-    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
-    <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
-    <result column="industry" jdbcType="VARCHAR" property="industry" />
-    <result column="des" jdbcType="LONGVARCHAR" property="des" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, create_by, create_time, update_by, update_time, t_icon, name, skills_required,
-    start_price, is_bargain, release_time, end_price, end_time, period, member_id,
-    member_name, task_state, industry_id, type_name, type_code, industry, des
-  </sql>
->>>>>>> c1a4acb33da5ac588c229fecb639c6bd5a72b282
 </mapper>

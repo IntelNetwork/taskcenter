@@ -139,8 +139,6 @@ public class ZGTask extends BaseEntity {
      * Column:    member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "会员ID", example = "0",required = true)
-    @NotNull(message = "会员ID为空")
     @ApiModelProperty(value = "会员ID", example = "0")
     private Long memberId;
 

@@ -1,6 +1,6 @@
 package org.smartwork;
 
-import org.mybatis.spring.annotation.MapperScan;
+import org.smartwork.comm.constant.CommonConstant;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication(scanBasePackages={"org.forbes","org.smartwork"})
 @EnableDiscoveryClient
 @EnableSwagger2
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"org.forbes","org.smartwork"})
 public class SmartWorkApplication {
     /***启动类
      * main方法慨述:
