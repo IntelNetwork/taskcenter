@@ -6,20 +6,32 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="taskcenter-api" />
-        <module name="taskcenter-biz" />
-        <module name="taskcenter-comm" />
         <module name="taskcenter-dal" />
+        <module name="taskcenter-comm" />
+        <module name="taskcenter-api" />
         <module name="taskcenter-provider" />
+        <module name="taskcenter-biz" />
+        <module name="taskcenter-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="smartwork_taskcenter" target="1.8" />
       <module name="taskcenter-api" target="1.8" />
       <module name="taskcenter-biz" target="1.8" />
+      <module name="taskcenter-client" target="1.8" />
       <module name="taskcenter-comm" target="1.8" />
       <module name="taskcenter-dal" target="1.8" />
       <module name="taskcenter-provider" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="taskcenter-api" options="-parameters" />
+      <module name="taskcenter-biz" options="-parameters" />
+      <module name="taskcenter-client" options="-parameters" />
+      <module name="taskcenter-comm" options="-parameters" />
+      <module name="taskcenter-dal" options="-parameters" />
+      <module name="taskcenter-provider" options="-parameters" />
+    </option>
   </component>
 </project>
