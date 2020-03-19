@@ -242,10 +242,13 @@ public class ZGTaskAPIProvider {
         pageUsers.getRecords().stream().forEach(task -> {
             int count = zgTaskBidService.count(new QueryWrapper<ZGTaskBid>().eq(TaskColumnConstant.TASKID, task.getId()));
             task.setCount(count);
+            List<String> tagNames = zgTaskRelTagService.selectTagName(task.getId());
+            task.setTagNames(tagNames);
         });
         result.setResult(pageUsers);
         return result;
     }
+
 
     /***
      * selectAllTask方法概述:获取最新成交动态

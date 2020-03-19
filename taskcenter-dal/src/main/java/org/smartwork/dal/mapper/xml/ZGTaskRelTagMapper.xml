@@ -14,4 +14,7 @@
     <sql id="Base_Column_List">
         id, create_by, create_time, update_by, update_time, ta_id, task_id, name
     </sql>
+    <select id="selectTagName" resultType="String" parameterType="Long">
+        SELECT name FROM fb_zg_task_rel_tag WHERE task_id=#{taskId}
+    </select>
 </mapper>

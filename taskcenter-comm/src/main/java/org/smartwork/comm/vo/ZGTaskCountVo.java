@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author lzw
@@ -210,4 +211,11 @@ public class ZGTaskCountVo extends BaseEntity implements Serializable{
      */
     @ApiModelProperty(value = "任务竞标人数", example = "0")
     private Integer count;
+
+    /**
+     *标签名称集合
+     */
+    @ApiModelProperty(value = "标签名称集合", example = "0")
+    List<String> tagNames;
+
 }
