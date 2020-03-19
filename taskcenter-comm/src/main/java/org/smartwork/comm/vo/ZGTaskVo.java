@@ -202,7 +202,7 @@ public class ZGTaskVo extends BaseEntity implements Serializable {
 
 
     /**
-     * 0-否1-已中标
+     * 0-否1-已中标2审核中 null 未参与竞标
      *
      * Table:     fb_zg_task_bid
      * Column:    hit_state

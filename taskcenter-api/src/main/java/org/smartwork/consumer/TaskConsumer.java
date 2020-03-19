@@ -19,6 +19,7 @@ import java.util.Optional;
  */
 @Slf4j
 @Component
+@ConditionalOnProperty(value = "spring.kafka.bootstrap-servers")
 public class TaskConsumer {
 
     @Autowired
