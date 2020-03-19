@@ -91,7 +91,7 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
                 .copy(taskDto.getZgTaskOrderDto(), zgTaskOrder, null);
         if (taskDto.getZgTaskOrderDto().getActualAmount().intValue() > 0) {
             //加入需求方(当前登录用户)ID
-            SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
+            SysUser user = UserContext.getSysUser();
             zgTaskOrder.setMemberId(user.getId());
             zgTaskOrder.setMemberName(user.getUsername());
             baseMapper.insert(zgTaskOrder);
