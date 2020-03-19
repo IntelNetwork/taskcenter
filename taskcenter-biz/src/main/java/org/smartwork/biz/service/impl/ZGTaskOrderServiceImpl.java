@@ -146,6 +146,12 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
                 .copy(zgTaskOrderDto, zgTaskOrder, null);
         if (zgTaskOrderDto.getActualAmount().intValue() > 0) {
+            ZGTask task = taskMapper.selectOne(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.ID, zgTaskOrderDto.getTaskId()));
+            if(!task.getTaskState().equalsIgnoreCase(TaskStateEnum.PAYMENT_GRATUITY.getCode())){
+                //只有在任务状态为6支付赏金的时候才能生成订单
+                throw new ForbesException(TaskBizResultEnum.TASK_NOT_PAY.getBizCode()
+                        , String.format(TaskBizResultEnum.TASK_NOT_PAY.getBizMessage()));
+            }
             baseMapper.insert(zgTaskOrder);
         } else {
             throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()
