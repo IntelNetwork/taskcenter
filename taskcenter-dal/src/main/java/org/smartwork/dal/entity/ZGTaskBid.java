@@ -89,7 +89,7 @@ public class ZGTaskBid extends BaseEntity {
      * Nullable:  true
      */
 
-    @ApiModelProperty(value = "0-否1-已中标",example="0")
+    @ApiModelProperty(value = "0-否1-已中标2-选标中",example="0")
     @QueryColumn(column = "hit_state",sqlKeyword = SqlKeyword.EQ)
     private String hitState;
 

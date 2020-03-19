@@ -84,7 +84,7 @@ public class ZGTaskBidDto implements Serializable{
      * Column:    hit_state
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0-否1-已中标2审核中(添加不传值)",example="false")
+    @ApiModelProperty(value = "0-否1-已中标2选标中(添加不传值)",example="false")
     private String hitState;
 
     /**
