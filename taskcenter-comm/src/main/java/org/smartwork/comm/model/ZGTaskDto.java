@@ -87,7 +87,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    release_time
      * Nullable:  true
      */
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @ApiModelProperty(value = "发布时间,添加不传值")
     @NotNull(message = "发布时间为空")
     private Date releaseTime;
@@ -99,7 +99,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_end_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务止价", example = "0.00",required = true)
+    @ApiModelProperty(value = "任务止价", example = "0.00", required = true)
     @NotNull(message = "任务起价格为空")
     private BigDecimal endPrice;
 
@@ -110,7 +110,7 @@ public class ZGTaskDto implements Serializable {
      * Column:    t_end_time
      * Nullable:  true
      */
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @ApiModelProperty(value = "竞标结束时间", example = "0", required = true)
     private Date endTime;
 
@@ -208,6 +208,29 @@ public class ZGTaskDto implements Serializable {
     @ApiModelProperty(value = "任务描述", required = true)
     @NotEmpty(message = "任务描述为空")
     private String des;
+
+
+    /**
+     * 是否驻场0否1是
+     * <p>
+     * Table:     fb_zg_task
+     * Column:    t_des
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "是否驻场0否1是", required = true)
+    @NotEmpty(message = "是否驻场0否1是")
+    private String isStationing;
+
+    /**
+     * 0不限1个人2团队
+     * <p>
+     * Table:     fb_zg_task
+     * Column:    t_des
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "0不限1个人2团队", required = true)
+    @NotEmpty(message = "0不限1个人2团队")
+    private String providerReq;
 
 
     /**

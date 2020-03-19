@@ -216,4 +216,26 @@ public class ZGTask extends BaseEntity {
     @ApiModelProperty(value = "任务描述",required = true)
     @NotEmpty(message = "任务描述为空")
     private String des;
+
+    /**
+     * 是否驻场0否1是
+     * <p>
+     * Table:     fb_zg_task
+     * Column:    t_des
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "是否驻场0否1是",required = true)
+    @NotEmpty(message = "是否驻场0否1是")
+    private String isStationing;
+
+    /**
+     * 0不限1个人2团队
+     * <p>
+     * Table:     fb_zg_task
+     * Column:    t_des
+     * Nullable:  true
+     */
+    @ApiModelProperty(value = "0不限1个人2团队",required = true)
+    @NotEmpty(message = "0不限1个人2团队")
+    private String providerReq;
 }
