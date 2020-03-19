@@ -140,8 +140,8 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             zgTaskRelTagDtos.stream().forEach(zgTaskRelTagDto -> {
                 ZGTaskRelTag zgTaskRelTag = new ZGTaskRelTag();
                 zgTaskRelTag.setTaskId(zgTaskId);
-                zgTaskRelTag.setTaId(zgTaskRelTag.getTaId());
-                zgTaskRelTag.setName(zgTaskRelTag.getName());
+                zgTaskRelTag.setTaId(zgTaskRelTagDto.getTaId());
+                zgTaskRelTag.setName(zgTaskRelTagDto.getName());
                 zgTaskRelTagMapper.insert(zgTaskRelTag);
             });
         }
@@ -151,9 +151,9 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             zgTaskAttachDtos.stream().forEach(zgTaskAttachDto -> {
                 ZGTaskAttach zgTaskAttach = new ZGTaskAttach();
                 zgTaskAttach.setTaskId(zgTaskId);
-                zgTaskAttach.setCnName(zgTaskAttach.getCnName());
-                zgTaskAttach.setSuffix(zgTaskAttach.getSuffix());
-                zgTaskAttach.setFilePath(zgTaskAttach.getFilePath());
+                zgTaskAttach.setCnName(zgTaskAttachDto.getCnName());
+                zgTaskAttach.setSuffix(zgTaskAttachDto.getSuffix());
+                zgTaskAttach.setFilePath(zgTaskAttachDto.getFilePath());
                 zgTaskAttachMapper.insert(zgTaskAttach);
             });
         }
