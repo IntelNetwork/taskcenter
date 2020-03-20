@@ -30,8 +30,6 @@ public interface IZGTaskService extends IService<ZGTask> {
      */
     void addZGTask(ZGTaskDto taskDto);
 
-
-
     /***
      * selectAllTask方法概述:获取最新成交动态
      * @param
@@ -74,7 +72,7 @@ public interface IZGTaskService extends IService<ZGTask> {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    List<ZGTaskVo> getRelease(Long memberId);
+    IPage<ZGTaskVo> getRelease(IPage<ZGTaskCountVo> page,Long memberId);
 
     /***
      * getByRelease方法概述:通过会员id查询已完成任务信息
@@ -85,5 +83,7 @@ public interface IZGTaskService extends IService<ZGTask> {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    List<ZGTaskVo> getPass(Long memberId);
+    IPage<ZGTaskVo> getPass(IPage<ZGTaskCountVo> page,Long memberId);
+
+    IPage<ZGTaskVo> getCheck(IPage<ZGTaskCountVo> page,Long memberId);
 }

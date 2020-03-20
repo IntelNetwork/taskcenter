@@ -316,7 +316,7 @@ public class ZGTaskAPIProvider {
     }
 
     /***
-     * getByRelease方法概述:通过会员id查询已发布任务信息
+     * getByRelease方法概述:通过会员id查询已发布任务信息(分页)
      * @param
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
@@ -325,27 +325,27 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/get-release", method = RequestMethod.GET)
-    @ApiOperation("通过会员id查询任务已发布信息")
-    public Result<List<ZGTaskVo>> getByRelease() {
-        Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
+    @ApiOperation("通过会员id查询已发布任务信息(分页)")
+    public Result<IPage<ZGTaskVo>> getByRelease(BasePageDto basePageDto) {
+        Result<IPage<ZGTaskVo>> result = new Result<IPage<ZGTaskVo>>();
+        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
         //加入需求方ID,用户名
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         Long memberId=user.getId();
-        //查询任务信息
-        List<ZGTaskVo> zgTaskVos = taskService.getRelease(memberId);
-        zgTaskVos.stream().forEach(zgTaskVo -> {
-            int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, zgTaskVo.getId()));
+        IPage<ZGTaskVo> pageUsers = taskService.getRelease(page, memberId);
+        pageUsers.getRecords().stream().forEach(task -> {
+            int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, task.getId()));
             if (count > 0) {
-                ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(zgTaskVo.getId(), memberId);
-                zgTaskVo.setTaskMemberName(zgTaskOrder.getTaskMemberName());
+                ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(task.getId(), memberId);
+                task.setTaskMemberName(zgTaskOrder.getTaskMemberName());
             }
         });
-        result.setResult(zgTaskVos);
+        result.setResult(pageUsers);
         return result;
     }
 
     /***
-     * getPass方法概述:通过会员id查询已完成任务信息
+     * getPass方法概述:通过会员id查询已完成任务信息(分页)
      * @param
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
@@ -354,23 +354,51 @@ public class ZGTaskAPIProvider {
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/get-pass", method = RequestMethod.GET)
-    @ApiOperation("通过会员id查询已完成任务信息")
-    public Result<List<ZGTaskVo>> getPass() {
-        Result<List<ZGTaskVo>> result = new Result<List<ZGTaskVo>>();
+    @ApiOperation("通过会员id查询已完成任务信息(分页)")
+    public Result<IPage<ZGTaskVo>> getPass(BasePageDto basePageDto) {
+        Result<IPage<ZGTaskVo>> result = new Result<IPage<ZGTaskVo>>();
+        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
         //加入需求方ID,用户名
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         Long memberId=user.getId();
-        //查询任务信息
-        List<ZGTaskVo> zgTaskVos = taskService.getPass(memberId);
-        zgTaskVos.stream().forEach(zgTaskVo -> {
-            int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, zgTaskVo.getId()));
+        IPage<ZGTaskVo> pageUsers = taskService.getPass(page, memberId);
+        pageUsers.getRecords().stream().forEach(task -> {
+            int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, task.getId()));
             if (count > 0) {
-                ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(zgTaskVo.getId(), memberId);
-                zgTaskVo.setTaskMemberName(zgTaskOrder.getTaskMemberName());
+                ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(task.getId(), memberId);
+                task.setTaskMemberName(zgTaskOrder.getTaskMemberName());
             }
         });
-        result.setResult(zgTaskVos);
+        result.setResult(pageUsers);
         return result;
     }
 
+    /***
+     * getCheck方法概述:通过会员id查询待审核任务信息(分页)
+     * @param basePageDto
+     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.comm.vo.ZGTaskVo>>
+     * @创建人 Tom
+     * @创建时间 2020/3/20 10:51
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/get-check", method = RequestMethod.GET)
+    @ApiOperation("通过会员id查询待审核任务信息(分页)")
+    public Result<IPage<ZGTaskVo>> getCheck(BasePageDto basePageDto,@RequestParam(value = "memberId") Long memberId) {
+        Result<IPage<ZGTaskVo>> result = new Result<IPage<ZGTaskVo>>();
+        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
+//        //加入需求方ID,用户名
+//        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
+//        Long memberId=user.getId();
+        IPage<ZGTaskVo> pageUsers = taskService.getCheck(page, memberId);
+        pageUsers.getRecords().stream().forEach(task -> {
+            int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, task.getId()));
+            if (count > 0) {
+                ZGTaskOrder zgTaskOrder = izgTaskOrderService.selectOrder(task.getId(), memberId);
+                task.setTaskMemberName(zgTaskOrder.getTaskMemberName());
+            }
+        });
+        result.setResult(pageUsers);
+        return result;
+    }
 }

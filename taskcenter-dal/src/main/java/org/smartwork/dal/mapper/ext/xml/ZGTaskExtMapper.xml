@@ -80,4 +80,13 @@
     fb_zg_task
     WHERE member_id=#{memberId} AND task_state = 5
   </select>
+
+  <!--通过会员id查询待审核任务信息 -->
+  <select id="getCheck" resultType="org.smartwork.comm.vo.ZGTaskVo">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    fb_zg_task
+    WHERE member_id=#{memberId} AND task_state = 0
+  </select>
 </mapper>
