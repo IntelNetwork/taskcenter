@@ -91,6 +91,11 @@ public class ZGTaskAPIProvider {
         }
         //加入需求方ID,用户名
         SysUser user = UserContext.getSysUser();
+        if(ConvertUtils.isEmpty(user)){
+            //用户为空
+            result.setBizCode(TaskBizResultEnum.USER_EMPTY.getBizCode());
+            result.setMessage(TaskBizResultEnum.USER_EMPTY.getBizMessage());
+        }
         taskDto.setMemberName(user.getUsername());
         taskDto.setMemberId(user.getId());
         //给定任务类型编码
