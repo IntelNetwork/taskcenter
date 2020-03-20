@@ -69,7 +69,7 @@
     <include refid="Base_Column_List" />
     FROM
     fb_zg_task
-    WHERE member_id=#{memberId} AND task_state = 1
+    WHERE member_id=#{memberId} AND task_state != 5 AND task_state != 0
   </select>
 
   <!--通过会员id查询已完成任务信息 -->
