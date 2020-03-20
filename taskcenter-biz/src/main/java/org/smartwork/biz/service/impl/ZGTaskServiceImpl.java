@@ -183,7 +183,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
-    public IPage<ZGTaskVo> getRelease(IPage<ZGTaskCountVo> page,Long memberId) {
+    public IPage<ZGTaskVo> getRelease(IPage<ZGTaskVo> page,Long memberId) {
         return zgTaskExtMapper.getRelease(page,memberId);
     }
 
@@ -197,12 +197,12 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
-    public IPage<ZGTaskVo> getPass(IPage<ZGTaskCountVo> page,Long memberId) {
+    public IPage<ZGTaskVo> getPass(IPage<ZGTaskVo> page,Long memberId) {
         return zgTaskExtMapper.getPass(page,memberId);
     }
 
     @Override
-    public IPage<ZGTaskVo> getCheck(IPage<ZGTaskCountVo> page, Long memberId) {
+    public IPage<ZGTaskVo> getCheck(IPage<ZGTaskVo> page, Long memberId) {
         return zgTaskExtMapper.getCheck(page,memberId);
     }
 }

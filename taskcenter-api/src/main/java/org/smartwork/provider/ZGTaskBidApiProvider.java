@@ -2,14 +2,15 @@ package org.smartwork.provider;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.enums.BizResultEnum;
+import org.forbes.comm.model.BasePageDto;
+import org.forbes.comm.model.SysUser;
 import org.forbes.comm.vo.Result;
-import org.smartwork.biz.service.IZGBigAttachService;
-import org.smartwork.biz.service.IZGTaskAttachService;
-import org.smartwork.biz.service.IZGTaskBidService;
-import org.smartwork.biz.service.IZGTaskService;
+import org.smartwork.biz.service.*;
 import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.constant.TaskAttachColumnConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
@@ -20,11 +21,9 @@ import org.smartwork.comm.enums.YesNoEnum;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
 import org.smartwork.comm.utils.ConvertUtils;
+import org.smartwork.comm.vo.ZGBidTaskVo;
 import org.smartwork.comm.vo.ZGTaskVo;
-import org.smartwork.dal.entity.ZGBigAttach;
-import org.smartwork.dal.entity.ZGTaskAttach;
-import org.smartwork.dal.entity.ZGTaskBid;
-import org.smartwork.dal.entity.ZGTaskOrder;
+import org.smartwork.dal.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +52,7 @@ public class ZGTaskBidApiProvider {
 
     @Autowired
     IZGBigAttachService bigAttachService;
+
 
     /***
      * 方法概述:查看竞标详情
@@ -142,6 +142,37 @@ public class ZGTaskBidApiProvider {
         return result;
     }
 
-
+    /***
+     * getBidding方法概述:通过会员id查询已竞标任务信息(分页)
+     * @param basePageDto
+     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.comm.vo.ZGBidTaskVo>>
+     * @创建人 Tom
+     * @创建时间 2020/3/20 14:20
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/get-bidding", method = RequestMethod.GET)
+    @ApiOperation("通过会员id查询已竞标任务信息(分页)")
+    public Result<IPage<ZGBidTaskVo>> getBidding(BasePageDto basePageDto,@RequestParam(value = "memberId",required = true)Long memberId) {
+        Result<IPage<ZGBidTaskVo>> result = new Result<IPage<ZGBidTaskVo>>();
+        IPage<ZGBidTaskVo> page = new Page<ZGBidTaskVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
+//        //加入需求方ID,用户名
+//        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
+//        Long memberId=user.getId();
+        IPage<ZGBidTaskVo> pageUsers = taskBidService.getBidding(page, memberId);
+        pageUsers.getRecords().stream().forEach(taskBid -> {
+            List<ZGTask> zgTasks=taskService.list(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.ID,taskBid.getTaskId()));
+            zgTasks.stream().forEach(task ->{
+                //发布方id
+                taskBid.setReleaseMemberId(task.getMemberId());
+                //发布方名称
+                taskBid.setReleaseMemberName(task.getMemberName());
+                //任务名称
+                taskBid.setName(task.getName());
+            });
+        });
+        result.setResult(pageUsers);
+        return result;
+    }
 
 }

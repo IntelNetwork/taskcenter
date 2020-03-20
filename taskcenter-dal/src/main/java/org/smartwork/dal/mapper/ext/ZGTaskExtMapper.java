@@ -43,7 +43,7 @@ public interface ZGTaskExtMapper extends BaseMapper<ZGTask> {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    IPage<ZGTaskVo> getRelease(IPage<ZGTaskCountVo> page, @Param("memberId")Long memberId);
+    IPage<ZGTaskVo> getRelease(IPage<ZGTaskVo> page, @Param("memberId")Long memberId);
 
     /***
      * getByRelease方法概述:通过会员id查询已完成任务信息
@@ -54,7 +54,16 @@ public interface ZGTaskExtMapper extends BaseMapper<ZGTask> {
      * @修改人 (修改了该文件，请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
-    IPage<ZGTaskVo> getPass(IPage<ZGTaskCountVo> page, @Param("memberId")Long memberId);
+    IPage<ZGTaskVo> getPass(IPage<ZGTaskVo> page, @Param("memberId")Long memberId);
 
-    IPage<ZGTaskVo> getCheck(IPage<ZGTaskCountVo> page, @Param("memberId")Long memberId);
+    /***
+     * getCheck方法概述:通过会员id查询待审核任务信息(分页)
+     * @param
+     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.comm.vo.ZGTaskVo>>
+     * @创建人 Tom
+     * @创建时间 2020/3/20 10:51
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    IPage<ZGTaskVo> getCheck(IPage<ZGTaskVo> page, @Param("memberId")Long memberId);
 }

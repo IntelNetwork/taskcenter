@@ -328,7 +328,7 @@ public class ZGTaskAPIProvider {
     @ApiOperation("通过会员id查询已发布任务信息(分页)")
     public Result<IPage<ZGTaskVo>> getByRelease(BasePageDto basePageDto) {
         Result<IPage<ZGTaskVo>> result = new Result<IPage<ZGTaskVo>>();
-        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
+        IPage<ZGTaskVo> page = new Page<ZGTaskVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
         //加入需求方ID,用户名
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         Long memberId=user.getId();
@@ -357,7 +357,7 @@ public class ZGTaskAPIProvider {
     @ApiOperation("通过会员id查询已完成任务信息(分页)")
     public Result<IPage<ZGTaskVo>> getPass(BasePageDto basePageDto) {
         Result<IPage<ZGTaskVo>> result = new Result<IPage<ZGTaskVo>>();
-        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
+        IPage<ZGTaskVo> page = new Page<ZGTaskVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
         //加入需求方ID,用户名
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         Long memberId=user.getId();
@@ -386,7 +386,7 @@ public class ZGTaskAPIProvider {
     @ApiOperation("通过会员id查询待审核任务信息(分页)")
     public Result<IPage<ZGTaskVo>> getCheck(BasePageDto basePageDto) {
         Result<IPage<ZGTaskVo>> result = new Result<IPage<ZGTaskVo>>();
-        IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
+        IPage<ZGTaskVo> page = new Page<ZGTaskVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
         //加入需求方ID,用户名
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
         Long memberId=user.getId();

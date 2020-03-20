@@ -1,6 +1,7 @@
 package org.smartwork.biz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.swagger.models.auth.In;
 import org.forbes.comm.exception.ForbesException;
@@ -12,7 +13,10 @@ import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.ZGBigAttachDto;
 import org.smartwork.comm.model.ZGTaskBidDto;
+import org.smartwork.comm.vo.ZGBidTaskVo;
 import org.smartwork.comm.vo.ZGTaskBidVo;
+import org.smartwork.comm.vo.ZGTaskCountVo;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGBigAttach;
 import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
@@ -151,5 +155,10 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
             zgTaskBidVoTemp.setAmount(taskBidExtMapper.selectCount(query));
         } );
         return zgTaskBidVos;
+    }
+
+    @Override
+    public IPage<ZGBidTaskVo> getBidding(IPage<ZGBidTaskVo> page, Long memberId) {
+        return taskBidExtMapper.getBidding(page,memberId);
     }
 }

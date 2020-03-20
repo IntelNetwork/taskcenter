@@ -1,8 +1,12 @@
 package org.smartwork.dal.mapper.ext;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.apache.ibatis.annotations.Param;
 import org.smartwork.comm.model.ZGTaskBidDto;
+import org.smartwork.comm.vo.ZGBidTaskVo;
+import org.smartwork.comm.vo.ZGTaskBidVo;
+import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTaskBid;
 
 public interface ZGTaskBidExtMapper extends BaseMapper<ZGTaskBid> {
@@ -28,4 +32,6 @@ public interface ZGTaskBidExtMapper extends BaseMapper<ZGTaskBid> {
      * @修改日期 (请填上修改该文件时的日期)
      */
     ZGTaskBid selectByTaskId(@Param(value = "taskId") Long taskId);
+
+    IPage<ZGBidTaskVo> getBidding(IPage<ZGBidTaskVo> page, @Param("memberId")Long memberId);
 }

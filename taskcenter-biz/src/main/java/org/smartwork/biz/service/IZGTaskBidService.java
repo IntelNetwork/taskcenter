@@ -1,10 +1,13 @@
 package org.smartwork.biz.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
 import org.forbes.comm.vo.Result;
 import org.smartwork.comm.model.ZGTaskBidDto;
+import org.smartwork.comm.vo.ZGBidTaskVo;
 import org.smartwork.comm.vo.ZGTaskBidVo;
+import org.smartwork.comm.vo.ZGTaskCountVo;
 import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.ZGTaskBid;
 
@@ -65,4 +68,6 @@ public interface IZGTaskBidService extends IService<ZGTaskBid> {
      * @return 
      */
     List<ZGTaskBidVo> taskBidlist(List<ZGTaskBidVo> zgTaskBidVos);
+
+    IPage<ZGBidTaskVo> getBidding(IPage<ZGBidTaskVo> page, Long memberId);
 }

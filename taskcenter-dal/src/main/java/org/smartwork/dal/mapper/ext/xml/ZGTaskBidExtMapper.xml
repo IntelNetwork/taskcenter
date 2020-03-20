@@ -34,4 +34,13 @@
     fb_zg_task_bid
     WHERE task_id=#{taskId} AND hit_state=1
   </select>
+
+  <!--通过会员id查询已竞标任务信息 -->
+  <select id="getBidding" resultType="org.smartwork.comm.vo.ZGBidTaskVo">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    fb_zg_task_bid
+    WHERE member_id=#{memberId}
+  </select>
 </mapper>
