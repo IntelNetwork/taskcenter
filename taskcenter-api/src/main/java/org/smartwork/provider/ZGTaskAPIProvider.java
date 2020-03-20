@@ -384,12 +384,12 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/get-check", method = RequestMethod.GET)
     @ApiOperation("通过会员id查询待审核任务信息(分页)")
-    public Result<IPage<ZGTaskVo>> getCheck(BasePageDto basePageDto,@RequestParam(value = "memberId") Long memberId) {
+    public Result<IPage<ZGTaskVo>> getCheck(BasePageDto basePageDto) {
         Result<IPage<ZGTaskVo>> result = new Result<IPage<ZGTaskVo>>();
         IPage<ZGTaskCountVo> page = new Page<ZGTaskCountVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
-//        //加入需求方ID,用户名
-//        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
-//        Long memberId=user.getId();
+        //加入需求方ID,用户名
+        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
+        Long memberId=user.getId();
         IPage<ZGTaskVo> pageUsers = taskService.getCheck(page, memberId);
         pageUsers.getRecords().stream().forEach(task -> {
             int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, task.getId()));
