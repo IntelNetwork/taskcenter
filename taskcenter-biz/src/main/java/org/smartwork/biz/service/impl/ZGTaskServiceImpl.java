@@ -103,7 +103,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
         if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
             //加入任务ID
             taskDto.getZgTaskOrderDto().setTaskId(task.getId());
-            taskOrderService.addOrder(taskDto.getZgTaskOrderDto());
+            taskOrderService.addOrderPro(taskDto.getZgTaskOrderDto());
         }
     }
 
