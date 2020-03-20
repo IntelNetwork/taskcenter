@@ -84,7 +84,7 @@ public class ZGTaskBidDto implements Serializable{
      * Column:    hit_state
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0-否1-已中标2选标中(添加不传值)",example="false")
+    @ApiModelProperty(value = "0-否1-已中标2选标中(添加不传值)",example="2")
     private String hitState;
 
     /**
@@ -95,8 +95,7 @@ public class ZGTaskBidDto implements Serializable{
      * Nullable:  true
      */
 
-    @ApiModelProperty(value = "任务id",example="0",required = true)
-    @NotNull(message = "任务id为空")
+    @ApiModelProperty(value = "任务id",example="0")
     private Long taskId;
 
     /**

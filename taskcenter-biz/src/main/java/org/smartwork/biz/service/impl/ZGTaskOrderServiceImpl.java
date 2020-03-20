@@ -75,32 +75,6 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         taskMapper.updateById(task);
     }
 
-    /***
-     * saveOrder方法概述:指定服务方生成订单
-     * @param taskDto
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/10
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void saveOrder(ZGTaskDto taskDto) {
-        ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
-        BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
-                .copy(taskDto.getZgTaskOrderDto(), zgTaskOrder, null);
-        if (taskDto.getZgTaskOrderDto().getActualAmount().intValue() > 0) {
-            //加入需求方(当前登录用户)ID
-            SysUser user = UserContext.getSysUser();
-            zgTaskOrder.setMemberId(user.getId());
-            zgTaskOrder.setMemberName(user.getUsername());
-            baseMapper.insert(zgTaskOrder);
-        } else {
-            throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()
-                    , String.format(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage()));
-        }
-    }
-
 
     /***
      * selectOrder方法概述:根据任务id和会员id查询订单详情
@@ -129,8 +103,7 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
     @Override
     public void addOrder(ZGTaskOrderDto zgTaskOrderDto) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
-        SimpleDateFormat dateFormat2 = new SimpleDateFormat(CommonConstant.YEAR_MONTH_FORMAT);
-        zgTaskOrderDto.setSn(dateFormat.format(System.currentTimeMillis()) + dateFormat2.format(System.currentTimeMillis()));
+        zgTaskOrderDto.setSn(TaskOrderCommonConstant.AUTO_UID+ dateFormat.format(System.currentTimeMillis()));
         zgTaskOrderDto.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
         zgTaskOrderDto.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
         //查询任务会员

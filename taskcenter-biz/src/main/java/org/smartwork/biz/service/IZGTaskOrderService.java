@@ -18,16 +18,6 @@ public interface IZGTaskOrderService extends IService<ZGTaskOrder> {
      */
     void modifyOrderStatus(String sn);
 
-    /***
-     * saveOrder方法概述:指定服务方生成订单
-     * @param taskDto
-     * @创建人 niehy(Frunk)
-     * @创建时间 2020/3/10
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    void saveOrder(ZGTaskDto taskDto);
-
 
     /***
      * selectOrder方法概述:根据任务id和会员id查询订单详情
@@ -40,5 +30,13 @@ public interface IZGTaskOrderService extends IService<ZGTaskOrder> {
      */
     ZGTaskOrder selectOrder(Long taskId,Long memberId);
 
+
+    /***
+     * addOrder方法概述:生成订单
+     * @创建人 Tom
+     * @创建时间 2020/3/5 10:04
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
     void addOrder(ZGTaskOrderDto zgTaskOrderDto);
 }

@@ -80,15 +80,6 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
             return result;
         }
-        //如果指定人不为空,说明此任务已指定服务方,不再走竞标流程,直接生成订单
-        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
-
-            taskDto.getZgTaskOrderDto().setSn(TaskOrderCommonConstant.AUTO_UID+dateFormat.format(result.getTimestamp()));
-            taskDto.getZgTaskOrderDto().setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
-            taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-            izgTaskOrderService.saveOrder(taskDto);
-        }
         if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
             //如果指定了服务方
             //更改状态 任务:支付赏金,订单:未支付

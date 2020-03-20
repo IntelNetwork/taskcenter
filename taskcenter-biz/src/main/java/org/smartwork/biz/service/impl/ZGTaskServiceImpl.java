@@ -3,33 +3,22 @@ package org.smartwork.biz.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.utils.ConvertUtils;
-import org.forbes.comm.vo.Result;
+import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.biz.service.IZGTaskService;
-import org.smartwork.comm.constant.CommonConstant;
-import org.smartwork.comm.constant.TaskAttachColumnConstant;
 import org.smartwork.comm.constant.TaskColumnConstant;
-import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskHitstateEnum;
-import org.smartwork.comm.enums.TaskPayStateEnum;
-import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.*;
 import org.smartwork.comm.vo.ZGTaskCountVo;
 import org.smartwork.comm.vo.ZGTaskVo;
 import org.smartwork.dal.entity.*;
-import org.smartwork.dal.mapper.ZGTaskAttachMapper;
-import org.smartwork.dal.mapper.ZGTaskBidMapper;
-import org.smartwork.dal.mapper.ZGTaskMapper;
-import org.smartwork.dal.mapper.ZGTaskRelTagMapper;
+import org.smartwork.dal.mapper.*;
 import org.smartwork.dal.mapper.ext.ZGTaskExtMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -46,6 +35,12 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
 
     @Autowired
     ZGTaskBidMapper zgTaskBidMapper;
+
+    @Autowired
+    ZGTaskOrderMapper taskOrderMapper;
+
+    @Autowired
+    IZGTaskOrderService taskOrderService;
 
     /***
      * addZGTask方法概述: 添加任务
@@ -99,10 +94,17 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             ZGTaskBid taskBid = new ZGTaskBid();
             BeanCopier.create(ZGTaskBidDto.class, ZGTaskBid.class, false)
                     .copy(zgTaskBidDto, taskBid, null);
+            taskBid.setTaskId(task.getId());
             taskBid.setHitState(TaskHitstateEnum.HITSTATE.getCode());
             zgTaskBidMapper.insert(taskBid);
         }
 
+        //指定服务方生成订单
+        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
+            //加入任务ID
+            taskDto.getZgTaskOrderDto().setTaskId(task.getId());
+            taskOrderService.addOrder(taskDto.getZgTaskOrderDto());
+        }
     }
 
 

@@ -31,7 +31,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    task_member_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务会员编号",example="0")
+    @ApiModelProperty(value = "任务会员id",example="0",required = true)
     private Long taskMemberId;
 
     /**
@@ -41,7 +41,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    task_member_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务会员名称",example="")
+    @ApiModelProperty(value = "任务会员名称",example="",required = true)
     private String taskMemberName;
 
     /**
@@ -51,8 +51,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    task_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务ID",example="0",required = true)
-    @NotNull(message = "任务ID为空")
+    @ApiModelProperty(value = "任务ID",example="0")
     private Long taskId;
 
     /**
@@ -62,7 +61,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    task_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务名称",example="")
+    @ApiModelProperty(value = "任务名称",example="",required = true)
     @NotEmpty(message = "任务名称为空")
     private String taskName;
 
@@ -73,7 +72,7 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    host_amount
      * Nullable:  true
      */
-    @ApiModelProperty(value = "托管金额",example="0.00")
+    @ApiModelProperty(value = "托管金额",example="0.00",required = true)
     private BigDecimal hostAmount;
 
     /**
@@ -104,7 +103,6 @@ public class ZGTaskOrderDto implements Serializable{
      * Column:    member_id
      * Nullable:  true
      */
-    @NotNull(message = "会员id为空")
     @ApiModelProperty(value = "会员ID",example="0")
     private Long memberId;
 
