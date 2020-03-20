@@ -201,6 +201,15 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
         return zgTaskExtMapper.getPass(page,memberId);
     }
 
+    /***
+     * getCheck方法概述:通过会员id查询待审核任务信息(分页)
+     * @param
+     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.comm.vo.ZGTaskVo>>
+     * @创建人 Tom
+     * @创建时间 2020/3/20 10:51
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
     @Override
     public IPage<ZGTaskVo> getCheck(IPage<ZGTaskVo> page, Long memberId) {
         return zgTaskExtMapper.getCheck(page,memberId);

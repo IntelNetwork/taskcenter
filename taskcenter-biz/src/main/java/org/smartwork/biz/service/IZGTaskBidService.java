@@ -69,5 +69,14 @@ public interface IZGTaskBidService extends IService<ZGTaskBid> {
      */
     List<ZGTaskBidVo> taskBidlist(List<ZGTaskBidVo> zgTaskBidVos);
 
+    /***
+     * getBidding方法概述:通过会员id查询已竞标任务信息(分页)
+     * @param
+     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.comm.vo.ZGBidTaskVo>>
+     * @创建人 Tom
+     * @创建时间 2020/3/20 14:20
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
     IPage<ZGBidTaskVo> getBidding(IPage<ZGBidTaskVo> page, Long memberId);
 }
