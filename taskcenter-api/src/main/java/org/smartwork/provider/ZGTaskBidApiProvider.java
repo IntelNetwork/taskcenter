@@ -153,12 +153,12 @@ public class ZGTaskBidApiProvider {
      */
     @RequestMapping(value = "/get-bidding", method = RequestMethod.GET)
     @ApiOperation("通过会员id查询已竞标任务信息(分页)")
-    public Result<IPage<ZGBidTaskVo>> getBidding(BasePageDto basePageDto,@RequestParam(value = "memberId",required = true)Long memberId) {
+    public Result<IPage<ZGBidTaskVo>> getBidding(BasePageDto basePageDto) {
         Result<IPage<ZGBidTaskVo>> result = new Result<IPage<ZGBidTaskVo>>();
         IPage<ZGBidTaskVo> page = new Page<ZGBidTaskVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
-//        //加入需求方ID,用户名
-//        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
-//        Long memberId=user.getId();
+        //加入需求方ID,用户名
+        SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
+        Long memberId=user.getId();
         IPage<ZGBidTaskVo> pageUsers = taskBidService.getBidding(page, memberId);
         pageUsers.getRecords().stream().forEach(taskBid -> {
             List<ZGTask> zgTasks=taskService.list(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.ID,taskBid.getTaskId()));
