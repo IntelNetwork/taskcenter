@@ -169,6 +169,8 @@ public class ZGTaskBidApiProvider {
                 taskBid.setReleaseMemberName(task.getMemberName());
                 //任务名称
                 taskBid.setName(task.getName());
+                //任务状态
+                taskBid.setTaskState(task.getTaskState());
             });
         });
         result.setResult(pageUsers);
