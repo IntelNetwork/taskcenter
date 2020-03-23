@@ -1,5 +1,6 @@
 package org.smartwork.biz.service.impl;
 
+import com.alibaba.fastjson.serializer.BigDecimalCodec;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.constant.UserContext;
@@ -27,6 +28,7 @@ import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
 @Service
@@ -106,7 +108,8 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         ZGTaskBid zgTaskBid = zgTaskBidExtMapper.selectByTaskId(zgTaskOrderDto.getTaskId());
         zgTaskOrderDto.setTaskMemberId(zgTaskBid.getMemberId());
         zgTaskOrderDto.setTaskMemberName(zgTaskBid.getMemberName());
-
+        //计算实际金额(元)
+        BigDecimal actual=zgTaskOrderDto.getActualAmount().multiply(BigDecimal.valueOf(100));
         //加入需求方ID,用户名
         SysUser user = UserContext.getSysUser();
         zgTaskOrderDto.setMemberName(user.getUsername());
@@ -114,6 +117,7 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
         BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
                 .copy(zgTaskOrderDto, zgTaskOrder, null);
+        zgTaskOrder.setActualAmount(actual);
         if (zgTaskOrderDto.getActualAmount().intValue() > 0) {
             ZGTask task = taskMapper.selectOne(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.ID, zgTaskOrderDto.getTaskId()));
             if(!task.getTaskState().equalsIgnoreCase(TaskStateEnum.PAYMENT_GRATUITY.getCode())){
