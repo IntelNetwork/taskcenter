@@ -50,6 +50,10 @@ public class ZGTaskController extends BaseProvider<IZGTaskService, ZGTask> {
             task.setTaskState(taskState);
             taskService.updateById(task);
             result.setResult(task);
+        }else {
+            result.setBizCode(TaskBizResultEnum.TASK_NOT_CHECK.getBizCode());
+            result.setMessage(TaskBizResultEnum.TASK_NOT_CHECK.getBizMessage());
+            return result;
         }
         return result;
     }
