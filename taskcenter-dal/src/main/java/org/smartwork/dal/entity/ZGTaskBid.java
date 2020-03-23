@@ -43,7 +43,7 @@ public class ZGTaskBid extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "会员名称", example = "")
-    private String membeName;
+    private String memberName;
 
     /**
      * 低价

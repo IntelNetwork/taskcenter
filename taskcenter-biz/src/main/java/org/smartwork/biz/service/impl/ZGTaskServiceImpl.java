@@ -102,13 +102,6 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             taskBid.setHitState(TaskHitstateEnum.HITSTATE.getCode());
             zgTaskBidMapper.insert(taskBid);
         }
-
-        //指定服务方生成订单
-        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
-            //加入任务ID
-            taskDto.getZgTaskOrderDto().setTaskId(task.getId());
-            taskOrderService.addOrderPro(taskDto.getZgTaskOrderDto());
-        }
     }
 
 

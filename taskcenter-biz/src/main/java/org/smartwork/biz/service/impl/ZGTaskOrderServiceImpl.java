@@ -105,7 +105,7 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
         //查询任务会员
         ZGTaskBid zgTaskBid = zgTaskBidExtMapper.selectByTaskId(zgTaskOrderDto.getTaskId());
         zgTaskOrderDto.setTaskMemberId(zgTaskBid.getMemberId());
-        zgTaskOrderDto.setTaskMemberName(zgTaskBid.getMembeName());
+        zgTaskOrderDto.setTaskMemberName(zgTaskBid.getMemberName());
 
         //加入需求方ID,用户名
         SysUser user = UserContext.getSysUser();
@@ -126,46 +126,6 @@ public class ZGTaskOrderServiceImpl extends ServiceImpl<ZGTaskOrderMapper, ZGTas
             throw new ForbesException(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizCode()
                     , String.format(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage()));
         }
-    }
-
-
-    /***
-     * 概述:指定服务方生成订单
-     * @param
-     * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTaskOrder>
-     * @创建人 nhy
-     * @创建时间 2020/3/5 10:04
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void addOrderPro(ZGTaskOrderDto zgTaskOrderDto) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(CommonConstant.ORDER_PREFIX);
-        zgTaskOrderDto.setSn(TaskOrderCommonConstant.AUTO_UID+ dateFormat.format(System.currentTimeMillis()));
-        zgTaskOrderDto.setOrderStatus(TaskOrderStateEnum.UN_MANAGED.getCode());
-        zgTaskOrderDto.setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-        //查询任务会员
-        ZGTaskBid zgTaskBid = zgTaskBidExtMapper.selectByTaskId(zgTaskOrderDto.getTaskId());
-        zgTaskOrderDto.setTaskMemberId(zgTaskBid.getMemberId());
-        zgTaskOrderDto.setTaskMemberName(zgTaskBid.getMembeName());
-
-        //加入需求方ID,用户名
-        SysUser user = UserContext.getSysUser();
-        zgTaskOrderDto.setMemberName(user.getUsername());
-        zgTaskOrderDto.setMemberId(user.getId());
-        ZGTaskOrder zgTaskOrder = new ZGTaskOrder();
-        BeanCopier.create(ZGTaskOrderDto.class, ZGTaskOrder.class, false)
-                .copy(zgTaskOrderDto, zgTaskOrder, null);
-
-            ZGTask task = taskMapper.selectOne(new QueryWrapper<ZGTask>().eq(TaskColumnConstant.ID, zgTaskOrderDto.getTaskId()));
-            if(!task.getTaskState().equalsIgnoreCase(TaskStateEnum.PAYMENT_GRATUITY.getCode())){
-                //只有在任务状态为6支付赏金的时候才能生成订单
-                throw new ForbesException(TaskBizResultEnum.TASK_NOT_PAY.getBizCode()
-                        , String.format(TaskBizResultEnum.TASK_NOT_PAY.getBizMessage()));
-            }
-            baseMapper.insert(zgTaskOrder);
-
     }
 
 

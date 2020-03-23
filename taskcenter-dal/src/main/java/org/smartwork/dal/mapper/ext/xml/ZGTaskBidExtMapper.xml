@@ -8,7 +8,7 @@
     <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="member_id" jdbcType="BIGINT" property="memberId" />
-    <result column="membe_name" jdbcType="VARCHAR" property="membeName" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
     <result column="offe_start_price" jdbcType="DECIMAL" property="offeStartPrice" />
     <result column="offer_end_price" jdbcType="DECIMAL" property="offerEndPrice" />
     <result column="intr" jdbcType="VARCHAR" property="intr" />
@@ -16,7 +16,7 @@
     <result column="task_id" jdbcType="BIGINT" property="taskId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, create_by, create_time, update_by, update_time, member_id, membe_name, offe_start_price, 
+    id, create_by, create_time, update_by, update_time, member_id, member_name, offe_start_price,
     offer_end_price, intr, hit_state, task_id
   </sql>
 

@@ -44,7 +44,7 @@ public class ZGTaskBidVo extends BaseEntity implements Serializable {
      */
     @ApiModelProperty(value = "会员名称",example="",required = true)
     @NotEmpty(message = "会员名称为空")
-    private String membeName;
+    private String memberName;
 
     /**
      * 低价

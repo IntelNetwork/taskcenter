@@ -40,12 +40,4 @@ public interface IZGTaskOrderService extends IService<ZGTaskOrder> {
      */
     void addOrder(ZGTaskOrderDto zgTaskOrderDto);
 
-    /***
-     * addOrder方法概述:指定服务方生成订单
-     * @创建人 nhy
-     * @创建时间 2020/3/5 10:04
-     * @修改人 (修改了该文件，请填上修改人的名字)
-     * @修改日期 (请填上修改该文件时的日期)
-     */
-    void addOrderPro(ZGTaskOrderDto zgTaskOrderDto);
 }

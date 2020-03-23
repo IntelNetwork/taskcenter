@@ -80,17 +80,13 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
             return result;
         }
-        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
+        if (ConvertUtils.isEmpty(taskDto.getZgTaskBidDto())) {
             //如果指定了服务方
-            //更改状态 任务:支付赏金,订单:未支付
-            taskDto.setTaskState(TaskStateEnum.PAYMENT_GRATUITY.getCode());
-            taskDto.getZgTaskOrderDto().setPayStatus(TaskPayStateEnum.UN_PAY.getCode());
-        } else {
             //给定默认状态 待审核
             taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         }
         //加入需求方ID,用户名
-        SysUser user = UserContext.getSysUser();
+       SysUser user = UserContext.getSysUser();
         if(ConvertUtils.isEmpty(user)){
             //用户为空
             result.setBizCode(TaskBizResultEnum.USER_EMPTY.getBizCode());
@@ -209,7 +205,6 @@ public class ZGTaskAPIProvider {
         if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.SUBMIT_ACCEPTANCE.getCode())) {
             //更改状态 确认验收
             task.setTaskState(TaskStateEnum.CONFIRMATION_ACCEPTANCE.getCode());
-            task.setEndTime(new Date());
             taskService.updateById(task);
             result.setResult(task);
         }
