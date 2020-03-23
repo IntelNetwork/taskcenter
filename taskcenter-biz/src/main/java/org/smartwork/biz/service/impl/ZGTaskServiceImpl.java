@@ -58,7 +58,8 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
         ZGTask task = new ZGTask();
         BeanCopier.create(ZGTaskDto.class, ZGTask.class, false)
                 .copy(taskDto, task, null);
-        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto())) {
+        //指定了服务方,给定支付赏金状态
+        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto().getMemberName())) {
             task.setTaskState(TaskStateEnum.PAYMENT_GRATUITY.getCode());
         }
         baseMapper.insert(task);
