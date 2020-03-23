@@ -14,10 +14,7 @@ import org.smartwork.comm.utils.ConvertUtils;
 import org.smartwork.dal.entity.ZGTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -32,7 +29,7 @@ public class ZGTaskController extends BaseProvider<IZGTaskService, ZGTask> {
 
     /***
      * 方法概述:后台任务审核
-     * @param task
+     * @param id,taskState
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/16
      * @修改人 (修改了该文件，请填上修改人的名字)
@@ -40,23 +37,20 @@ public class ZGTaskController extends BaseProvider<IZGTaskService, ZGTask> {
      */
     @RequestMapping(value = "/audit", method = RequestMethod.PUT)
     @ApiOperation("后台任务审核")
-    public Result<ZGTask> auditTask(@RequestBody @Validated(value = UpdateValid.class) ZGTask task) {
-        log.debug("传入参数为:" + JSON.toJSONString(task));
-        Result<ZGTask> result = new Result<ZGTask>();
-        //传入实体类对象为空
-        if (ConvertUtils.isEmpty(task)) {
+    public Result<ZGTask> auditTask(@RequestParam(value = "id") Long id,@RequestParam(value = "taskState") String taskState) {
+        Result<ZGTask> result = new Result<>();
+        ZGTask task = taskService.getById(id);
+        if(ConvertUtils.isEmpty(task)){
             result.setBizCode(TaskBizResultEnum.ENTITY_EMPTY.getBizCode());
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
-        //只有待审核状态的任务才可以被审核
         if (task.getTaskState().equalsIgnoreCase(TaskStateEnum.CHECK.getCode())) {
             //更改状态 竞标中
-            task.setTaskState(TaskStateEnum.RELEASE.getCode());
+            task.setTaskState(taskState);
             taskService.updateById(task);
             result.setResult(task);
         }
-        log.debug("返回内容为:" + JSON.toJSONString(task));
         return result;
     }
 }
