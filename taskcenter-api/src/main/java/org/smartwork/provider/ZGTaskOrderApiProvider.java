@@ -18,6 +18,9 @@ import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+
 /**
  * @author lzw
  * @date 2020/3/5 9:13
@@ -52,6 +55,8 @@ public class ZGTaskOrderApiProvider {
                 return result;
             }
             izgTaskOrderService.addOrder(zgTaskOrderDto);
+            BigDecimal actual=zgTaskOrderDto.getActualAmount().multiply(BigDecimal.valueOf(100));
+            zgTaskOrderDto.setActualAmount(actual);
             result.setResult(zgTaskOrderDto);
         }catch(ForbesException e){
             result.setBizCode(e.getErrorCode());
