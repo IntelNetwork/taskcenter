@@ -80,9 +80,8 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
             return result;
         }
-        if (ConvertUtils.isEmpty(taskDto.getZgTaskBidDto())) {
-            //如果指定了服务方
-            //给定默认状态 待审核
+        if (ConvertUtils.isEmpty(taskDto.getZgTaskBidDto().getMemberName())) {
+            //未指定服务方,给定默认状态 待审核
             taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         }
         //加入需求方ID,用户名

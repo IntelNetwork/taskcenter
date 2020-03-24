@@ -28,6 +28,7 @@ public class ZGTaskAttach extends BaseEntity {
      */
     @ApiModelProperty(value = "任务ID",example="0",required = true)
     @NotNull(message = "任务ID为空")
+    @QueryColumn(column = "taskId",sqlKeyword = SqlKeyword.EQ)
     private Long taskId;
 
     /**
