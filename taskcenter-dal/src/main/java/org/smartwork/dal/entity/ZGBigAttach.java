@@ -26,8 +26,9 @@ public class ZGBigAttach extends BaseEntity {
      * Column:    bid_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "竞标ID",example="0",required = true)
+    @ApiModelProperty(value = "竞标ID", example = "0", required = true)
     @NotNull(message = "竞标ID为空")
+    @QueryColumn(column = "bidId", sqlKeyword = SqlKeyword.EQ)
     private Long bidId;
 
     /**
@@ -37,9 +38,9 @@ public class ZGBigAttach extends BaseEntity {
      * Column:    cn_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "中文名",example="",required = true)
+    @ApiModelProperty(value = "中文名", example = "", required = true)
     @NotEmpty(message = "中文名为空")
-    @QueryColumn(column = "cn_name",sqlKeyword = SqlKeyword.LIKE)
+    @QueryColumn(column = "cn_name", sqlKeyword = SqlKeyword.LIKE)
     private String cnName;
 
     /**
@@ -59,7 +60,7 @@ public class ZGBigAttach extends BaseEntity {
      * Column:    file_path
      * Nullable:  true
      */
-    @ApiModelProperty(value = "文件路径",example="",required = true)
+    @ApiModelProperty(value = "文件路径", example = "", required = true)
     @NotEmpty(message = "文件路径为空")
     private String filePath;
 }
