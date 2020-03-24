@@ -44,9 +44,8 @@ public class ZGTask extends BaseEntity {
      * Column:    name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务名称",required = true)
+    @ApiModelProperty(value = "任务名称")
     @ValidUnique(column = "ad_code",bizCode = "005001004",bizErrorMsg = "%s编码已经存在")
-    @NotEmpty(message = "任务名称为空",groups = {UpdateValid.class, SaveValid.class})
     @QueryColumn(column = "name",sqlKeyword = SqlKeyword.LIKE)
     private String name;
 
@@ -78,7 +77,7 @@ public class ZGTask extends BaseEntity {
      * Column:    is_bargain
      * Nullable:  true
      */
-    @ApiModelProperty(value = "可否议价0否1是", example = "0",required = true)
+    @ApiModelProperty(value = "可否议价0否1是", example = "0")
     @NotEmpty(message = "可否议价为空")
     private String isBargain;
 
@@ -102,7 +101,7 @@ public class ZGTask extends BaseEntity {
      * Column:    t_end_price
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务止价", example = "0.00",required = true)
+    @ApiModelProperty(value = "任务止价", example = "0.00")
     @NotNull(message = "任务止价为空")
     private BigDecimal endPrice;
 
@@ -115,7 +114,7 @@ public class ZGTask extends BaseEntity {
      * Nullable:  true
      */
     @JsonFormat(pattern="yyyy-MM-dd")
-    @ApiModelProperty(value = "竞标结束时间", example = "0",required = true)
+    @ApiModelProperty(value = "竞标结束时间", example = "0")
     private Date endTime;
 
 
@@ -126,7 +125,7 @@ public class ZGTask extends BaseEntity {
      * Column:    period
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务期限,单位(月)", example = "0",required = true)
+    @ApiModelProperty(value = "任务期限,单位(月)", example = "0")
     @NotNull(message = "任务期限为空")
     private Long period;
 
@@ -168,7 +167,7 @@ public class ZGTask extends BaseEntity {
      * Column:    industry_id
      * Nullable:  true
      */
-    @ApiModelProperty(value = "行业ID", example = "0",required = true)
+    @ApiModelProperty(value = "行业ID", example = "0")
     @NotNull(message = "行业ID为空")
     private Long industryId;
 
@@ -179,7 +178,7 @@ public class ZGTask extends BaseEntity {
      * Column:    t_type_name
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务类型名称", example = "",required = true)
+    @ApiModelProperty(value = "任务类型名称", example = "")
     @NotEmpty(message = "任务类型名称为空")
     @QueryColumn(column = "type_name",sqlKeyword = SqlKeyword.LIKE)
     private String typeName;
@@ -191,7 +190,7 @@ public class ZGTask extends BaseEntity {
      * Column:    t_type_code
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务类型编码",required = true)
+    @ApiModelProperty(value = "任务类型编码")
     @NotEmpty(message = "任务类型编码为空")
     private String typeCode;
 
@@ -213,7 +212,7 @@ public class ZGTask extends BaseEntity {
      * Column:    t_des
      * Nullable:  true
      */
-    @ApiModelProperty(value = "任务描述",required = true)
+    @ApiModelProperty(value = "任务描述")
     @NotEmpty(message = "任务描述为空")
     private String des;
 
@@ -224,7 +223,7 @@ public class ZGTask extends BaseEntity {
      * Column:    t_des
      * Nullable:  true
      */
-    @ApiModelProperty(value = "是否驻场0否1是",required = true)
+    @ApiModelProperty(value = "是否驻场0否1是")
     @NotEmpty(message = "是否驻场0否1是")
     private String isStationing;
 
@@ -235,7 +234,7 @@ public class ZGTask extends BaseEntity {
      * Column:    t_des
      * Nullable:  true
      */
-    @ApiModelProperty(value = "0不限1个人2团队",required = true)
+    @ApiModelProperty(value = "0不限1个人2团队")
     @NotEmpty(message = "0不限1个人2团队")
     private String providerReq;
 }
