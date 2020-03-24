@@ -9,6 +9,7 @@ import org.forbes.comm.vo.Result;
 import org.forbes.provider.BaseProvider;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.biz.service.IZGTaskService;
+import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.TaskBidCommonConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
@@ -22,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Api(tags = {"任务管理"})
@@ -77,6 +80,8 @@ public class ZGTaskController extends BaseProvider<IZGTaskService, ZGTask> {
             }
 
         }
+        //加入发布时间
+        task.setReleaseTime(new Date());
         taskService.updateById(task);
         result.setResult(task);
         return result;
