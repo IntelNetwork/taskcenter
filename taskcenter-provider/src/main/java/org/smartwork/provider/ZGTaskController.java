@@ -57,6 +57,12 @@ public class ZGTaskController extends BaseProvider<IZGTaskService, ZGTask> {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
+        //必须为待审核才可以审核
+        if(!task.getTaskState().equalsIgnoreCase(TaskStateEnum.CHECK.getCode())){
+            result.setBizCode(TaskBizResultEnum.TASK_NOT_CHECK_STATE.getBizCode());
+            result.setMessage(TaskBizResultEnum.TASK_NOT_CHECK_STATE.getBizMessage());
+            return result;
+        }
         //如果传入为审核不通过,则直接改为不通过
         if (auditTaskDto.getTaskState().equalsIgnoreCase(TaskStateEnum.CHECK_NULL.getCode())) {
             task.setTaskState(TaskStateEnum.CHECK_NULL.getCode());
