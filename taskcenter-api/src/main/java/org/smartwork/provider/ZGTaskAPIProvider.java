@@ -10,6 +10,7 @@ import org.forbes.comm.constant.UserContext;
 import org.forbes.comm.model.BasePageDto;
 import org.forbes.comm.model.SysUser;
 import org.forbes.comm.vo.Result;
+import org.forbes.comm.vo.ResultEnum;
 import org.smartwork.biz.service.*;
 import org.smartwork.comm.constant.*;
 import org.smartwork.comm.enums.*;
@@ -25,10 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.smartwork.comm.model.ZGTaskDto;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.List;
-import java.util.Map;
 
 /***
  * 类概述:任务API控制层
@@ -174,10 +173,8 @@ public class ZGTaskAPIProvider {
      */
     @RequestMapping(value = "/status", method = RequestMethod.GET)
     @ApiOperation("获取任务状态枚举值")
-    public Result<List<Map<String, String>>> receNewsStatus() {
-        Result<List<Map<String, String>>> result = new Result<List<Map<String, String>>>();
-        result.setResult(TaskStateEnum.receTaskStateEnum());
-        return result;
+    public List<ResultEnum> receNewsStatus() {
+        return TaskStateEnum.resultEnums();
     }
 
 
