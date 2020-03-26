@@ -28,6 +28,7 @@ public class ZGTaskType extends BaseEntity {
      */
     @ApiModelProperty(value = "类型编码",example="",required = true)
     @NotEmpty(message = "类型编码为空")
+    @ValidUnique(column = "code",bizCode = "005001000",bizErrorMsg = "%s任务类型编码已经存在")
     private String code;
 
     /**
