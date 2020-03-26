@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.utils.ConvertUtils;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.biz.service.IZGTaskService;
+import org.smartwork.biz.service.IZGTaskTagService;
 import org.smartwork.comm.constant.TaskColumnConstant;
+import org.smartwork.comm.constant.ZGTaskTagCommomConstant;
 import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.*;
@@ -43,6 +45,11 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
     @Autowired
     IZGTaskOrderService taskOrderService;
 
+    @Autowired
+    IZGTaskTagService taskTagService;
+    @Autowired
+    ZGTaskTagMapper taskTagMapper;
+
     /***
      * addZGTask方法概述: 添加任务
      * @param taskDto
@@ -70,6 +77,13 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             Long taskId = task.getId();
             ZGTaskRelTag attach = new ZGTaskRelTag();
             zgTaskRelTagDtos.stream().forEach(temp -> {
+                //需求方新添加数据库没有的标签
+                int count = taskTagService.count(new QueryWrapper<ZGTaskTag>().eq(ZGTaskTagCommomConstant.TAG_NAME,temp.getName()));
+                if(count > 0){
+                    ZGTaskTag tag = new ZGTaskTag();
+                    tag.setName(temp.getName());
+                    taskTagMapper.insert(tag);
+                }
                 attach.setTaId(temp.getTaId());
                 attach.setTaskId(taskId);
                 attach.setName(temp.getName());

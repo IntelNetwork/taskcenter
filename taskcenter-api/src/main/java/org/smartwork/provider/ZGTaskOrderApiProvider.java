@@ -6,14 +6,17 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.forbes.comm.constant.UserContext;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.model.SysUser;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.comm.constant.SaveValid;
 import org.smartwork.comm.constant.TaskOrderCommonConstant;
+import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.model.ZGTaskOrderDto;
+import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -104,5 +107,26 @@ public class ZGTaskOrderApiProvider {
     izgTaskOrderService.modifyOrderStatus(sn);
     return result;
     }
+
+
+    /***
+     * 方法概述:计算订单实际金额
+     * @param taskOrder 任务实体类
+     * @创建人 niehy(Frunk)
+     * @创建时间 2020/3/25
+     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改日期 (请填上修改该文件时的日期)
+     */
+    @RequestMapping(value = "/calculation", method = RequestMethod.PUT)
+    @ApiOperation("计算订单实际金额")
+    public Result<ZGTaskOrder> calculation(@RequestBody @Validated(value = UpdateValid.class) ZGTaskOrder taskOrder) {
+        Result<ZGTaskOrder> result = new Result<>();
+        SysUser user = UserContext.getSysUser();
+        
+
+        return result;
+    }
+
+
 
 }

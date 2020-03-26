@@ -9,6 +9,7 @@ import org.forbes.comm.vo.Result;
 import org.forbes.provider.BaseProvider;
 import org.smartwork.biz.service.IZGTaskBidService;
 import org.smartwork.biz.service.IZGTaskService;
+import org.smartwork.comm.constant.CommonConstant;
 import org.smartwork.comm.constant.TaskBidCommonConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
@@ -22,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Api(tags = {"任务管理"})
@@ -54,6 +57,12 @@ public class ZGTaskController extends BaseProvider<IZGTaskService, ZGTask> {
             result.setMessage(TaskBizResultEnum.ENTITY_EMPTY.getBizMessage());
             return result;
         }
+        //必须为待审核才可以审核
+        if(!task.getTaskState().equalsIgnoreCase(TaskStateEnum.CHECK.getCode())){
+            result.setBizCode(TaskBizResultEnum.TASK_NOT_CHECK_STATE.getBizCode());
+            result.setMessage(TaskBizResultEnum.TASK_NOT_CHECK_STATE.getBizMessage());
+            return result;
+        }
         //如果传入为审核不通过,则直接改为不通过
         if (auditTaskDto.getTaskState().equalsIgnoreCase(TaskStateEnum.CHECK_NULL.getCode())) {
             task.setTaskState(TaskStateEnum.CHECK_NULL.getCode());
@@ -77,6 +86,8 @@ public class ZGTaskController extends BaseProvider<IZGTaskService, ZGTask> {
             }
 
         }
+        //加入发布时间
+        task.setReleaseTime(new Date());
         taskService.updateById(task);
         result.setResult(task);
         return result;

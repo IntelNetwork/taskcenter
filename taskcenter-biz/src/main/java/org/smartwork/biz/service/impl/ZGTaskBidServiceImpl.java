@@ -29,6 +29,7 @@ import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -105,6 +106,8 @@ public class ZGTaskBidServiceImpl extends ServiceImpl<ZGTaskBidMapper, ZGTaskBid
             throw new ForbesException(TaskBizResultEnum.TASK_NOT_EXISTS.getBizCode()
                     ,String.format(TaskBizResultEnum.TASK_NOT_EXISTS.getBizMessage()));
         }
+        //加入竞标结束时间
+        zgTask.setEndTime(new Date());
         //修改任务状态为支付赏金
         zgTask.setTaskState(TaskStateEnum.PAYMENT_GRATUITY.getCode());
         taskMapper.updateById(zgTask);

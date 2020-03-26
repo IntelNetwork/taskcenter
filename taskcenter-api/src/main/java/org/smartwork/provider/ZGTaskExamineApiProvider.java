@@ -10,15 +10,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.forbes.comm.exception.ForbesException;
 import org.forbes.comm.vo.Result;
 import org.smartwork.biz.service.IZGTaskBidService;
+import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.comm.constant.DataColumnConstant;
 import org.smartwork.comm.constant.UpdateValid;
 import org.smartwork.comm.enums.TaskBizResultEnum;
 import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.utils.ConvertUtils;
+import org.smartwork.dal.entity.ZGTask;
 import org.smartwork.dal.entity.ZGTaskBid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * @description: TODO
@@ -32,6 +36,9 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags={"任务选标"})
 @Slf4j
 public class ZGTaskExamineApiProvider {
+
+    @Autowired
+    IZGTaskService taskService;
 
     @Autowired
     private IZGTaskBidService izgTaskBidService;
