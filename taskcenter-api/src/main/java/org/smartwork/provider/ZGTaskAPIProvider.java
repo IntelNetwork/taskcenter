@@ -33,7 +33,7 @@ import java.util.List;
  * 类概述:任务API控制层
  * @创建人 niehy(Frunk)
  * @创建时间 2020/2/29
- * @修改人 (修改了该文件，请填上修改人的名字)
+ * @修改人 (修改了该文件 ， 请填上修改人的名字)
  * @修改日期 (请填上修改该文件时的日期)
  */
 @RestController
@@ -59,7 +59,7 @@ public class ZGTaskAPIProvider {
      * @param taskDto 任务dto
      * @创建人 niehy(Frunk)
      * @创建时间 2020/2/29
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -84,12 +84,7 @@ public class ZGTaskAPIProvider {
             taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         }
         //加入需求方ID,用户名
-       SysUser user = UserContext.getSysUser();
-        if(ConvertUtils.isEmpty(user)){
-            //用户为空
-            result.setBizCode(TaskBizResultEnum.USER_EMPTY.getBizCode());
-            result.setMessage(TaskBizResultEnum.USER_EMPTY.getBizMessage());
-        }
+        SysUser user = UserContext.getSysUser();
         taskDto.setMemberName(user.getUsername());
         taskDto.setMemberId(user.getId());
         //给定任务类型编码
@@ -106,7 +101,7 @@ public class ZGTaskAPIProvider {
      * @param task 任务实体类
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/start", method = RequestMethod.PUT)
@@ -137,7 +132,7 @@ public class ZGTaskAPIProvider {
      * @param task 任务实体类
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/2
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/submit-accept", method = RequestMethod.PUT)
@@ -163,12 +158,11 @@ public class ZGTaskAPIProvider {
     }
 
 
-
     /***
      * 方法概述:获取任务状态枚举值
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/3
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/status", method = RequestMethod.GET)
@@ -183,7 +177,7 @@ public class ZGTaskAPIProvider {
      * @param task
      * @创建人 niehy(Frunk)
      * @创建时间 2020/3/16
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/confirm-accept", method = RequestMethod.PUT)
@@ -216,7 +210,7 @@ public class ZGTaskAPIProvider {
      * @return com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/2 13:41
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -243,7 +237,7 @@ public class ZGTaskAPIProvider {
      * @return org.smartwork.dal.entity.ZGTask
      * @创建人 Tom
      * @创建时间 2020/3/2 18:20
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -261,7 +255,7 @@ public class ZGTaskAPIProvider {
      * @return org.smartwork.comm.model.ZGTaskDto
      * @创建人 Tom
      * @创建时间 2020/3/3 10:02
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/alter-task", method = RequestMethod.PUT)
@@ -308,7 +302,7 @@ public class ZGTaskAPIProvider {
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/4 17:18
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/get-release", method = RequestMethod.GET)
@@ -318,7 +312,7 @@ public class ZGTaskAPIProvider {
         IPage<ZGTaskVo> page = new Page<ZGTaskVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
         //加入需求方ID,用户名
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
-        Long memberId=user.getId();
+        Long memberId = user.getId();
         IPage<ZGTaskVo> pageUsers = taskService.getRelease(page, memberId);
         pageUsers.getRecords().stream().forEach(task -> {
             int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, task.getId()));
@@ -337,7 +331,7 @@ public class ZGTaskAPIProvider {
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/4 17:18
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/get-pass", method = RequestMethod.GET)
@@ -347,7 +341,7 @@ public class ZGTaskAPIProvider {
         IPage<ZGTaskVo> page = new Page<ZGTaskVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
         //加入需求方ID,用户名
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
-        Long memberId=user.getId();
+        Long memberId = user.getId();
         IPage<ZGTaskVo> pageUsers = taskService.getPass(page, memberId);
         pageUsers.getRecords().stream().forEach(task -> {
             int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, task.getId()));
@@ -363,10 +357,10 @@ public class ZGTaskAPIProvider {
     /***
      * getCheck方法概述:通过会员id查询待审核任务信息(分页)
      * @param basePageDto
-     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.comm.vo.ZGTaskVo>>
+     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage < org.smartwork.comm.vo.ZGTaskVo>>
      * @创建人 Tom
      * @创建时间 2020/3/20 10:51
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @RequestMapping(value = "/get-check", method = RequestMethod.GET)
@@ -376,7 +370,7 @@ public class ZGTaskAPIProvider {
         IPage<ZGTaskVo> page = new Page<ZGTaskVo>(basePageDto.getPageNo(), basePageDto.getPageSize());
         //加入需求方ID,用户名
         SysUser user = org.forbes.comm.constant.UserContext.getSysUser();
-        Long memberId=user.getId();
+        Long memberId = user.getId();
         IPage<ZGTaskVo> pageUsers = taskService.getCheck(page, memberId);
         pageUsers.getRecords().stream().forEach(task -> {
             int count = izgTaskOrderService.count(new QueryWrapper<ZGTaskOrder>().eq(DataColumnConstant.TASKID, task.getId()));

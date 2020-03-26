@@ -56,7 +56,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return
      * @创建人 niehy(Frunk)
      * @创建时间 2020/2/29
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Transactional(rollbackFor = Exception.class)
@@ -77,13 +77,6 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
             Long taskId = task.getId();
             ZGTaskRelTag attach = new ZGTaskRelTag();
             zgTaskRelTagDtos.stream().forEach(temp -> {
-                //需求方新添加数据库没有的标签
-                int count = taskTagService.count(new QueryWrapper<ZGTaskTag>().eq(ZGTaskTagCommomConstant.TAG_NAME,temp.getName()));
-                if(count > 0){
-                    ZGTaskTag tag = new ZGTaskTag();
-                    tag.setName(temp.getName());
-                    taskTagMapper.insert(tag);
-                }
                 attach.setTaId(temp.getTaId());
                 attach.setTaskId(taskId);
                 attach.setName(temp.getName());
@@ -135,7 +128,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return org.forbes.comm.vo.Result<org.smartwork.comm.model.ZGTaskDto>
      * @创建人 Tom
      * @创建时间 2020/3/3 10:02
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Transactional(rollbackFor = Exception.class)
@@ -179,7 +172,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/2 13:41
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
@@ -193,12 +186,12 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/4 17:18
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
-    public IPage<ZGTaskVo> getRelease(IPage<ZGTaskVo> page,Long memberId) {
-        return zgTaskExtMapper.getRelease(page,memberId);
+    public IPage<ZGTaskVo> getRelease(IPage<ZGTaskVo> page, Long memberId) {
+        return zgTaskExtMapper.getRelease(page, memberId);
     }
 
     /***
@@ -207,25 +200,25 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/4 17:18
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
-    public IPage<ZGTaskVo> getPass(IPage<ZGTaskVo> page,Long memberId) {
-        return zgTaskExtMapper.getPass(page,memberId);
+    public IPage<ZGTaskVo> getPass(IPage<ZGTaskVo> page, Long memberId) {
+        return zgTaskExtMapper.getPass(page, memberId);
     }
 
     /***
      * getCheck方法概述:通过会员id查询待审核任务信息(分页)
      * @param
-     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.comm.vo.ZGTaskVo>>
+     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage < org.smartwork.comm.vo.ZGTaskVo>>
      * @创建人 Tom
      * @创建时间 2020/3/20 10:51
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
     public IPage<ZGTaskVo> getCheck(IPage<ZGTaskVo> page, Long memberId) {
-        return zgTaskExtMapper.getCheck(page,memberId);
+        return zgTaskExtMapper.getCheck(page, memberId);
     }
 }
