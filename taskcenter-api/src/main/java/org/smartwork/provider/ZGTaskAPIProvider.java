@@ -87,7 +87,7 @@ public class ZGTaskAPIProvider {
         //给定任务类型编码
         taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         taskDto.setTypeCode(UUIDGenerator.generateString(8));
-        //进入业务类继续操作
+        //进入业务类操作
         taskService.addZGTask(taskDto);
         result.setResult(taskDto);
         log.debug("返回参数为:" + JSON.toJSONString(taskDto));
