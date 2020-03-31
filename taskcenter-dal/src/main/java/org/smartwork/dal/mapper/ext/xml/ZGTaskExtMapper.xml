@@ -54,12 +54,10 @@
       <if test="zgTaskPageDto.industry != null and zgTaskPageDto.industry != '' and zgTaskPageDto.industry != 'null'">
         AND t.industry=#{zgTaskPageDto.industry,jdbcType=VARCHAR}
       </if>
-      <if test="zgTaskPageDto.taskState != null and zgTaskPageDto.taskState != '' and zgTaskPageDto.taskState != 'null'">
-        AND t.task_state != 5 AND t.task_state != 0 AND t.task_state != 7 AND t.task_state != 99
-      </if>
       <if test="zgTaskPageDto.startPrice != null and zgTaskPageDto.endPrice != null ">
         AND t.start_price &gt;=#{zgTaskPageDto.startPrice} AND t.end_price &lt;=#{zgTaskPageDto.endPrice}
       </if>
+        AND t.task_state != 5 AND t.task_state != 0 AND t.task_state != 7 AND t.task_state != 99
     </where>
   </select>
 
