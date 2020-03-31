@@ -8,7 +8,6 @@ import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.biz.service.IZGTaskService;
 import org.smartwork.biz.service.IZGTaskTagService;
 import org.smartwork.comm.constant.TaskColumnConstant;
-import org.smartwork.comm.constant.ZGTaskTagCommomConstant;
 import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
 import org.smartwork.comm.model.*;
@@ -65,10 +64,6 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
         ZGTask task = new ZGTask();
         BeanCopier.create(ZGTaskDto.class, ZGTask.class, false)
                 .copy(taskDto, task, null);
-        //指定了服务方,给定支付赏金状态
-        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto().getMemberName())) {
-            task.setTaskState(TaskStateEnum.PAYMENT_GRATUITY.getCode());
-        }
         baseMapper.insert(task);
 
         //任务标签关联

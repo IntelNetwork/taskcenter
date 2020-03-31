@@ -79,19 +79,18 @@ public class ZGTaskAPIProvider {
             result.setMessage(TaskBizResultEnum.AMOUNT_LESS_ZERO.getBizMessage());
             return result;
         }
-        if (ConvertUtils.isEmpty(taskDto.getZgTaskBidDto().getMemberName())) {
-            //未指定服务方,给定默认状态 待审核
-            taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
-        }
+
         //加入需求方ID,用户名
         SysUser user = UserContext.getSysUser();
         taskDto.setMemberName(user.getUsername());
         taskDto.setMemberId(user.getId());
         //给定任务类型编码
+        taskDto.setTaskState(TaskStateEnum.CHECK.getCode());
         taskDto.setTypeCode(UUIDGenerator.generateString(8));
         //进入业务类继续操作
         taskService.addZGTask(taskDto);
         result.setResult(taskDto);
+        log.debug("返回参数为:" + JSON.toJSONString(taskDto));
         return result;
     }
 
