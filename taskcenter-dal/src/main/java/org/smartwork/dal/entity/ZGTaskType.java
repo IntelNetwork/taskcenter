@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.forbes.comm.annotations.QueryColumn;
 import org.forbes.comm.annotations.ValidUnique;
+import org.forbes.comm.constant.SaveValid;
+import org.forbes.comm.constant.UpdateValid;
 import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -27,7 +29,7 @@ public class ZGTaskType extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "类型编码",example="",required = true)
-    @NotEmpty(message = "类型编码为空")
+    @NotEmpty(message = "类型编码为空",groups ={UpdateValid.class, SaveValid.class})
     @ValidUnique(column = "code",bizCode = "005001000",bizErrorMsg = "%s任务类型编码已经存在")
     private String code;
 
@@ -39,7 +41,7 @@ public class ZGTaskType extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "名称",example="",required = true)
-    @NotEmpty(message = "名称为空")
+    @NotEmpty(message = "名称为空",groups ={UpdateValid.class, SaveValid.class})
     @ValidUnique(column = "name",bizCode = "005001001",bizErrorMsg = "%s任务类型名称已经存在")
     @QueryColumn(column = "name",sqlKeyword = SqlKeyword.LIKE)
     private String name;

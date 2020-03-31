@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.forbes.comm.annotations.QueryColumn;
+import org.forbes.comm.constant.SaveValid;
+import org.forbes.comm.constant.UpdateValid;
 import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -39,7 +41,7 @@ public class ZGTaskAttach extends BaseEntity {
      * Nullable:  true
      */
     @ApiModelProperty(value = "中文名",example="",required = true)
-    @NotEmpty(message = "中文名为空")
+    @NotEmpty(message = "中文名为空",groups ={UpdateValid.class, SaveValid.class})
     @QueryColumn(column = "cn_name",sqlKeyword = SqlKeyword.LIKE)
     private String cnName;
 
