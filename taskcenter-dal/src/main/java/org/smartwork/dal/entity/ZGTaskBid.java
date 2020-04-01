@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 
 import lombok.Data;
 import org.forbes.comm.annotations.QueryColumn;
+import org.forbes.comm.constant.SaveValid;
+import org.forbes.comm.constant.UpdateValid;
 import org.forbes.comm.entity.BaseEntity;
 
 import javax.validation.constraints.NotEmpty;
@@ -65,7 +67,7 @@ public class ZGTaskBid extends BaseEntity {
      */
 
     @ApiModelProperty(value = "止价",example="0.00",required = true)
-    @NotNull(message = "止价为空")
+    @NotNull(message = "止价为空",groups ={UpdateValid.class, SaveValid.class})
     @QueryColumn(column = "offer_end_price",sqlKeyword = SqlKeyword.LE)
     private BigDecimal offerEndPrice;
 

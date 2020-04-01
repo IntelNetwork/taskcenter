@@ -28,7 +28,7 @@ public class ZGBigAttach extends BaseEntity {
      */
     @ApiModelProperty(value = "竞标ID", example = "0", required = true)
     @NotNull(message = "竞标ID为空")
-    @QueryColumn(column = "bidId", sqlKeyword = SqlKeyword.EQ)
+    @QueryColumn(column = "bid_id", sqlKeyword = SqlKeyword.EQ)
     private Long bidId;
 
     /**

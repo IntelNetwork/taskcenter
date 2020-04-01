@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.forbes.comm.utils.ConvertUtils;
 import org.smartwork.biz.service.IZGTaskOrderService;
 import org.smartwork.biz.service.IZGTaskService;
+import org.smartwork.biz.service.IZGTaskTagService;
 import org.smartwork.comm.constant.TaskColumnConstant;
 import org.smartwork.comm.enums.TaskHitstateEnum;
 import org.smartwork.comm.enums.TaskStateEnum;
@@ -43,13 +44,18 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
     @Autowired
     IZGTaskOrderService taskOrderService;
 
+    @Autowired
+    IZGTaskTagService taskTagService;
+    @Autowired
+    ZGTaskTagMapper taskTagMapper;
+
     /***
      * addZGTask方法概述: 添加任务
      * @param taskDto
      * @return
      * @创建人 niehy(Frunk)
      * @创建时间 2020/2/29
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Transactional(rollbackFor = Exception.class)
@@ -58,10 +64,6 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
         ZGTask task = new ZGTask();
         BeanCopier.create(ZGTaskDto.class, ZGTask.class, false)
                 .copy(taskDto, task, null);
-        //指定了服务方,给定支付赏金状态
-        if (ConvertUtils.isNotEmpty(taskDto.getZgTaskBidDto().getMemberName())) {
-            task.setTaskState(TaskStateEnum.PAYMENT_GRATUITY.getCode());
-        }
         baseMapper.insert(task);
 
         //任务标签关联
@@ -121,7 +123,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return org.forbes.comm.vo.Result<org.smartwork.comm.model.ZGTaskDto>
      * @创建人 Tom
      * @创建时间 2020/3/3 10:02
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Transactional(rollbackFor = Exception.class)
@@ -165,7 +167,7 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/2 13:41
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
@@ -179,12 +181,12 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/4 17:18
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
-    public IPage<ZGTaskVo> getRelease(IPage<ZGTaskVo> page,Long memberId) {
-        return zgTaskExtMapper.getRelease(page,memberId);
+    public IPage<ZGTaskVo> getRelease(IPage<ZGTaskVo> page, Long memberId) {
+        return zgTaskExtMapper.getRelease(page, memberId);
     }
 
     /***
@@ -193,25 +195,25 @@ public class ZGTaskServiceImpl extends ServiceImpl<ZGTaskMapper, ZGTask> impleme
      * @return org.forbes.comm.vo.Result<org.smartwork.dal.entity.ZGTask>
      * @创建人 Tom
      * @创建时间 2020/3/4 17:18
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
-    public IPage<ZGTaskVo> getPass(IPage<ZGTaskVo> page,Long memberId) {
-        return zgTaskExtMapper.getPass(page,memberId);
+    public IPage<ZGTaskVo> getPass(IPage<ZGTaskVo> page, Long memberId) {
+        return zgTaskExtMapper.getPass(page, memberId);
     }
 
     /***
      * getCheck方法概述:通过会员id查询待审核任务信息(分页)
      * @param
-     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage<org.smartwork.comm.vo.ZGTaskVo>>
+     * @return org.forbes.comm.vo.Result<com.baomidou.mybatisplus.core.metadata.IPage < org.smartwork.comm.vo.ZGTaskVo>>
      * @创建人 Tom
      * @创建时间 2020/3/20 10:51
-     * @修改人 (修改了该文件，请填上修改人的名字)
+     * @修改人 (修改了该文件 ， 请填上修改人的名字)
      * @修改日期 (请填上修改该文件时的日期)
      */
     @Override
     public IPage<ZGTaskVo> getCheck(IPage<ZGTaskVo> page, Long memberId) {
-        return zgTaskExtMapper.getCheck(page,memberId);
+        return zgTaskExtMapper.getCheck(page, memberId);
     }
 }
